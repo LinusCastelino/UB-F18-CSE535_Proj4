@@ -1,11 +1,15 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+
+import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { SearchStatisticsComponent } from './search-statistics/search-statistics.component';
+
+import { APICallsService } from '../services/apicalls.service'
 
 @NgModule({
   declarations: [
@@ -16,9 +20,10 @@ import { SearchStatisticsComponent } from './search-statistics/search-statistics
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [APICallsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

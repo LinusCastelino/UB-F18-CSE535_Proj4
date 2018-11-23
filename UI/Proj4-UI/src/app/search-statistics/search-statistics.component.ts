@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { APICallsService } from '../../services/apicalls.service'
 
 @Component({
   selector: 'app-search-statistics',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchStatisticsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apiService: APICallsService) { }
 
   ngOnInit() {
   }
