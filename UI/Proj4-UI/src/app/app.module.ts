@@ -8,13 +8,14 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { SearchStatisticsComponent } from './search-statistics/search-statistics.component';
+import { ToggleComponent } from './toggle/toggle.component';  
 
-import { APICallsService } from '../services/apicalls.service'
+import { APICallsService } from '../services/apicalls.service';
 
 const routes : Routes= [
   {path:'', redirectTo:'/home', pathMatch:'full'},
   {path:'home', component: HomeComponent},
-  {path:'search', component: SearchResultsComponent}
+  {path:'search', component: ToggleComponent}
 ];
 
 @NgModule({
@@ -22,7 +23,8 @@ const routes : Routes= [
     AppComponent,
     HomeComponent,
     SearchResultsComponent,
-    SearchStatisticsComponent
+    SearchStatisticsComponent,
+    ToggleComponent
   ],
   imports: [
     BrowserModule,
