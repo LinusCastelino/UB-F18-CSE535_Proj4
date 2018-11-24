@@ -1,38 +1,71 @@
+<div *ngIf="resultsAvailable" >
+  <div class="container">
+      <div class="row">
+        <div class="col-3">
+          <mat-accordion>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Select Dates:
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                  <p>From Date:</p>  
+                  <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                  <p>To Date:</p>
+                  <mat-form-field>
+                      <input matInput [matDatepicker]="picker2" placeholder="Choose a date">
+                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                      <mat-datepicker #picker2></mat-datepicker>
+                  </mat-form-field>
+              </mat-expansion-panel>
+            
+              <mat-expansion-panel (opened)="panelOpenState = true"
+                                    (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    Select Languages:
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <section class="language">
+                  <mat-checkbox class="language-select" [(ngModel)]="Hindi">Hindi</mat-checkbox><br>
+                  <mat-checkbox class="language-select" [(ngModel)]="English">English</mat-checkbox><br>
+                  <mat-checkbox class="language-select" [(ngModel)]="French">French</mat-checkbox><br>
+                  <mat-checkbox class="language-select" [(ngModel)]="Thai">Thai</mat-checkbox><br>
+                  <mat-checkbox class="language-select" [(ngModel)]="Spanish">Spanish</mat-checkbox><br>
+                </section>
+              </mat-expansion-panel>
+            
+            
+              <mat-expansion-panel (opened)="panelOpenState = true"
+                                    (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                  Select City: 
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                <section class="city">
+                  <mat-checkbox class="city-select" [(ngModel)]="delhi">delhi</mat-checkbox><br>
+                  <mat-checkbox class="city-select" [(ngModel)]="nyc">nyc</mat-checkbox><br>
+                  <mat-checkbox class="city-select" [(ngModel)]="paris">paris</mat-checkbox><br>
+                  <mat-checkbox class="city-select" [(ngModel)]="bangkok">bangkok</mat-checkbox><br>
+                  <mat-checkbox class="city-select" [(ngModel)]="mexico_city">mexico city</mat-checkbox><br>
+                </section>
+              </mat-expansion-panel>
+              
+            </mat-accordion>
+        </div>
+    
+      <div class="col-9">
 
-<div class="searchbar">
-    <app-searchbar></app-searchbar>
- </div>
- <div class="filters">
-  <p>From Date:</p>  
-  <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-      <p>To Date:</p>
-      <mat-form-field>
-          <input matInput [matDatepicker]="picker2" placeholder="Choose a date">
-          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-          <mat-datepicker #picker2></mat-datepicker>
-        </mat-form-field>
-<p> Select Languages: </p>
-        <section class="language">
-            <mat-checkbox class="language-select" [(ngModel)]="Hindi">Hindi</mat-checkbox><br>
-            <mat-checkbox class="language-select" [(ngModel)]="English">English</mat-checkbox><br>
-            <mat-checkbox class="language-select" [(ngModel)]="French">French</mat-checkbox><br>
-            <mat-checkbox class="language-select" [(ngModel)]="Thai">Thai</mat-checkbox><br>
-            <mat-checkbox class="language-select" [(ngModel)]="Spanish">Spanish</mat-checkbox><br>
-          </section>
-          <p> Select City: </p>
-        <section class="city">
-            <mat-checkbox class="city-select" [(ngModel)]="delhi">delhi</mat-checkbox><br>
-            <mat-checkbox class="city-select" [(ngModel)]="nyc">nyc</mat-checkbox><br>
-            <mat-checkbox class="city-select" [(ngModel)]="paris">paris</mat-checkbox><br>
-            <mat-checkbox class="city-select" [(ngModel)]="bangkok">bangkok</mat-checkbox><br>
-            <mat-checkbox class="city-select" [(ngModel)]="mexico_city">mexico city</mat-checkbox><br>
-          </section>
+      </div>
+    </div>
   </div>
- <div class="results">
-<p>Results</p>
- </div>
- 
+</div>
+
+<div *ngIf="!resultsAvailable" >
+  Please input a search query
+</div>

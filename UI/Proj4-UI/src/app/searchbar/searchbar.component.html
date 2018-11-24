@@ -4,10 +4,11 @@
       <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
         <mat-icon>close</mat-icon>
 </button>
+</mat-form-field>
 
-
-  </mat-form-field>&nbsp;
-  <button (click)="search()" mat-icon-button style="height: 60px; width: 60px;" color="primary">
+  &nbsp;
+  <button (click)="searchQuery(value)" mat-icon-button style="height: 60px; width: 60px;" color="primary">
     <mat-icon aria-label="Example">search</mat-icon>
   </button>
+  
 </mat-card>

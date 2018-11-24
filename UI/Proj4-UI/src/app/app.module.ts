@@ -7,8 +7,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import{ MatIconModule, MatDatepickerModule,MatCheckboxModule, MatNativeDateModule} from '@angular/material/';
+import{ MatIconModule, MatDatepickerModule,MatCheckboxModule, MatNativeDateModule, MatExpansionModule} from '@angular/material/';
+import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule } from '@angular/forms';
+
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -43,12 +45,13 @@ const routes : Routes= [
     MatInputModule,
     MatCardModule,
     MatButtonModule,
+    MatTabsModule,
     MatIconModule,
     FormsModule,
     MatDatepickerModule,
     MatCheckboxModule, 
-    MatNativeDateModule
-    
+    MatNativeDateModule,
+    MatExpansionModule
   ],
   providers: [APICallsService],
   bootstrap: [AppComponent]
