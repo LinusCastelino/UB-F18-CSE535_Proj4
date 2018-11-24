@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import{ MatIconModule, MatDatepickerModule,MatCheckboxModule, MatNativeDateModule, MatExpansionModule} from '@angular/material/';
+import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule } from '@angular/forms';
 
 
@@ -44,13 +45,13 @@ const routes : Routes= [
     MatInputModule,
     MatCardModule,
     MatButtonModule,
+    MatTabsModule,
     MatIconModule,
     FormsModule,
     MatDatepickerModule,
     MatCheckboxModule, 
     MatNativeDateModule,
     MatExpansionModule
-    
   ],
   providers: [APICallsService],
   bootstrap: [AppComponent]

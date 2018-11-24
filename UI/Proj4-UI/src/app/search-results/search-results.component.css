@@ -1,22 +1,10 @@
-.searchbar{
-    background:white;
-    position: absolute;
-    top:0px;
-    left:0px;
-    height:10%;
-    width:100%;
-    }
-body{
-    background: white;
 
-}    
     .filters{
         margin-left: 5px;
     background: white;
-    position: absolute;
+    position: relative;
     top:13%;
     left:0px;
-    height:90%;
     width:20%;
     }
     
@@ -26,6 +14,5 @@ body{
     position: absolute;
     top:13%;
     left:20%;
-    height:90%;
     width:80%;
     }
