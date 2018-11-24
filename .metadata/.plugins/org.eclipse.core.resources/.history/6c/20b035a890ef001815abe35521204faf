@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -69,52 +68,6 @@ public class TopicController<JSONObject> {
 	}
 	
 	*/
-	
-	
-	
-	@RequestMapping(value="ir", method = RequestMethod.GET)
-	public @ResponseBody <T> ResponseEntity<Object> redirectToExternalUrl1(@RequestParam("q") List<String> q) throws URISyntaxException, GeneralSecurityException, IOException {
-		//TranslateRequest<T> temp =setKey(java.lang.String "AIzaSyAHkcEjxhNKB2rlx8tG7MuAo0wRYuYMRsA");
-		//="AIzaSyAHkcEjxhNKB2rlx8tG7MuAo0wRYuYMRsA";
-		
-		TranslateRequestInitializer translateRequestInitializer = new TranslateRequestInitializer("AIzaSyAHkcEjxhNKB2rlx8tG7MuAo0wRYuYMRsA");
-		HttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
-	    JacksonFactory jsonFactory = JacksonFactory.getDefaultInstance();
-	    final Translate translate = new Translate.Builder(httpTransport, jsonFactory, null)
-	            .setApplicationName("My Apps").setTranslateRequestInitializer(translateRequestInitializer).build();
-
-
-		//com.google.cloud.translate.Translate translate = TranslateOptions.getDefaultInstance().getService();
-		//Translation translation = translate.translate(q, TranslateOption.sourceLanguage("en"),TranslateOption.targetLanguage("ru"));
-	    TranslationsListResponse qen = translate.translations().list(q, "en").execute();
-	    TranslationsListResponse qes = translate.translations().list(q, "es").execute();
-	    TranslationsListResponse qfr = translate.translations().list(q, "fr").execute();
-	    TranslationsListResponse qhi = translate.translations().list(q, "hi").execute();
-	    TranslationsListResponse qth = translate.translations().list(q, "th").execute();
-	    String q2 =qen.getTranslations().get(0).get("translatedText").toString()+"%7C%7C"+qhi.getTranslations().get(0).get("translatedText").toString()+"%7C%7C"+qes.getTranslations().get(0).get("translatedText").toString()+"%7C%7C"+qth.getTranslations().get(0).get("translatedText").toString()+"%7C%7C"+qfr.getTranslations().get(0).get("translatedText").toString();
-	    //java.nio.ByteBuffer byteBuffer = StandardCharsets.UTF_8.encode(q2);
-	    String q3 = URLEncoder.encode(q2, "UTF-8");
-	    URI yahoo = new URI("http://localhost:8983/solr/ram1/select?facet.field=lang&facet=on&q="+q3+"&fl=tweet_date%2Centities.urls.url%2Ctext%2Clang%2Ctopic%2Ccity%2Cid%2Cscore&wt=json&indent=true");
-		HttpHeaders httpHeaders = new HttpHeaders();
-	    httpHeaders.setLocation(yahoo);
-	    ResponseEntity<Object> res = new ResponseEntity<>(httpHeaders, HttpStatus.SEE_OTHER);
-	    
-	    return res;
-	    
-	    
-	    
-	    
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	

@@ -72,7 +72,7 @@ public class TopicController<JSONObject> {
 	
 	
 	
-	@RequestMapping(value="ir", method = RequestMethod.GET)
+	@RequestMapping(value="q", method = RequestMethod.GET)
 	public @ResponseBody <T> ResponseEntity<Object> redirectToExternalUrl1(@RequestParam("q") List<String> q) throws URISyntaxException, GeneralSecurityException, IOException {
 		//TranslateRequest<T> temp =setKey(java.lang.String "AIzaSyAHkcEjxhNKB2rlx8tG7MuAo0wRYuYMRsA");
 		//="AIzaSyAHkcEjxhNKB2rlx8tG7MuAo0wRYuYMRsA";
