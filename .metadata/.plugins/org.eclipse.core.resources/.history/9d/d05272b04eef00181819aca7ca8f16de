@@ -1,0 +1,67 @@
+package io.IRProject.springbootstarter.topic;
+
+import java.net.URI;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class TopicService {
+
+	
+	private static final String YOUR_API_KEY = null;
+	private List<Topic> topics = new ArrayList<>(Arrays.asList(
+			new Topic("Spring", "Spring Framework", "Spring Framework Description"),
+			new Topic("Java", "Core Java", "Java Framework Description"),
+			new Topic("JavaScript", "JavaScript Framework", "JavaScript Framework Description")
+			));
+	
+	public List<Topic> getAllTopics(){
+		return topics;
+	}
+	
+	public Topic getTopic(String id) {
+		return topics.stream().filter(t->t.getId().equals(id)).findFirst().get();
+	}
+
+	public void addTopic(Topic topic) {
+		topics.add(topic);
+		
+	}
+
+	public void updateTopic(String id, Topic topic) {
+		
+		for(int i =0; i<topics.size();i++) {
+			Topic t = topics.get(i);
+			if(t.getId().equals(id)) {
+				topics.set(i, topic);
+				return;
+			}
+		}
+		
+		
+	}
+
+	public void deleteTopic(String id) {
+		
+		topics.removeIf(t->t.getId().equals(id));
+
+		
+	}
+
+	public void queryTranslate(String q) {
+		// TODO Auto-generated method stub
+		String YOUR_API_KEY = "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDLpoPOvc7WlDiZ\nwuMmwo/TEuqRaF1XjULMwB+mGIQGNgkFc2SdBcmXbnLEEn0bEJWuyoDXeB5Vb6SJ\nuTZwE38Ue7Zd192RpBYqxZAGgyUhE5ZrxA3a0TvGpmVa/3h2vTYPBlodyNcChTTF\ny79geiQlsLuXk18Ln6TvRigMZJG1L9Csir3pTkNwdnnmUfEs9w1JdZpYHqX9x9JR\nBJXo/wVefHyCQHv8Mv6RP9FJPLhf60GjEWVdX3Amy9Ra61G+edEuBAzULra3NL8M\nKmo6rl4iLjEyrcdJH8Gf3NmiqFAJvzKZ3b6hL4z35jnXS9G9SuKktw6Z0LKsv7eq\nf2B6a+RxAgMBAAECggEAB7gD/u4KzO9JReqxGWL+eI2a/m/qOctM4N3XVUBQoLuj\nk+VPxvPVNDwndW8N9tymD731LDWNUMeugNnYSl8yzd/yhZQM/dwuSui6EMUfvyUy\n6lq/+686iMj9xnkwY6/AQMmI2OAn5hyOZ4DVfB6lCBiuw4v+aj5ezgLmubGGJEve\nWDfFg+r5BeRPX2wfKcxUYkomw+eeNTS/qnXwPWv0+wDqJXYTaNaH/QxoZBbV1SU+\ncYBk3A6dRuIX8MkEQ21JOoiVj7hbs1nOfVQU+9iVad4yfE7cYVPJKQ52kwdQkSJI\nllbubkJlAcv8xtEyMLrK/6dA7kx0V+kYQ52AA7AJkQKBgQDqsyPYEqNmhR5oZYdq\n4l+B83JAsyEXtV+Jk4i+z/HhYQI8w7h5jQO6TUWvfdxcnMCnlG5mYmEHhlpOxWFw\nU70ygH6iCLWS1IMw0ZrVXd+A7w2yUUciKK02DaHXmcUxJ6heBLPutdhkppVKmIbz\nWthp2WSDRBlIG0fihmycDNkB8wKBgQDeIf7VyxMP8qB98wiBjxNnM4k4CpFU5ZPk\nPEmuWiopdNTSqyIYzp+4+OirbkpPzzdsbZJDXZKtUPJC6sX1kibo5jkkrtS3fzBV\n11vQO3YaXt1DrBVc9zTdhRPiI3ztXkqYVOdcyDcUGSY1cuuD5+k5eDr8ilcXq7QA\nWk6UfGi1CwKBgEcmn8s1e0vtN1a20OLaVdHzl8N9ip7BYYE3tNEEAXQuEJuTSi2v\nTl4AZwvYwCFjdBRZr05irL+3P1F6DRwchtL0mW9N7J3ixxLZuHLOzp8r2Z8hfMsi\nQcCNSW8vMtTADQ7TpijMABojVkcTDnZgKBOO0CXrUy7E9nn5/psgWfl5AoGAL6DS\nZzzXpX+8ccT+eekXm/Us4ttBNhbTkwhqM/wZNjJav6D5+p+zF5InMTrArEQd+h20\nUsVpgcftafO05maj+SQD9J2X9pBK6Nz4TrmxJQ5aGvx2yCwpJaY3ETHSw4KINAlg\nYkB7rs+FpcgyP2ImW7Av1Z5D9ktWmQzD9IqIWOkCgYAb2na6AOxj8xg7GFbvEPcN\nfpCAiYBbNkeR6j9J7+kqdqpxFNmGx9Wkc3Cvpyeio3FXSuDeI7o7yCXIsqBbNIIm\nIyI7gpParMxqpgBwAKOw7MwlaEIgwUiXtsBtRQMcegTcxlHwNRq8w5VnSf8W00ua\n6YAKhNQx9TNDOwOhSds2yg==\n-----END PRIVATE KEY-----\n";
+		URI yahoo = new URI("https://translation.googleapis.com/language/translate/v2?q="+q+"&target=es&format=text&key={"+YOUR_API_KEY+"}");
+		
+	}
+
+	
+	
+	
+	
+	
+	
+}

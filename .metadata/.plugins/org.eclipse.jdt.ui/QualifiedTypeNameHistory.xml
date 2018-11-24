@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.SpringBootApplication"/>
+<fullyQualifiedTypeName name="org.springframework.boot.SpringApplication"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+<fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMethod"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="org.springframework.web.client.RestTemplate"/>
+<fullyQualifiedTypeName name="java.net.URISyntaxException"/>
+<fullyQualifiedTypeName name="com.google.api.services.translate.Translate"/>
+<fullyQualifiedTypeName name="java.net.URI"/>
+<fullyQualifiedTypeName name="org.springframework.http.HttpHeaders"/>
+<fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
+<fullyQualifiedTypeName name="org.springframework.http.HttpStatus"/>
+<fullyQualifiedTypeName name="com.google.cloud.translate.TranslateOptions"/>
+<fullyQualifiedTypeName name="com.google.cloud.translate.Translation"/>
+<fullyQualifiedTypeName name="javassist.Translator"/>
+<fullyQualifiedTypeName name="com.google.cloud.translate.Language"/>
+<fullyQualifiedTypeName name="java.net.URL"/>
+<fullyQualifiedTypeName name="com.google.api.client.util.IOUtils"/>
+<fullyQualifiedTypeName name="com.google.api.client.googleapis.auth.oauth2.GoogleCredential"/>
+<fullyQualifiedTypeName name="com.google.api.services.translate.TranslateRequest"/>
+<fullyQualifiedTypeName name="com.google.cloud.translate.Translate"/>
+<fullyQualifiedTypeName name="com.google.cloud.translate.Translate.TranslateOption"/>
+<fullyQualifiedTypeName name="com.google.api.services.translate.TranslateRequestInitializer"/>
+<fullyQualifiedTypeName name="com.google.api.client.http.HttpTransport"/>
+<fullyQualifiedTypeName name="com.google.api.client.googleapis.javanet.GoogleNetHttpTransport"/>
+<fullyQualifiedTypeName name="com.fasterxml.jackson.core.JsonFactory"/>
+<fullyQualifiedTypeName name="com.google.api.client.json.jackson2.JacksonFactory"/>
+<fullyQualifiedTypeName name="java.net.HttpURLConnection"/>
+<fullyQualifiedTypeName name="java.io.BufferedReader"/>
+<fullyQualifiedTypeName name="java.io.InputStreamReader"/>
+<fullyQualifiedTypeName name="com.fasterxml.jackson.databind.ObjectMapper"/>
+<fullyQualifiedTypeName name="antlr.ByteBuffer"/>
+<fullyQualifiedTypeName name="java.nio.charset.StandardCharsets"/>
+<fullyQualifiedTypeName name="java.net.URLEncoder"/>
+</qualifiedTypeNameHistroy>

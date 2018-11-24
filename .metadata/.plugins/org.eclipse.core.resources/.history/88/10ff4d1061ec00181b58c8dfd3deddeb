@@ -1,0 +1,7 @@
+package io.IRProject.springbootstarter.hello;
+
+
+@RestController
+public class HelloController {
+
+}

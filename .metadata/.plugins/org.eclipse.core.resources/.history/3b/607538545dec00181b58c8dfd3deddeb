@@ -1,0 +1,9 @@
+package io.IRProject.springbootstarter;
+
+
+@SpringBootApplication
+public class IRProjectAPI {
+	public static void main(String[] args) {
+		
+	}
+}
