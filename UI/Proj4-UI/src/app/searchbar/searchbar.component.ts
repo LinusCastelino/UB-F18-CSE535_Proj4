@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {APICallsService } from '../../services/apicalls.service'
 
 @Component({
   selector: 'app-searchbar',
@@ -6,10 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./searchbar.component.css']
 })
 export class SearchbarComponent implements OnInit {
-
-  constructor() { }
+  
+  constructor(private apiService:APICallsService) { }
 
   ngOnInit() {
   }
 
+  public searchQuery(query){
+    console.log(query);
+    this.apiService.search(query).subscribe(data => {
+      console.log(data);
+    });
+
+  }
 }
