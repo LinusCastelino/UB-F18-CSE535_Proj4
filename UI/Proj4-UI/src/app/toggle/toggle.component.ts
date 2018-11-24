@@ -12,4 +12,7 @@ export class ToggleComponent implements OnInit {
   ngOnInit() {
   }
 
+  public onApiResponse(data:any) : void{
+    console.log("From toggle component : "+ data);
+  }
 }

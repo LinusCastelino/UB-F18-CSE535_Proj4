@@ -1,5 +1,5 @@
 <div class="searchbar">
-    <app-searchbar></app-searchbar>
+    <app-searchbar (apiResponse)="onApiResponse($event)"></app-searchbar>
 </div>
 
 
@@ -9,23 +9,3 @@
     </mat-tab>
     <mat-tab label="Statistics"> <app-search-statistics></app-search-statistics> </mat-tab>
   </mat-tab-group>
-
-<!-- <div>
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link active" id="search-results-tab"  data-toggle="pill" role="tab" href="#search-results" aria-selected="true">Search Results</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link active" id="search-statistics-tab" data-toggle="pill" role="tab" href="#search-statistics" aria-selected="false">Statistics</a>
-    </li>
-  </ul>
-
-  <div class="tab-content" id="tab-content">
-    <div class="tab-pane fade show active" id="search-results">
-      <app-search-results></app-search-results>
-    </div>
-    <div class="tab-pane fade" id="search-statistics">
-      <app-search-statistics></app-search-statistics>
-    </div>
-  </div>
-</div> -->
