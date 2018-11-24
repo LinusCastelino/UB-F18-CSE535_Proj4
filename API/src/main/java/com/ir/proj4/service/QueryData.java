@@ -8,18 +8,19 @@ import com.ir.proj4.model.Response;
 public class QueryData {
 	private Response response;
 	@JsonIgnore
-	private HashMap<String, Object> responseHeader;
-	private HashMap<String, Object> facet_counts;
+	private String responseHeader;
+	
+	private Facet_Counts facet_counts;
 	
 
-	public HashMap<String, Object> getFacet_counts() {
+	public Facet_Counts getFacet_counts() {
 		return facet_counts;
 	}
 
-	public void setFacet_counts(HashMap<String, Object> facet_counts) {
+	public void setFacet_counts(Facet_Counts facet_counts) {
 		this.facet_counts = facet_counts;
 	}
-
+	
 	public Response getResponse() {
 		return response;
 	}
@@ -28,11 +29,11 @@ public class QueryData {
 		this.response = response;
 	}
 
-	public HashMap<String, Object> getResponseHeader() {
+	public String getResponseHeader() {
 		return responseHeader;
 	}
 
-	public void setResponseHeader(HashMap<String, Object> responseHeader) {
+	public void setResponseHeader(String responseHeader) {
 		this.responseHeader = responseHeader;
 	}
 }
