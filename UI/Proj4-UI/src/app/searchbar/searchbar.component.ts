@@ -16,8 +16,7 @@ export class SearchbarComponent implements OnInit {
   }
 
   public searchQuery(query){
-    console.log(query);
-    this.apiService.search(query).subscribe(data => {
+      this.apiService.search(query).subscribe(data => {
       this.apiResponse.emit(data);
     });
 

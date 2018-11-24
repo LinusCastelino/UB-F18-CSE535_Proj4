@@ -14,12 +14,10 @@ export class APICallsService {
   constructor(private httpClient : HttpClient) { }
 
   public search(inputquery):Observable<ITweet[]>{
-    console.log("in here "+inputquery)
     var URL = apiURL+'/ir';
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     let params = new HttpParams().set('q',inputquery);
-    console.log(params);
     return this.httpClient.get<ITweet[]>(URL, {headers, params});
   }
 
