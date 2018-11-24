@@ -13,6 +13,6 @@ export class ToggleComponent implements OnInit {
   }
 
   public onApiResponse(data:any) : void{
-    console.log("From toggle component : "+ data);
+    console.log("From toggle component : "+ JSON.stringify(data));
   }
 }
