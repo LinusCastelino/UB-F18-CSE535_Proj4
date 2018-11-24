@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ITweet } from 'src/models/ITweet';
 
-export const apiURL:string = "";
+export const apiURL:string = "http://localhost:8080";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class APICallsService {
   constructor(private httpClient : HttpClient) { }
 
   public search(inputquery):Observable<ITweet[]>{
-    var URL = apiURL + "";
+    var URL = apiURL;
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     let params = new HttpParams();
