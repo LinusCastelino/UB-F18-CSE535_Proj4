@@ -20,14 +20,11 @@ export class SearchResultsComponent implements OnInit {
   mexico_city : boolean=false; 
   paris : boolean=false;
 
-  @Input() resultsAvailable : boolean = false;
   @Input() apiResponse;
 
   constructor(private apiService: APICallsService) { }
 
   ngOnInit() {
   }
-
-
 
 }

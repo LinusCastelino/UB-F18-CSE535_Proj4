@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import{ MatIconModule, MatDatepickerModule,MatCheckboxModule, MatNativeDateModule, MatExpansionModule} from '@angular/material/';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule } from '@angular/forms';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 
 import { AppComponent } from './app.component';
@@ -51,7 +52,8 @@ const routes : Routes= [
     MatDatepickerModule,
     MatCheckboxModule, 
     MatNativeDateModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatProgressBarModule
   ],
   providers: [APICallsService],
   bootstrap: [AppComponent]

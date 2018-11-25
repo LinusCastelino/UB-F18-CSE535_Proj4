@@ -15,12 +15,15 @@ export class ToggleComponent implements OnInit {
 
   query : string = '';
   resultsAvailable : boolean = false;
-  apiResponse; 
+  apiResponse:any = '';
+  searchInProgress : boolean = false; 
 
   public queryApi(inputText:string) : void{
     if(typeof(inputText) == 'string'){
+      this.searchInProgress = true;
       this.query = inputText;
       this.apiService.search(inputText).subscribe(response => { 
+        this.searchInProgress = false;
         this.resultsAvailable = true;
         this.apiResponse = response;
       });
