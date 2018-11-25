@@ -25,12 +25,17 @@ import com.ir.proj4.model.ReturnList;
 @Service
 public class SolrService {
 	
-	public ReturnList querySolr(String query) throws URISyntaxException, GeneralSecurityException, IOException {
+	public ReturnList querySolr(String query,String lang,String city) throws URISyntaxException, GeneralSecurityException, IOException {
 		
-		
-		//to work on
-		//select?facet.field=tweet_lang&facet=on&fq=city:%22%22nyc%22||%22delhi%22%22&fq=tweet_lang:%22%22hi%22||%22en%22%22&indent=on&q=:&wt=json
-		
+		//some preprocessing on query params
+		if(query==""||query==null)
+			query="*:*";
+		if(lang==""||lang==null)
+			lang="\"en\",\"es\",\"hi\",\"th\",\"fr\"";
+		if(city==""||city==null)
+			city="\"mexico%20city\",\"paris\",\"bangkok\",\"delhi\",\"nyc\"";
+		else
+			city=city.replace(" ", "%20");
 		
 		
 		//convert query in list
@@ -53,7 +58,7 @@ public class SolrService {
 	    String q3 = URLEncoder.encode(q2, "UTF-8");
 	    
 	    //solr api query
-	    String url = "http://localhost:8983/solr/ram1/select?facet.field=lang&facet=on&q="+q3+"&fl=tweet_date%2Ctext%2Clang%2Ctopic%2Ccity%2Cid%2Cscore&wt=json&indent=true&row=1000";
+	    String url = "http://localhost:8983/solr/ram1/select?facet.field=lang&facet=on&fq=city="+city+"&fq=lang="+lang+"&q="+q3+"&fl=tweet_date%2Ctext%2Clang%2Ctopic%2Ccity%2Cid%2Cscore&wt=json&indent=true&row=1000";
 	    
 	    //hitting solr API
 	    URL obj = new URL(url);
