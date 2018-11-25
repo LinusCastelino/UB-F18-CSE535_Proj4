@@ -20,10 +20,9 @@ export class SearchResultsComponent implements OnInit {
   nyc : boolean=false; 
   paris : boolean=false;
 
-  @Input() apiResponse;
+  @Input() inputQuery : string;
+  @Input() apiResponse : any;
   @Output() filtersEmitter : EventEmitter<string[]> = new EventEmitter<string[]>();
-
-  searchResponse : any;
 
 
   constructor(private apiService: APICallsService) { }

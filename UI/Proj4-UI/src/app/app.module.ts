@@ -11,6 +11,7 @@ import{ MatIconModule, MatDatepickerModule,MatCheckboxModule, MatNativeDateModul
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 import { AppComponent } from './app.component';
@@ -53,7 +54,8 @@ const routes : Routes= [
     MatCheckboxModule, 
     MatNativeDateModule,
     MatExpansionModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatPaginatorModule
   ],
   providers: [APICallsService],
   bootstrap: [AppComponent]
