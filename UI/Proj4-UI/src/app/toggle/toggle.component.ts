@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { APICallsService } from '../../services/apicalls.service';
 
 @Component({
   selector: 'app-toggle',
@@ -7,12 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ToggleComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apiService:APICallsService) { }
 
   ngOnInit() {
   }
 
-  public onApiResponse(data:any) : void{
-    console.log("From toggle component : "+ data);
+  query : string = '';
+  resultsAvailable : boolean = false;
+  apiResponse; 
+
+  public queryApi(inputText:string) : void{
+    if(typeof(inputText) == 'string'){
+      this.query = inputText;
+      this.apiService.search(inputText).subscribe(response => { 
+        this.resultsAvailable = true;
+        this.apiResponse = response;
+      });
+    }
   }
 }

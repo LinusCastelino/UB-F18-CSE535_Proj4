@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { APICallsService } from '../../services/apicalls.service'
 import { ITweet } from '../../models/ITweet'
 
@@ -20,7 +20,8 @@ export class SearchResultsComponent implements OnInit {
   mexico_city : boolean=false; 
   paris : boolean=false;
 
-  resultsAvailable : boolean = true;
+  @Input() resultsAvailable : boolean = false;
+  @Input() apiResponse;
 
   searchResponse : ITweet[] = [];
 
