@@ -1,8 +1,15 @@
 img{
     width: auto;
     height: auto;
-    padding-left: 40%;
     padding-top: 8%;
+}
+
+.main-img{
+    padding-left: 40%;
+}
+
+.error-img{
+    padding-left: 32%;
 }
 
 p{

@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { APICallsService } from '../../services/apicalls.service'
-import { ITweet } from '../../models/ITweet'
 import { throwToolbarMixedModesError } from '@angular/material';
 
 @Component({
@@ -24,7 +23,7 @@ export class SearchResultsComponent implements OnInit {
   @Input() apiResponse;
   @Output() filtersEmitter : EventEmitter<string[]> = new EventEmitter<string[]>();
 
-  searchResponse : ITweet[] = [];
+  searchResponse : any;
 
 
   constructor(private apiService: APICallsService) { }

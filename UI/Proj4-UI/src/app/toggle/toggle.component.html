@@ -20,7 +20,12 @@
 </div>
 
 
-<div *ngIf="!resultsAvailable">
-  <img src="../../assets/question-bird.png"/>
+<div *ngIf="!resultsAvailable && !errorOccured">
+  <img class="main-img" src="../../assets/question-bird.png"/>
   <p>Please enter a search query ...</p>
+</div>
+
+<div *ngIf="errorOccured">
+  <img class="error-img" src="../../assets/twitter-error.png" />
+  <p>Oops..! An error occurred :(</p>
 </div>
