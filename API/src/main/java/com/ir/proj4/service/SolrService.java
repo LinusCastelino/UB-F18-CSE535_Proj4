@@ -44,13 +44,9 @@ public class SolrService {
 	    TranslationsListResponse qth = translate.translations().list(queryList, "th").execute();
 	    String q2 =qen.getTranslations().get(0).get("translatedText").toString()+"%7C%7C"+qhi.getTranslations().get(0).get("translatedText").toString()+"%7C%7C"+qes.getTranslations().get(0).get("translatedText").toString()+"%7C%7C"+qth.getTranslations().get(0).get("translatedText").toString()+"%7C%7C"+qfr.getTranslations().get(0).get("translatedText").toString();
 	    String q3 = URLEncoder.encode(q2, "UTF-8");
-<<<<<<< HEAD
 	    System.out.println(q3);
 	    String url = "http://localhost:8983/solr/BM25/select?facet.field=lang&facet=on&q="+q3+"&fl=tweet_date%2Ctext%2Clang%2Ctopic%2Ccity%2Cid%2Cscore&wt=json&indent=true&row=1000";
-=======
-	    //System.out.println(q3);
-	    String url = "http://18.191.170.212:8983/solr/IRF18P1/select?facet.field=lang&facet=on&q="+q3+"&fl=tweet_date%2Ctext%2Clang%2Ctopic%2Ccity%2Cid%2Cscore&wt=json&indent=true&row=1000";
->>>>>>> 347a6633e36062f73851bd82bbaa5d1e95434538
+
 	    URL obj = new URL(url);
 	    HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
