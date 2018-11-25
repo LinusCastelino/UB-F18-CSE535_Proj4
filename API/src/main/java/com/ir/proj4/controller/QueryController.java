@@ -21,11 +21,11 @@ public class QueryController<JSONObject> {
 	
 	@CrossOrigin
 	@RequestMapping(value="ir", method = RequestMethod.GET)
-	public ReturnList getSolrResponse(@RequestParam(name="q") String query, @RequestParam(name="lang", required=false) String lang, @RequestParam(name="city", required=false) String city) throws URISyntaxException, GeneralSecurityException, IOException {
+	public ReturnList getSolrResponse(@RequestParam(name="q") String query, @RequestParam(name="page", required=false) int page, @RequestParam(name="lang", required=false) String lang, @RequestParam(name="city", required=false) String city) throws URISyntaxException, GeneralSecurityException, IOException {
 		//to work on
 		//most common ISO Date Format yyyy-MM-dd
 		
-		return solrService.querySolr(query, lang, city);
+		return solrService.querySolr(query, page, lang, city);
 
 	}	
 }
