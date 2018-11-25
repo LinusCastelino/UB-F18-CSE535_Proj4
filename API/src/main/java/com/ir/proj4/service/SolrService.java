@@ -28,8 +28,6 @@ public class SolrService {
 	public ReturnList querySolr(String query,String lang,String city) throws URISyntaxException, GeneralSecurityException, IOException {
 		
 		//some preprocessing on query params
-		if(query==""||query==null)
-			query="*:*";
 		if(lang==""||lang==null)
 			lang="\"en\",\"es\",\"hi\",\"th\",\"fr\"";
 		if(city==""||city==null)
@@ -58,7 +56,7 @@ public class SolrService {
 	    String q3 = URLEncoder.encode(q2, "UTF-8");
 	    
 	    //solr api query
-	    String url = "http://localhost:8983/solr/ram1/select?facet.field=lang&facet=on&fq=city="+city+"&fq=lang="+lang+"&q="+q3+"&fl=tweet_date%2Ctext%2Clang%2Ctopic%2Ccity%2Cid%2Cscore&wt=json&indent=true&row=1000";
+	    String url = "http://localhost:8983/solr/ram1/select?facet.field=lang&facet=on&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2Ctext%2Clang%2Ctopic%2Ccity%2Cid%2Cscore&wt=json&indent=true&row=1000";
 	    
 	    //hitting solr API
 	    URL obj = new URL(url);
