@@ -5,7 +5,6 @@ import java.util.List;
 public class Docs {
 	String id;
     List<String> text;
-//    List<String> entities.urls.url;
     List<String> lang;
     List<String> topic;
     List<String> city;

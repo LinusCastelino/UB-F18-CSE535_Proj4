@@ -12,9 +12,6 @@ public class ReturnList {
 		this.tweets = arrayList;
 		this.lang = new HashMap<String,String>();
 		for(int i=0;i<lang.size();i+=2) {
-			System.out.println(lang.size());
-			System.out.println(lang.get(i));
-			System.out.println(lang.get(i+1));
 			this.lang.put(lang.get(i), lang.get(i+1));
 		}
 	}

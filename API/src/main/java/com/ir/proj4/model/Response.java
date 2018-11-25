@@ -1,7 +1,6 @@
 package com.ir.proj4.model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Response {
 	int numFound;
