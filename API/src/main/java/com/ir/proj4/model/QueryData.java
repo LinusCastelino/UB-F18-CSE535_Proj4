@@ -1,9 +1,8 @@
-package com.ir.proj4.service;
+package com.ir.proj4.model;
 
 import java.util.HashMap;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.ir.proj4.model.Response;
 
 public class QueryData {
 	private Response response;
