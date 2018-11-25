@@ -6,6 +6,7 @@ import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,7 @@ public class QueryController<JSONObject> {
 	@Autowired
 	private SolrService solrService;
 	
+	@CrossOrigin
 	@RequestMapping(value="ir", method = RequestMethod.GET)
 	public ArrayList<Docs> redirectToExternalUrl1(@RequestParam("q") String query) throws URISyntaxException, GeneralSecurityException, IOException {
 //		System.out.println("Inside");
