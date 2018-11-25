@@ -23,8 +23,6 @@ export class SearchResultsComponent implements OnInit {
   @Input() resultsAvailable : boolean = false;
   @Input() apiResponse;
 
-  searchResponse : ITweet[] = [];
-
   constructor(private apiService: APICallsService) { }
 
   ngOnInit() {
