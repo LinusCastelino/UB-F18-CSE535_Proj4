@@ -1,7 +1,5 @@
 package com.ir.proj4.model;
 
-import java.util.HashMap;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class QueryData {
