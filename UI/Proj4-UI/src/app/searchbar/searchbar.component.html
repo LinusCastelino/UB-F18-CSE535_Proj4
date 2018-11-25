@@ -1,14 +1,10 @@
 <mat-card> 
-   <mat-form-field>
-      <input matInput type="text" placeholder="Enter Seach Query Here" [(ngModel)]="value">
-      <button mat-button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-        <mat-icon>close</mat-icon>
-</button>
-</mat-form-field>
+  <mat-form-field>
+      <input matInput type="text" placeholder="Enter Search Query Here" [(ngModel)]="inputText">
+  </mat-form-field>
 
-  &nbsp;
-  <button (click)="searchQuery(value)" mat-icon-button style="height: 60px; width: 60px;" color="primary">
-    <mat-icon aria-label="Example">search</mat-icon>
+  <button (click)="search(inputText)" mat-icon-button style="height: 60px; width: 60px;">
+    <mat-icon>search</mat-icon>
   </button>
   
 </mat-card>

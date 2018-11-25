@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import {APICallsService } from '../../services/apicalls.service'
 
 @Component({
   selector: 'app-searchbar',
@@ -8,17 +7,14 @@ import {APICallsService } from '../../services/apicalls.service'
 })
 export class SearchbarComponent implements OnInit {
   
-  constructor(private apiService:APICallsService) { }
+  constructor() { }
 
-  @Output() apiResponse : EventEmitter<any> = new EventEmitter<any>(); 
+  @Output() textInput : EventEmitter<string> = new EventEmitter<string>(); 
 
   ngOnInit() {
   }
 
-  public searchQuery(query){
-      this.apiService.search(query).subscribe(data => {
-      this.apiResponse.emit(data);
-    });
-
+  public search(inputText){
+    this.textInput.emit(inputText);
   }
 }
