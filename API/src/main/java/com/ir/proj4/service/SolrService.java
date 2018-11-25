@@ -90,9 +90,8 @@ public class SolrService {
 	    q3 = URLEncoder.encode(q2, "UTF-8");
 	    
 	    //solr api query
-	    url = "http://localhost:8983/solr/ram1/select?facet.field=city&facet.field=lang&facet=on&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2Ctext%2Clang%2Ctopic%2Ccity%2Cid%2Cscore&rows=10&start="+page+"&wt=json&indent=true&row=1000";
+	    url = "http://18.191.170.212:8983/solr/IRF18P1/select?facet.field=city&facet.field=lang&facet=on&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2Ctext%2Clang%2Ctopic%2Ccity%2Cid%2Cscore&rows=10&start="+page+"&wt=json&indent=true&row=1000";
 	    
-	    //hitting solr API
 	    URL obj = new URL(url);
 	    HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
