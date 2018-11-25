@@ -92,7 +92,7 @@ public class SolrService {
 	    q3 = URLEncoder.encode(q2, "UTF-8");
 	    
 	    //solr api query
-	    url = "http://localhost:8983/solr/ram1/select?facet.field=city&facet.field=lang&facet=on&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2Ctext%2Clang%2Ctopic%2Ccity%2Cid%2Cscore&rows="+pageSize+"&start="+pageNo+"&wt=json&indent=true&row=1000";
+	    url = "http://18.191.170.212:8983/solr/IRF18P1/select?facet.field=city&facet.field=lang&facet=on&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2Ctext%2Clang%2Ctopic%2Ccity%2Cid%2Cscore&rows="+pageSize+"&start="+pageNo+"&wt=json&indent=true&row=1000";
 	    
 	    //quoted_status.user.screen_name - 
 	    //quoted_status.user.profile_image_url
@@ -115,12 +115,12 @@ public class SolrService {
             response.append(inputLine);
         } 
         in .close();
-        
+        System.out.println(response.toString());
         //input from solr will be processed now
         ObjectMapper obj_ObjectMapper = new ObjectMapper();
         QueryData obj_QueryData = new QueryData();
         obj_QueryData = obj_ObjectMapper.readValue(response.toString(), QueryData.class);
-        ReturnList returnList = new ReturnList(obj_QueryData.getResponse().getDocs(),obj_QueryData.getFacet_counts().getFacet_fields().getLang(),obj_QueryData.getFacet_counts().getFacet_fields().getCity());
+        ReturnList returnList = new ReturnList(obj_QueryData.getResponse().getDocs(),obj_QueryData.getFacet_counts().getFacet_fields().getLang(),obj_QueryData.getFacet_counts().getFacet_fields().getCity(),obj_QueryData.getResponse().getNumFound());
         
         //final processed answer will be returned to the controller
         return returnList;

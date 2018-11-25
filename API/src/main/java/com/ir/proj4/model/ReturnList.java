@@ -8,7 +8,8 @@ public class ReturnList {
 	ArrayList<Docs> tweets;
 	HashMap<String,String> lang;
 	HashMap<String,String> city;
-	public ReturnList(ArrayList<Docs> tweets,List<String> lang, List<String> city){
+	int numFound;
+	public ReturnList(ArrayList<Docs> tweets,List<String> lang, List<String> city, int numFound){
 		this.tweets = tweets;
 		this.lang = new HashMap<String,String>();
 		this.city = new HashMap<String,String>();
@@ -19,6 +20,15 @@ public class ReturnList {
 		for(int i=0;i<city.size();i+=2) {
 			this.city.put(city.get(i), city.get(i+1));
 		}
+		this.numFound = numFound;
+	}
+
+	public int getNumFound() {
+		return numFound;
+	}
+
+	public void setNumFound(int numFound) {
+		this.numFound = numFound;
 	}
 
 	public HashMap<String, String> getCity() {
