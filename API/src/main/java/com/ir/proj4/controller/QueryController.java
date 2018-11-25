@@ -25,7 +25,6 @@ public class QueryController<JSONObject> {
 	@CrossOrigin
 	@RequestMapping(value="ir", method = RequestMethod.GET)
 	public ReturnList redirectToExternalUrl1(@RequestParam("q") String query) throws URISyntaxException, GeneralSecurityException, IOException {
-//		System.out.println("Inside");
 		return solrService.querySolr(query);
 
 	}	
