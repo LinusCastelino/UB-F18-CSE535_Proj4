@@ -22,19 +22,30 @@ export class ToggleComponent implements OnInit {
     if(typeof(inputText) == 'string'){
       this.searchInProgress = true;
       this.query = inputText;
-      this.apiService.search(inputText, "", "").subscribe(response => { 
+      this.apiService.search(inputText, "", "").subscribe(
+        response => { 
         this.searchInProgress = false;
         this.resultsAvailable = true;
         this.apiResponse = response;
+      },
+      err => {
+        this.searchInProgress = false;
+        console.log("Error : " + JSON.stringify(err));
       });
     }
   }
 
   public queryWithFilters(filters:string[]):void{
-    console.log("in toggle "+filters[0])
-    this.apiService.search(this.query, filters[0], filters[1]).subscribe(response => { 
+    //console.log("in toggle "+filters[0])
+    this.searchInProgress = true;
+    this.apiService.search(this.query, filters[0], filters[1]).subscribe(
+      response => { 
       this.resultsAvailable = true;
       this.apiResponse = response;
+    },
+    err => {
+      this.searchInProgress = false;
+      console.log("Error : " + JSON.stringify(err));
     });
   }
 

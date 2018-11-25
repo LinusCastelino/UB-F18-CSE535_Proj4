@@ -23,8 +23,8 @@ import { APICallsService } from '../services/apicalls.service';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 
 const routes : Routes= [
-  {path:'', redirectTo:'/home', pathMatch:'full'},
-  {path:'home', component: HomeComponent},
+  {path:'', redirectTo:'/search', pathMatch:'full'},
+  //{path:'home', component: HomeComponent},
   {path:'search', component: ToggleComponent}
 ];
 
