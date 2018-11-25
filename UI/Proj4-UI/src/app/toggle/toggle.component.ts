@@ -13,10 +13,16 @@ export class ToggleComponent implements OnInit {
   ngOnInit() {
   }
 
+  query : string = '';
+  resultsAvailable : boolean = false;
+  apiResponse; 
+
   public queryApi(inputText:string) : void{
     if(typeof(inputText) == 'string'){
-      this.apiService.search(inputText).subscribe(data => { 
-        console.log("From toggle component : "+ JSON.stringify(data));
+      this.query = inputText;
+      this.apiService.search(inputText).subscribe(response => { 
+        this.resultsAvailable = true;
+        this.apiResponse = response;
       });
     }
   }
