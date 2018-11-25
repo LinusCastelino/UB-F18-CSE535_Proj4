@@ -25,7 +25,7 @@ import com.ir.proj4.model.ReturnList;
 @Service
 public class SolrService {
 	
-	public ReturnList querySolr(String query, int page, String lang,String city) throws URISyntaxException, GeneralSecurityException, IOException {
+	public ReturnList querySolr(String query,String pageSize, String pageNo, String lang,String city) throws URISyntaxException, GeneralSecurityException, IOException {
 		
 		//to work upon
 		//date
@@ -47,7 +47,8 @@ public class SolrService {
 		else
 			city=city.replace(" ", "%20");
 		
-		page=(page-1)*10;
+		pageNo =Integer.toString((Integer.parseInt(pageNo))*10);
+		
 		
 				
 		//convert query in list
@@ -90,7 +91,14 @@ public class SolrService {
 	    q3 = URLEncoder.encode(q2, "UTF-8");
 	    
 	    //solr api query
-	    url = "http://localhost:8983/solr/ram1/select?facet.field=city&facet.field=lang&facet=on&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2Ctext%2Clang%2Ctopic%2Ccity%2Cid%2Cscore&rows=10&start="+page+"&wt=json&indent=true&row=1000";
+	    url = "http://localhost:8983/solr/ram1/select?facet.field=city&facet.field=lang&facet=on&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2Ctext%2Clang%2Ctopic%2Ccity%2Cid%2Cscore&rows="+pageSize+"&start="+pageNo+"&wt=json&indent=true&row=1000";
+	    
+	    //quoted_status.user.screen_name
+	    //quoted_status.user.profile_image_url
+	    //entities.urls.url
+	    
+	    
+	    
 	    
 	    //hitting solr API
 	    URL obj = new URL(url);
