@@ -20,10 +20,20 @@ export class ToggleComponent implements OnInit {
   public queryApi(inputText:string) : void{
     if(typeof(inputText) == 'string'){
       this.query = inputText;
-      this.apiService.search(inputText).subscribe(response => { 
+      this.apiService.search(inputText, "", "").subscribe(response => { 
         this.resultsAvailable = true;
         this.apiResponse = response;
       });
     }
   }
+
+  public queryWithFilters(filters:string[]):void{
+    console.log("in toggle "+filters[0])
+    this.apiService.search(this.query, filters[0], filters[1]).subscribe(response => { 
+      this.resultsAvailable = true;
+      this.apiResponse = response;
+    });
+  }
+
+
 }
