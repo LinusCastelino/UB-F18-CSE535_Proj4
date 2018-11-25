@@ -24,13 +24,12 @@ export class SearchResultsComponent implements OnInit {
   @Input() resultsAvailable : boolean = false;
   @Input() apiResponse;
 
-<<<<<<< HEAD
+
   @Output() filtersEmitter : EventEmitter<string[]> = new EventEmitter<string[]>();
 
   searchResponse : ITweet[] = [];
 
-=======
->>>>>>> 49065c61941d8e7e8189dbfb02c657410fa43dfe
+
   constructor(private apiService: APICallsService) { }
 
   ngOnInit() {
