@@ -106,7 +106,7 @@ public class SolrService {
             response.append(inputLine);
         } 
         in .close();
-        System.out.println(response.toString());
+        
         //input from solr will be processed now
         ObjectMapper obj_ObjectMapper = new ObjectMapper();
         QueryData obj_QueryData = new QueryData();

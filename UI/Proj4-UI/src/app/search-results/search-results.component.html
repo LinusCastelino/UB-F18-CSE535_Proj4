@@ -1,71 +1,78 @@
-<div *ngIf="resultsAvailable" >
-  <div class="container">
-      <div class="row">
-        <div class="col-3">
-          <mat-accordion>
-              <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Select Dates:
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                  <p>From Date:</p>  
-                  <mat-form-field>
-                    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                  </mat-form-field>
-                  <p>To Date:</p>
-                  <mat-form-field>
-                      <input matInput [matDatepicker]="picker2" placeholder="Choose a date">
-                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                      <mat-datepicker #picker2></mat-datepicker>
-                  </mat-form-field>
-              </mat-expansion-panel>
-            
-              <mat-expansion-panel (opened)="panelOpenState = true"
-                                    (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Select Languages:
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <section class="language">
-                  <mat-checkbox class="language-select" [(ngModel)]="Hindi">Hindi</mat-checkbox><br>
-                  <mat-checkbox class="language-select" [(ngModel)]="English">English</mat-checkbox><br>
-                  <mat-checkbox class="language-select" [(ngModel)]="French">French</mat-checkbox><br>
-                  <mat-checkbox class="language-select" [(ngModel)]="Thai">Thai</mat-checkbox><br>
-                  <mat-checkbox class="language-select" [(ngModel)]="Spanish">Spanish</mat-checkbox><br>
-                </section>
-              </mat-expansion-panel>
-            
-            
-              <mat-expansion-panel (opened)="panelOpenState = true"
-                                    (closed)="panelOpenState = false">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                  Select City: 
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                <section class="city">
-                  <mat-checkbox class="city-select" [(ngModel)]="delhi">delhi</mat-checkbox><br>
-                  <mat-checkbox class="city-select" [(ngModel)]="nyc">nyc</mat-checkbox><br>
-                  <mat-checkbox class="city-select" [(ngModel)]="paris">paris</mat-checkbox><br>
-                  <mat-checkbox class="city-select" [(ngModel)]="bangkok">bangkok</mat-checkbox><br>
-                  <mat-checkbox class="city-select" [(ngModel)]="mexico_city">mexico city</mat-checkbox><br>
-                </section>
-              </mat-expansion-panel>
-              
-            </mat-accordion>
-        </div>
-    
-      <div class="col-9">
-          {{ apiResponse }}
-      </div>
+<div class="container">
+  <div class="row results-header">
+    <div class="col-lg-3">
+      <p>Filters:</p>
+    </div>
+    <div class="col-lg-9">
+      <p>Showing {{ apiResponse.numFound }}results for "{{ inputQuery }}"</p>
     </div>
   </div>
-</div>
 
-<div *ngIf="!resultsAvailable" >
-  Please input a search query
+  <div class="row">
+    <div class="col-lg-3">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Dates
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <p>From Date:</p>  
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <p>To Date:</p>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker2" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+        </mat-expansion-panel>
+          
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Languages
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <section class="language">
+            <mat-checkbox class="language-select" (change)="onChange()" [(ngModel)]="english">English</mat-checkbox><br>
+            <mat-checkbox class="language-select" (change)="onChange()" [(ngModel)]="french">French</mat-checkbox><br>
+            <mat-checkbox class="language-select" (change)="onChange()" [(ngModel)]="hindi">Hindi</mat-checkbox><br>
+            <mat-checkbox class="language-select" (change)="onChange()" [(ngModel)]="spanish">Spanish</mat-checkbox><br>
+            <mat-checkbox class="language-select" (change)="onChange()" [(ngModel)]="thai">Thai</mat-checkbox><br>
+          </section>
+        </mat-expansion-panel>
+          
+          
+        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              City
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <section class="city">
+            <mat-checkbox class="city-select" (change)="onChange()" [(ngModel)]="bangkok">Bangkok</mat-checkbox><br>
+            <mat-checkbox class="city-select" (change)="onChange()" [(ngModel)]="delhi">Delhi</mat-checkbox><br>
+            <mat-checkbox class="city-select" (change)="onChange()" [(ngModel)]="mexico_city">Mexico City</mat-checkbox><br>
+            <mat-checkbox class="city-select" (change)="onChange()" [(ngModel)]="nyc">New York City</mat-checkbox><br>
+            <mat-checkbox class="city-select" (change)="onChange()" [(ngModel)]="paris">Paris</mat-checkbox><br>
+          </section>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  
+    <div class="col-lg-9">
+      <mat-card class="results" *ngFor="let tweet of apiResponse.tweets">
+        {{ tweet }}
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="row paginator">
+    <mat-paginator [length]="100" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]" (page)="pageEvent = handlePaginatorEvent($event)">
+    </mat-paginator>
+  </div>
 </div>

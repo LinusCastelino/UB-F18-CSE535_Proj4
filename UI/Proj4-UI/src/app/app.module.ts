@@ -10,6 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
 import{ MatIconModule, MatDatepickerModule,MatCheckboxModule, MatNativeDateModule, MatExpansionModule} from '@angular/material/';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule } from '@angular/forms';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 import { AppComponent } from './app.component';
@@ -22,8 +24,8 @@ import { APICallsService } from '../services/apicalls.service';
 import { SearchbarComponent } from './searchbar/searchbar.component';
 
 const routes : Routes= [
-  {path:'', redirectTo:'/home', pathMatch:'full'},
-  {path:'home', component: HomeComponent},
+  {path:'', redirectTo:'/search', pathMatch:'full'},
+  //{path:'home', component: HomeComponent},
   {path:'search', component: ToggleComponent}
 ];
 
@@ -51,7 +53,9 @@ const routes : Routes= [
     MatDatepickerModule,
     MatCheckboxModule, 
     MatNativeDateModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatProgressBarModule,
+    MatPaginatorModule
   ],
   providers: [APICallsService],
   bootstrap: [AppComponent]

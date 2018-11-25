@@ -2,6 +2,19 @@
     padding-left: 1px !important;
 }
 
-.row{
-    display : block;
+.results-header{
+    margin-top: 2%
+}
+
+.paginator{
+    padding-left: 37%;
+}
+
+p{
+    font-family: 'Arvo', serif;
+    font-size: 1.2rem;
+}
+
+.results{
+    margin-bottom: 1%
 }
