@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { APICallsService } from '../../services/apicalls.service'
-import { throwToolbarMixedModesError } from '@angular/material';
+import { PageEvent } from '@angular/material';
 
 @Component({
   selector: 'app-search-results',
@@ -24,13 +24,21 @@ export class SearchResultsComponent implements OnInit {
   @Input() apiResponse : any;
   @Output() filtersEmitter : EventEmitter<string[]> = new EventEmitter<string[]>();
 
+  pageSize : number = 10;
+  pageIndex : number;
 
   constructor(private apiService: APICallsService) { }
 
   ngOnInit() {
   }
 
-  onChange(){
+  public handlePaginatorEvent(event : PageEvent){
+    this.pageSize = event.pageSize;
+    this.pageIndex = event.pageIndex;
+    console.log(this.pageSize + ' ' + this.pageIndex);
+  }
+
+  public onChange(){
     var filter : string[];
     let langFilter : string = '"';
     if(this.english==true)  langFilter+='"en",';
