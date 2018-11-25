@@ -1,28 +1,29 @@
 <div *ngIf="resultsAvailable" >
   <div class="container">
-      <div class="row">
-        <div class="col-3">
-          <mat-accordion>
-              <mat-expansion-panel>
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    Select Dates:
-                  </mat-panel-title>
-                </mat-expansion-panel-header>
-                  <p>From Date:</p>  
-                  <mat-form-field>
-                    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                  </mat-form-field>
-                  <p>To Date:</p>
-                  <mat-form-field>
-                      <input matInput [matDatepicker]="picker2" placeholder="Choose a date">
-                      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                      <mat-datepicker #picker2></mat-datepicker>
-                  </mat-form-field>
-              </mat-expansion-panel>
+    <div class="row">
+      <div class="col-lg-3">
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Select Dates:
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>From Date:</p>  
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+            <p>To Date:</p>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker2" placeholder="Choose a date">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </mat-expansion-panel>
             
+
               <mat-expansion-panel (opened)="panelOpenState = true"
                                     (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
@@ -55,12 +56,15 @@
                   <mat-checkbox class="city-select" (change)="onChange()" [(ngModel)]="paris">Paris</mat-checkbox><br>
                 </section>
               </mat-expansion-panel>
+
               
-            </mat-accordion>
-        </div>
+        </mat-accordion>
+      </div>
     
-      <div class="col-9">
-          {{ apiResponse }}
+      <div class="col-lg-9">
+        <mat-card *ngFor="let tweet of apiResponse.tweets">
+          {{ tweet }}
+        </mat-card>
       </div>
     </div>
   </div>

@@ -20,11 +20,13 @@ import com.google.api.services.translate.Translate;
 import com.google.api.services.translate.TranslateRequestInitializer;
 import com.google.api.services.translate.model.TranslationsListResponse;
 import com.ir.proj4.model.Docs;
+import com.ir.proj4.model.QueryData;
+import com.ir.proj4.model.ReturnList;
 
 @Service
 public class SolrService {
 	
-	public ArrayList<Docs> querySolr(String query) throws URISyntaxException, GeneralSecurityException, IOException {
+	public ReturnList querySolr(String query) throws URISyntaxException, GeneralSecurityException, IOException {
 		
 		List<String> queryList = new ArrayList<String>();
 		queryList.add(query);
@@ -43,8 +45,8 @@ public class SolrService {
 	    String q2 =qen.getTranslations().get(0).get("translatedText").toString()+"%7C%7C"+qhi.getTranslations().get(0).get("translatedText").toString()+"%7C%7C"+qes.getTranslations().get(0).get("translatedText").toString()+"%7C%7C"+qth.getTranslations().get(0).get("translatedText").toString()+"%7C%7C"+qfr.getTranslations().get(0).get("translatedText").toString();
 	    String q3 = URLEncoder.encode(q2, "UTF-8");
 	    System.out.println(q3);
-//	    String url = "http://localhost:8983/solr/ram1/select?facet.field=lang&facet=on&q="+q3+"&fl=tweet_date%2Centities.urls.url%2Ctext%2Clang%2Ctopic%2Ccity%2Cid%2Cscore&wt=json&indent=true&row=1000";
-	    String url = "http://localhost:8983/solr/ram1/select?facet.field=lang&facet=on&q="+q3+"&fl=tweet_date%2Ctext%2Clang%2Ctopic%2Ccity%2Cid%2Cscore&wt=json&indent=true&row=1000";
+	    String url = "http://localhost:8983/solr/BM25/select?facet.field=lang&facet=on&q="+q3+"&fl=tweet_date%2Ctext%2Clang%2Ctopic%2Ccity%2Cid%2Cscore&wt=json&indent=true&row=1000";
+
 	    URL obj = new URL(url);
 	    HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
@@ -56,18 +58,12 @@ public class SolrService {
         while ((inputLine = in .readLine()) != null) {
             response.append(inputLine);
         } in .close();
-        System.out.println();
-        System.out.println(response.toString());
         ObjectMapper obj_ObjectMapper = new ObjectMapper();
         QueryData obj_QueryData = new QueryData();
         
         obj_QueryData = obj_ObjectMapper.readValue(response.toString(), QueryData.class);
-//        System.out.println(obj_QueryData.getClass());
-        
-//        System.out.println("Response-" + obj_QueryData.getResponse().get("docs")["id"]);
-//        System.out.println("ResponseHeader-Status" + obj_QueryData.getResponseHeader().get("status"));
-        return obj_QueryData.getResponse().getDocs();
-//        return response.toString();
+        ReturnList returnList = new ReturnList(obj_QueryData.getResponse().getDocs(),obj_QueryData.getFacet_counts().getFacet_fields().getLang());
+        return returnList;
 	}
 	
 }
