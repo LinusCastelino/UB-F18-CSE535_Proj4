@@ -35,11 +35,11 @@ export class SearchResultsComponent implements OnInit {
   public handlePaginatorEvent(event : PageEvent){
     this.pageSize = event.pageSize;
     this.pageIndex = event.pageIndex;
-    console.log(this.pageSize + ' ' + this.pageIndex);
+    this.filtersChanged();
   }
 
-  public onChange(){
-    var filter : string[];
+  public filtersChanged(){
+    var filter : any[];
     let langFilter : string = '"';
     if(this.english==true)  langFilter+='"en",';
     if(this.french==true)  langFilter+='"fr",';
@@ -57,7 +57,11 @@ export class SearchResultsComponent implements OnInit {
     if(this.paris==true)  cityFilter+='"paris",';
     cityFilter=cityFilter.substring(0,(cityFilter.length)-1)+'"';
     if(cityFilter=='"') cityFilter='""';
-    filter=[langFilter,cityFilter];
+
+    let pageNo = this.pageIndex;
+    let resultsPerPage = this.pageSize;
+
+    filter=[langFilter, cityFilter, pageNo, resultsPerPage];
     this.filtersEmitter.emit(filter);
   }
 

@@ -24,7 +24,7 @@ export class ToggleComponent implements OnInit {
       this.searchInProgress = true;
       this.errorOccured = false;
       this.query = inputText;
-      this.apiService.search(inputText, "", "").subscribe(
+      this.apiService.search(inputText, "", "", "0", "10").subscribe(
         response => { 
           this.searchInProgress = false;
           this.resultsAvailable = true;
@@ -42,7 +42,7 @@ export class ToggleComponent implements OnInit {
     //console.log("in toggle "+filters[0])
     this.searchInProgress = true;
     this.errorOccured = false;
-    this.apiService.search(this.query, filters[0], filters[1]).subscribe(
+    this.apiService.search(this.query, filters[0], filters[1], filters[2], filters[3]).subscribe(
       response => { 
         this.searchInProgress = false;
         this.resultsAvailable = true;

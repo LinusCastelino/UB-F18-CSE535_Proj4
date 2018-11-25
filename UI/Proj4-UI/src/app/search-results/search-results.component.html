@@ -38,11 +38,11 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <section class="language">
-            <mat-checkbox class="language-select" (change)="onChange()" [(ngModel)]="english">English</mat-checkbox><br>
-            <mat-checkbox class="language-select" (change)="onChange()" [(ngModel)]="french">French</mat-checkbox><br>
-            <mat-checkbox class="language-select" (change)="onChange()" [(ngModel)]="hindi">Hindi</mat-checkbox><br>
-            <mat-checkbox class="language-select" (change)="onChange()" [(ngModel)]="spanish">Spanish</mat-checkbox><br>
-            <mat-checkbox class="language-select" (change)="onChange()" [(ngModel)]="thai">Thai</mat-checkbox><br>
+            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="english">English</mat-checkbox><br>
+            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="french">French</mat-checkbox><br>
+            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="hindi">Hindi</mat-checkbox><br>
+            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="spanish">Spanish</mat-checkbox><br>
+            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="thai">Thai</mat-checkbox><br>
           </section>
         </mat-expansion-panel>
           
@@ -54,11 +54,11 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <section class="city">
-            <mat-checkbox class="city-select" (change)="onChange()" [(ngModel)]="bangkok">Bangkok</mat-checkbox><br>
-            <mat-checkbox class="city-select" (change)="onChange()" [(ngModel)]="delhi">Delhi</mat-checkbox><br>
-            <mat-checkbox class="city-select" (change)="onChange()" [(ngModel)]="mexico_city">Mexico City</mat-checkbox><br>
-            <mat-checkbox class="city-select" (change)="onChange()" [(ngModel)]="nyc">New York City</mat-checkbox><br>
-            <mat-checkbox class="city-select" (change)="onChange()" [(ngModel)]="paris">Paris</mat-checkbox><br>
+            <mat-checkbox class="city-select" (change)="filtersChanged()" [(ngModel)]="bangkok">Bangkok</mat-checkbox><br>
+            <mat-checkbox class="city-select" (change)="filtersChanged()" [(ngModel)]="delhi">Delhi</mat-checkbox><br>
+            <mat-checkbox class="city-select" (change)="filtersChanged()" [(ngModel)]="mexico_city">Mexico City</mat-checkbox><br>
+            <mat-checkbox class="city-select" (change)="filtersChanged()" [(ngModel)]="nyc">New York City</mat-checkbox><br>
+            <mat-checkbox class="city-select" (change)="filtersChanged()" [(ngModel)]="paris">Paris</mat-checkbox><br>
           </section>
         </mat-expansion-panel>
       </mat-accordion>
