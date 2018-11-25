@@ -29,8 +29,13 @@ public class SolrService {
 		
 		//to work upon
 		//date
-		//detecting query lang
-		//page number
+		String qen2;
+		String qes2;
+		String qhi2;
+		String qth2;
+		String qfr2;
+		String q2;
+		String  q3;
 		
 		
 		//some preprocessing on query params
@@ -53,22 +58,39 @@ public class SolrService {
 		HttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
 	    JacksonFactory jsonFactory = JacksonFactory.getDefaultInstance();
 	    final Translate translate = new Translate.Builder(httpTransport, jsonFactory, null).setApplicationName("My Apps").setTranslateRequestInitializer(translateRequestInitializer).build();
-	    
+	    	    
 	    TranslationsListResponse qen = translate.translations().list(queryList, "en").execute();
 	    TranslationsListResponse qes = translate.translations().list(queryList, "es").execute();
 	    TranslationsListResponse qfr = translate.translations().list(queryList, "fr").execute();
 	    TranslationsListResponse qhi = translate.translations().list(queryList, "hi").execute();
 	    TranslationsListResponse qth = translate.translations().list(queryList, "th").execute();
 	    
-	    
 	    //append queries in different languages in one single string
-	    String q2 =qen.getTranslations().get(0).get("translatedText").toString()+"%7C%7C"+qhi.getTranslations().get(0).get("translatedText").toString()+"%7C%7C"+qes.getTranslations().get(0).get("translatedText").toString()+"%7C%7C"+qth.getTranslations().get(0).get("translatedText").toString()+"%7C%7C"+qfr.getTranslations().get(0).get("translatedText").toString();
-	    String q3 = URLEncoder.encode(q2, "UTF-8");
+	    String detectedLang = qen.getTranslations().get(0).getDetectedSourceLanguage();
+	    qen2 = qen.getTranslations().get(0).get("translatedText").toString();
+	    qhi2 = qhi.getTranslations().get(0).get("translatedText").toString();
+	    qth2 = qth.getTranslations().get(0).get("translatedText").toString();
+	    qfr2 = qfr.getTranslations().get(0).get("translatedText").toString();
+	    qes2 = qes.getTranslations().get(0).get("translatedText").toString();
+	    
+	    
+	    if(detectedLang == "en")
+	    	qen2=qen2+"^100";
+	    else if(detectedLang == "es")
+	    	qes2=qes2+"^100";
+	    else if(detectedLang == "hi")
+	    	qhi2=qhi2+"^100";
+	    else if(detectedLang == "th")
+	    	qth2=qth2+"^100";
+	    else if(detectedLang == "fr")
+	    	qfr2=qfr2+"^100";
+	    
+	    q2=qen2+"%7C%7C"+qth2+"%7C%7C"+qfr2+"%7C%7C"+qhi2+"%7C%7C"+qes2;
+	    q3 = URLEncoder.encode(q2, "UTF-8");
 	    
 	    //solr api query
-	    //String url = "http://localhost:8983/solr/ram1/select?facet.field=lang&facet=on&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2Ctext%2Clang%2Ctopic%2Ccity%2Cid%2Cscore&wt=json&indent=true&row=1000";
-	    //facet.field=city&facet.field=lang
 	    String url = "http://localhost:8983/solr/ram1/select?facet.field=city&facet.field=lang&facet=on&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2Ctext%2Clang%2Ctopic%2Ccity%2Cid%2Cscore&rows=10&start="+page+"&wt=json&indent=true&row=1000";
+	    
 	    //hitting solr API
 	    URL obj = new URL(url);
 	    HttpURLConnection con = (HttpURLConnection) obj.openConnection();
