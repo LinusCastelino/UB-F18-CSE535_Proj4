@@ -24,7 +24,7 @@ export class SearchResultsComponent implements OnInit {
   @Input() apiResponse : any;
   @Output() filtersEmitter : EventEmitter<string[]> = new EventEmitter<string[]>();
 
-  pageSize : number = 10;
+  pageSize : number = 5;
   pageIndex : number = 0;
 
   constructor(private apiService: APICallsService) { }
