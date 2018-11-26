@@ -107,12 +107,12 @@ public class SolrService {
             response.append(inputLine);
         } 
         in .close();
-        
+        System.out.println(response.toString());
         //input from solr will be processed now
         ObjectMapper obj_ObjectMapper = new ObjectMapper();
         QueryData obj_QueryData = new QueryData();
         obj_QueryData = obj_ObjectMapper.readValue(response.toString(), QueryData.class);
-        ReturnList returnList = new ReturnList(obj_QueryData.getResponse().getDocs(),obj_QueryData.getFacet_counts().getFacet_fields().getLang(),obj_QueryData.getFacet_counts().getFacet_fields().getCity());
+        ReturnList returnList = new ReturnList(obj_QueryData.getResponse().getDocs(),obj_QueryData.getFacet_counts().getFacet_fields().getLang(),obj_QueryData.getFacet_counts().getFacet_fields().getCity(),obj_QueryData.getResponse().getNumFound());
         
         //final processed answer will be returned to the controller
         return returnList;
