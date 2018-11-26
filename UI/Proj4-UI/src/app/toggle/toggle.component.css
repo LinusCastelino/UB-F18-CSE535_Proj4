@@ -6,11 +6,14 @@
 img{
     width: auto;
     height: auto;
-    padding-top: 8%;
 }
 
 .main-img{
     padding-left: 40%;
+}
+
+.loading-img{
+    padding-left: 32%;
 }
 
 .error-img{
@@ -18,6 +21,7 @@ img{
 }
 
 p{
+    padding-top: 8%;
     font-family: 'Indie Flower', cursive;
     font-size: 2rem;
     text-align: center
