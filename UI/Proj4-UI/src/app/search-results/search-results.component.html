@@ -4,7 +4,7 @@
       <p class="results-header">Filters:</p>
     </div>
     <div class="col-lg-9">
-      <p class="results-header">Showing {{ apiResponse.numFound }}results for "{{ inputQuery }}"</p>
+      <p class="results-header">Showing {{ apiResponse.numFound }} results for "{{ inputQuery }}"</p>
     </div>
   </div>
 
@@ -88,7 +88,7 @@
   </div>
 
   <div class="row paginator">
-    <mat-paginator [length]="100" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]" (page)="pageEvent = handlePaginatorEvent($event)">
+    <mat-paginator [length]="apiResponse.numFound" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]" (page)="pageEvent = handlePaginatorEvent($event)">
     </mat-paginator>
   </div>
 </div>
