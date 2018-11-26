@@ -16,11 +16,13 @@ export class ToggleComponent implements OnInit {
   query : string = '';
   resultsAvailable : boolean = false;
   apiResponse:any = '';
+  apiResponseTime: number = 0;
   searchInProgress : boolean = false; 
   errorOccured : boolean = false;
 
   public queryApi(inputText:string) : void{
     if(typeof(inputText) == 'string'){
+      let startTime : any = new Date();
       this.searchInProgress = true;
       this.errorOccured = false;
       this.query = inputText;
@@ -29,10 +31,13 @@ export class ToggleComponent implements OnInit {
           this.searchInProgress = false;
           this.resultsAvailable = true;
           this.apiResponse = response;
+          let endTime : any = new Date();
+          this.apiResponseTime = endTime - startTime;
       },
       err => {
         this.errorOccured = true;
         this.searchInProgress = false;
+        this.apiResponseTime = 0;
         console.log("Error : " + JSON.stringify(err));
       });
     }
@@ -40,6 +45,7 @@ export class ToggleComponent implements OnInit {
 
   public queryWithFilters(filters:string[]):void{
     //console.log("in toggle "+filters[0])
+    let startTime : any = new Date();
     this.searchInProgress = true;
     this.errorOccured = false;
     this.apiService.search(this.query, filters[0], filters[1], filters[2], filters[3]).subscribe(
@@ -47,10 +53,13 @@ export class ToggleComponent implements OnInit {
         this.searchInProgress = false;
         this.resultsAvailable = true;
         this.apiResponse = response;
+        let endTime : any = new Date();
+        this.apiResponseTime = endTime - startTime;
     },
     err => {
       this.errorOccured = true;
       this.searchInProgress = false;
+      this.apiResponseTime = 0;
       console.log("Error : " + JSON.stringify(err));
     });
   }

@@ -22,6 +22,7 @@ export class SearchResultsComponent implements OnInit {
 
   @Input() inputQuery : string;
   @Input() apiResponse : any;
+  @Input() retrievalTime : number;
   @Output() filtersEmitter : EventEmitter<string[]> = new EventEmitter<string[]>();
 
   pageSize : number = 5;

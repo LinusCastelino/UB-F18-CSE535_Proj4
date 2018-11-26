@@ -13,7 +13,8 @@
 <div *ngIf="resultsAvailable">
   <mat-tab-group mat-stretch-tabs>
     <mat-tab label="Search Results"> 
-      <app-search-results (filtersEmitter)="queryWithFilters($event)" [apiResponse]="apiResponse" [inputQuery]="query"></app-search-results>
+      <app-search-results (filtersEmitter)="queryWithFilters($event)" [apiResponse]="apiResponse" 
+      [inputQuery]="query" [retrievalTime]="apiResponseTime"></app-search-results>
     </mat-tab>
     <mat-tab label="Statistics"> 
       <app-search-statistics></app-search-statistics> 
