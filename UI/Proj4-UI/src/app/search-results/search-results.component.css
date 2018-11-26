@@ -10,11 +10,39 @@
     padding-left: 37%;
 }
 
-p{
+.results-header{
     font-family: 'Arvo', serif;
     font-size: 1.2rem;
 }
 
 .results{
     margin-bottom: 1%
+}
+
+.separator{
+    width: 90%;
+    margin-left: 2%;
+}
+
+img{
+    border-radius: 50%;
+    width : 60%;
+    margin-left : 20%;
+    margin-top : 10%;
+}
+
+.date{
+    float: right;
+}
+
+.card-title{
+    display: inline;
+}
+
+.card-title div{
+    margin : 0%;
+}
+
+.tweet-link{
+    float : right;
 }

@@ -25,7 +25,7 @@ export class SearchResultsComponent implements OnInit {
   @Output() filtersEmitter : EventEmitter<string[]> = new EventEmitter<string[]>();
 
   pageSize : number = 10;
-  pageIndex : number;
+  pageIndex : number = 0;
 
   constructor(private apiService: APICallsService) { }
 
@@ -40,13 +40,13 @@ export class SearchResultsComponent implements OnInit {
 
   public filtersChanged(){
     var filter : any[];
-    let langFilter : string = '"';
+    let langFilter : string = '';
     if(this.english==true)  langFilter+='"en",';
     if(this.french==true)  langFilter+='"fr",';
     if(this.hindi==true)  langFilter+='"hi",';
     if(this.spanish==true)  langFilter+='"es",';
     if(this.thai==true)  langFilter+='"th",';
-    langFilter=langFilter.substring(0,(langFilter.length)-1)+'"';
+    langFilter=langFilter.substring(0,(langFilter.length)-1)+'';
     if(langFilter=='"') langFilter='""';
     
     let cityFilter : string = '"';

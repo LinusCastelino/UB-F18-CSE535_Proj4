@@ -40,12 +40,13 @@ public class SolrService {
 		
 		
 		//some preprocessing on query params
-		if(lang==""||lang==null)
+		if(lang.equals("") || lang.equals("\"\"") ||lang==null)
 			lang="\"en\",\"es\",\"hi\",\"th\",\"fr\"";
-		if(city==""||city==null)
+		if(city.equals("") ||city.equals("\"\"") || city==null)
 			city="\"mexico%20city\",\"paris\",\"bangkok\",\"delhi\",\"nyc\"";
 		else
 			city=city.replace(" ", "%20");
+		
 		
 		pageNo =Integer.toString((Integer.parseInt(pageNo))*10);
 		
@@ -91,9 +92,7 @@ public class SolrService {
 	    q3 = URLEncoder.encode(q2, "UTF-8");
 	    
 	    //solr api query
-
 	    url = "http://18.191.170.212:8983/solr/IRF18P1/select?facet.field=city&facet.field=lang&facet=on&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2Ctext%2Clang%2Ctopic%2Ccity%2Cid%2Cscore&rows="+pageSize+"&start="+pageNo+"&wt=json&indent=true&row=1000";
-
 	    
 	    URL obj = new URL(url);
 	    HttpURLConnection con = (HttpURLConnection) obj.openConnection();

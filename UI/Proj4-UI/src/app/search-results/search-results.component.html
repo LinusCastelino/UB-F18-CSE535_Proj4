@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row results-header">
     <div class="col-lg-3">
-      <p>Filters:</p>
+      <p class="results-header">Filters:</p>
     </div>
     <div class="col-lg-9">
-      <p>Showing {{ apiResponse.numFound }}results for "{{ inputQuery }}"</p>
+      <p class="results-header">Showing {{ apiResponse.numFound }}results for "{{ inputQuery }}"</p>
     </div>
   </div>
 
@@ -66,7 +66,23 @@
   
     <div class="col-lg-9">
       <mat-card class="results" *ngFor="let tweet of apiResponse.tweets">
-        {{ tweet }}
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-2">
+              <img src="../../assets/LinusCastelino.png">
+            </div>
+            <div class="col-sm-10">
+              <div class="card-title">
+                <span class="user-name">Name goes here</span> <span class="date pull-right">Date goes here</span>
+              </div>
+              <div class="separator">
+                <hr />
+              </div>
+              <div class="tweet-text">{{ tweet.text }}</div>
+              <div class="tweet-link"><a href="twitter.com">Tweet link goes here</a></div>
+            </div>
+          </div>
+        </div>
       </mat-card>
     </div>
   </div>
