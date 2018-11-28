@@ -40,9 +40,9 @@ public class SolrService {
 		
 		
 		//some preprocessing on query params
-		if(lang.equals("") || lang.equals("\"\"") ||lang==null)
+		if(lang==null || lang.equals("") || lang.equals("\"\""))
 			lang="\"en\",\"es\",\"hi\",\"th\",\"fr\"";
-		if(city.equals("") ||city.equals("\"\"") || city==null)
+		if(city==null || city.equals("") || city.equals("\"\"") )
 			city="\"mexico%20city\",\"paris\",\"bangkok\",\"delhi\",\"nyc\"";
 		else
 			city=city.replace(" ", "%20");
@@ -92,15 +92,9 @@ public class SolrService {
 	    q3 = URLEncoder.encode(q2, "UTF-8");
 	    
 	    //solr api query
-	    url = "http://localhost:8983/solr/ram1/select?facet.field=city&facet.field=lang&facet=on&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2Ctext%2Clang%2Ctopic%2Ccity%2Cid%2Cscore&rows="+pageSize+"&start="+pageNo+"&wt=json&indent=true&row=1000";
+	    url = "http://localhost:8983/solr/ram1/select?deftype=edismax&facet.field=city&facet.field=lang&facet=on&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweetDate%2CtweetUrl%2CuserName%2CimageUrl%2Cverified%2Chashtag%2Ctext%2Clang%2Ctopic%2Ccity%2Cid&rows="+pageSize+"&start="+pageNo+"&wt=json&indent=true&row=1000";
 	    
-	    //quoted_status.user.screen_name - 
-	    //quoted_status.user.profile_image_url
-	    //entities.urls.url
-	    
-	    
-	    
-	    
+	        
 	    //hitting solr API
 	    URL obj = new URL(url);
 	    HttpURLConnection con = (HttpURLConnection) obj.openConnection();

@@ -4,12 +4,49 @@ import java.util.List;
 
 public class Docs {
 	String id;
+	
     List<String> text;
     List<String> lang;
     List<String> topic;
     List<String> city;
     List<String> tweet_date;
-    float score;
+    List<String> userName;
+    List<String> verified;
+	List<String> hashtag;
+    List<String> imageUrl;
+    List<String> tweetUrl;
+    List<String> tweetDate;
+    public List<String> getUserName() {
+		return userName;
+	}
+	public void setUserName(List<String> userName) {
+		this.userName = userName;
+	}
+	public List<String> getVerified() {
+		return verified;
+	}
+	public void setVerified(List<String> verified) {
+		this.verified = verified;
+	}
+	public List<String> getHashtag() {
+		return hashtag;
+	}
+	public void setHashtag(List<String> hashtag) {
+		this.hashtag = hashtag;
+	}
+	public List<String> getImageUrl() {
+		return imageUrl;
+	}
+	public void setImageUrl(List<String> imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+	public List<String> getTweetUrl() {
+		return tweetUrl;
+	}
+	public void setTweetUrl(List<String> tweetUrl) {
+		this.tweetUrl = tweetUrl;
+	}
+	float score;
 	public String getId() {
 		return id;
 	}
@@ -51,5 +88,11 @@ public class Docs {
 	}
 	public void setScore(float score) {
 		this.score = score;
+	}
+	 public List<String> getTweetDate() {
+			return tweetDate;
+	}
+	public void setTweetDate(List<String> tweetDate) {
+			this.tweetDate = tweetDate;
 	}
 }
