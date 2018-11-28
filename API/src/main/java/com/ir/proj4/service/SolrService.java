@@ -25,7 +25,7 @@ import com.ir.proj4.model.ReturnList;
 @Service
 public class SolrService {
 	
-	public ReturnList querySolr(String query,String pageSize, String pageNo, String lang,String city) throws URISyntaxException, GeneralSecurityException, IOException {
+	public ReturnList querySolr(String query, String qf,String pageSize, String pageNo, String lang,String city) throws URISyntaxException, GeneralSecurityException, IOException {
 		
 		//to work upon
 		//date
@@ -111,7 +111,7 @@ public class SolrService {
             response.append(inputLine);
         } 
         in .close();
-        System.out.println(response.toString());
+       
         //input from solr will be processed now
         ObjectMapper obj_ObjectMapper = new ObjectMapper();
         QueryData obj_QueryData = new QueryData();
