@@ -19,6 +19,7 @@ export class SearchResultsComponent implements OnInit {
   mexico_city : boolean=false;
   nyc : boolean=false; 
   paris : boolean=false;
+  panelOpenState: boolean;
 
   @Input() inputQuery : string;
   @Input() apiResponse : any;

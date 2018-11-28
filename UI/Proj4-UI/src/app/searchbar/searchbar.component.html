@@ -1,9 +1,9 @@
 <mat-card> 
   <mat-form-field>
-      <input matInput type="text" placeholder="Enter Search Query Here" [(ngModel)]="inputText">
+      <input matInput type="text" placeholder="Enter Search Query Here" [(ngModel)]="inputText" (keypress)="handleEnter($event.keyCode)">
   </mat-form-field>
 
-  <button (click)="search(inputText)" mat-icon-button style="height: 60px; width: 60px;">
+  <button (click)="search()" mat-icon-button>
     <mat-icon>search</mat-icon>
   </button>
   

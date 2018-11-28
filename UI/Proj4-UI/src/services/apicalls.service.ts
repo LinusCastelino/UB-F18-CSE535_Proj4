@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { timeout } from 'rxjs/operators';
 
-export const apiURL:string = "http://localhost:8080";
+export const apiURL:string = "http://team-kenspring-proj4.us-west-2.elasticbeanstalk.com";
 
 @Injectable({
   providedIn: 'root'

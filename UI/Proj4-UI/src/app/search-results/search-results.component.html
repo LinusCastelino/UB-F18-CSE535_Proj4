@@ -31,7 +31,7 @@
           </mat-form-field>
         </mat-expansion-panel>
           
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel (opened)="panelOpenState" (closed)="panelOpenState">
           <mat-expansion-panel-header>
             <mat-panel-title>
               Languages
@@ -47,7 +47,7 @@
         </mat-expansion-panel>
           
           
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel (opened)="panelOpenState" (closed)="panelOpenState">
           <mat-expansion-panel-header>
             <mat-panel-title>
               City
@@ -88,7 +88,7 @@
   </div>
 
   <div class="row paginator">
-    <mat-paginator [length]="apiResponse.numFound" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]" (page)="pageEvent = handlePaginatorEvent($event)">
+    <mat-paginator [length]="apiResponse.numFound" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]" (page)="handlePaginatorEvent($event)">
     </mat-paginator>
   </div>
 </div>

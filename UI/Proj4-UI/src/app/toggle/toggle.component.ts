@@ -63,6 +63,4 @@ export class ToggleComponent implements OnInit {
       console.log("Error : " + JSON.stringify(err));
     });
   }
-
-
 }
