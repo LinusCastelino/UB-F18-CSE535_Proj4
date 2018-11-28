@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row results-header">
     <div class="col-lg-3">
-      <p>Filters:</p>
+      <p class="results-header">Filters:</p>
     </div>
     <div class="col-lg-9">
-      <p>Showing {{ apiResponse.numFound }}results for "{{ inputQuery }}"</p>
+      <p class="results-header">Showing {{ apiResponse.numFound }} results for "{{ inputQuery }}" (Retrieval Time: {{ retrievalTime }} ms)</p>
     </div>
   </div>
 
@@ -31,34 +31,34 @@
           </mat-form-field>
         </mat-expansion-panel>
           
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel (opened)="panelOpenState" (closed)="panelOpenState">
           <mat-expansion-panel-header>
             <mat-panel-title>
               Languages
             </mat-panel-title>
           </mat-expansion-panel-header>
           <section class="language">
-            <mat-checkbox class="language-select" (change)="onChange()" [(ngModel)]="english">English</mat-checkbox><br>
-            <mat-checkbox class="language-select" (change)="onChange()" [(ngModel)]="french">French</mat-checkbox><br>
-            <mat-checkbox class="language-select" (change)="onChange()" [(ngModel)]="hindi">Hindi</mat-checkbox><br>
-            <mat-checkbox class="language-select" (change)="onChange()" [(ngModel)]="spanish">Spanish</mat-checkbox><br>
-            <mat-checkbox class="language-select" (change)="onChange()" [(ngModel)]="thai">Thai</mat-checkbox><br>
+            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="english">English</mat-checkbox><br>
+            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="french">French</mat-checkbox><br>
+            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="hindi">Hindi</mat-checkbox><br>
+            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="spanish">Spanish</mat-checkbox><br>
+            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="thai">Thai</mat-checkbox><br>
           </section>
         </mat-expansion-panel>
           
           
-        <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel (opened)="panelOpenState" (closed)="panelOpenState">
           <mat-expansion-panel-header>
             <mat-panel-title>
               City
             </mat-panel-title>
           </mat-expansion-panel-header>
           <section class="city">
-            <mat-checkbox class="city-select" (change)="onChange()" [(ngModel)]="bangkok">Bangkok</mat-checkbox><br>
-            <mat-checkbox class="city-select" (change)="onChange()" [(ngModel)]="delhi">Delhi</mat-checkbox><br>
-            <mat-checkbox class="city-select" (change)="onChange()" [(ngModel)]="mexico_city">Mexico City</mat-checkbox><br>
-            <mat-checkbox class="city-select" (change)="onChange()" [(ngModel)]="nyc">New York City</mat-checkbox><br>
-            <mat-checkbox class="city-select" (change)="onChange()" [(ngModel)]="paris">Paris</mat-checkbox><br>
+            <mat-checkbox class="city-select" (change)="filtersChanged()" [(ngModel)]="bangkok">Bangkok</mat-checkbox><br>
+            <mat-checkbox class="city-select" (change)="filtersChanged()" [(ngModel)]="delhi">Delhi</mat-checkbox><br>
+            <mat-checkbox class="city-select" (change)="filtersChanged()" [(ngModel)]="mexico_city">Mexico City</mat-checkbox><br>
+            <mat-checkbox class="city-select" (change)="filtersChanged()" [(ngModel)]="nyc">New York City</mat-checkbox><br>
+            <mat-checkbox class="city-select" (change)="filtersChanged()" [(ngModel)]="paris">Paris</mat-checkbox><br>
           </section>
         </mat-expansion-panel>
       </mat-accordion>
@@ -66,13 +66,29 @@
   
     <div class="col-lg-9">
       <mat-card class="results" *ngFor="let tweet of apiResponse.tweets">
-        {{ tweet }}
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-2">
+              <img src="../../assets/LinusCastelino.png">
+            </div>
+            <div class="col-sm-10">
+              <div class="card-title">
+                <span class="user-name">Name goes here</span> <span class="date pull-right">Date goes here</span>
+              </div>
+              <div class="separator">
+                <hr />
+              </div>
+              <div class="tweet-text">{{ tweet.text }}</div>
+              <div class="tweet-link"><a href="twitter.com">Tweet link goes here</a></div>
+            </div>
+          </div>
+        </div>
       </mat-card>
     </div>
   </div>
 
   <div class="row paginator">
-    <mat-paginator [length]="100" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]" (page)="pageEvent = handlePaginatorEvent($event)">
+    <mat-paginator [length]="apiResponse.numFound" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]" (page)="handlePaginatorEvent($event)">
     </mat-paginator>
   </div>
 </div>

@@ -19,13 +19,15 @@ export class SearchResultsComponent implements OnInit {
   mexico_city : boolean=false;
   nyc : boolean=false; 
   paris : boolean=false;
+  panelOpenState: boolean;
 
   @Input() inputQuery : string;
   @Input() apiResponse : any;
+  @Input() retrievalTime : number;
   @Output() filtersEmitter : EventEmitter<string[]> = new EventEmitter<string[]>();
 
-  pageSize : number = 10;
-  pageIndex : number;
+  pageSize : number = 5;
+  pageIndex : number = 0;
 
   constructor(private apiService: APICallsService) { }
 
@@ -35,18 +37,18 @@ export class SearchResultsComponent implements OnInit {
   public handlePaginatorEvent(event : PageEvent){
     this.pageSize = event.pageSize;
     this.pageIndex = event.pageIndex;
-    console.log(this.pageSize + ' ' + this.pageIndex);
+    this.filtersChanged();
   }
 
-  public onChange(){
-    var filter : string[];
-    let langFilter : string = '"';
+  public filtersChanged(){
+    var filter : any[];
+    let langFilter : string = '';
     if(this.english==true)  langFilter+='"en",';
     if(this.french==true)  langFilter+='"fr",';
     if(this.hindi==true)  langFilter+='"hi",';
     if(this.spanish==true)  langFilter+='"es",';
     if(this.thai==true)  langFilter+='"th",';
-    langFilter=langFilter.substring(0,(langFilter.length)-1)+'"';
+    langFilter=langFilter.substring(0,(langFilter.length)-1)+'';
     if(langFilter=='"') langFilter='""';
     
     let cityFilter : string = '"';
@@ -57,7 +59,11 @@ export class SearchResultsComponent implements OnInit {
     if(this.paris==true)  cityFilter+='"paris",';
     cityFilter=cityFilter.substring(0,(cityFilter.length)-1)+'"';
     if(cityFilter=='"') cityFilter='""';
-    filter=[langFilter,cityFilter];
+
+    let pageNo = this.pageIndex;
+    let resultsPerPage = this.pageSize;
+
+    filter=[langFilter, cityFilter, pageNo, resultsPerPage];
     this.filtersEmitter.emit(filter);
   }
 
