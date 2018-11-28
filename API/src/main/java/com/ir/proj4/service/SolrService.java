@@ -25,7 +25,7 @@ import com.ir.proj4.model.ReturnList;
 @Service
 public class SolrService {
 	
-	public ReturnList querySolr(String query, String qf,String pageSize, String pageNo, String lang,String city) throws URISyntaxException, GeneralSecurityException, IOException {
+	public ReturnList querySolr(String query, String date, String qf,String pageSize, String pageNo, String lang,String city) throws URISyntaxException, GeneralSecurityException, IOException {
 		
 		//to work upon
 		//date
@@ -91,10 +91,12 @@ public class SolrService {
 	    q2=qen2+"%7C%7C"+qth2+"%7C%7C"+qfr2+"%7C%7C"+qhi2+"%7C%7C"+qes2;
 	    q3 = URLEncoder.encode(q2, "UTF-8");
 	    
-	    //solr api query
-
-	    url = "http://localhost:8983/solr/ram1/select?deftype=edismax&facet.field=city&facet.field=lang&facet=on&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweetDate%2CtweetUrl%2CuserName%2CimageUrl%2Cverified%2Chashtag%2Ctext%2Clang%2Ctopic%2Ccity%2Cid&rows="+pageSize+"&start="+pageNo+"&wt=json&indent=true&row=1000";
 	    
+	    //solr api query
+	    if(date == null)
+	    	url = "http://localhost:8983/solr/ram1/select?deftype=edismax&facet.field=city&facet.field=lang&facet=on&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweetDate%2CtweetUrl%2CuserName%2CimageUrl%2Cverified%2Chashtag%2Ctext%2Clang%2Ctopic%2Ccity%2Cid&rows="+pageSize+"&start="+pageNo+"&wt=json&indent=true&row=1000";
+	    else
+	    	url = "http://localhost:8983/solr/ram1/select?deftype=edismax&facet.field=city&facet.field=lang&facet=on&fq=city:"+city+"&fq=tweetDate:"+date+"&fq=lang:"+lang+"&q="+q3+"&fl=tweetDate%2CtweetUrl%2CuserName%2CimageUrl%2Cverified%2Chashtag%2Ctext%2Clang%2Ctopic%2Ccity%2Cid&rows="+pageSize+"&start="+pageNo+"&wt=json&indent=true&row=1000";
 	        
 	    //hitting solr API
 
