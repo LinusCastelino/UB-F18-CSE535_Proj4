@@ -11,8 +11,8 @@ public class Docs {
     List<String> city;
     List<String> userName;
     String verified;
-    List<String> imageUrl;
-    List<String> tweetDate;
+    List<String> userProfile;
+    List<String> tweet_date;
     
     List<String> id_str;
     public List<String> getId_str() {
@@ -34,11 +34,11 @@ public class Docs {
 	public void setVerified(String verified) {
 		this.verified = verified;
 	}
-	public List<String> getImageUrl() {
-		return imageUrl;
+	public List<String> getUserProfile() {
+		return userProfile;
 	}
-	public void setImageUrl(List<String> imageUrl) {
-		this.imageUrl = imageUrl;
+	public void setUserProfile(List<String> userProfile) {
+		this.userProfile = userProfile;
 	}
 	float score;
 	public String getId() {
@@ -77,10 +77,10 @@ public class Docs {
 	public void setScore(float score) {
 		this.score = score;
 	}
-	 public List<String> getTweetDate() {
-			return tweetDate;
+	 public List<String> getTweet_date() {
+			return tweet_date;
 	}
-	public void setTweetDate(List<String> tweetDate) {
-			this.tweetDate = tweetDate;
+	public void setTweet_date(List<String> tweet_date) {
+			this.tweet_date = tweet_date;
 	}
 }
