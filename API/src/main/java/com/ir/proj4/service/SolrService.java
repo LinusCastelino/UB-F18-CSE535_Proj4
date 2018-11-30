@@ -30,7 +30,7 @@ import com.ir.proj4.model.ReturnList;
 @Service
 public class SolrService {
 	
-	public ReturnList querySolr(String query,String pageSize, String pageNo, String lang,String city) throws URISyntaxException, GeneralSecurityException, IOException {
+	public ReturnList querySolr(String query, String date,String pageSize, String pageNo, String lang,String city) throws URISyntaxException, GeneralSecurityException, IOException {
 		
 		//to work upon
 		//date
@@ -45,9 +45,9 @@ public class SolrService {
 		
 		
 		//some preprocessing on query params
-		if(lang.equals("") || lang.equals("\"\"") ||lang==null)
+		if(lang==null || lang.equals("") || lang.equals("\"\""))
 			lang="\"en\",\"es\",\"hi\",\"th\",\"fr\"";
-		if(city.equals("") ||city.equals("\"\"") || city==null)
+		if(city==null || city.equals("") || city.equals("\"\"") )
 			city="\"mexico%20city\",\"paris\",\"bangkok\",\"delhi\",\"nyc\"";
 		else
 			city=city.replace(" ", "%20");
@@ -111,17 +111,16 @@ public class SolrService {
 	    q2=qen2+"%7C%7C"+qth2+"%7C%7C"+qfr2+"%7C%7C"+qhi2+"%7C%7C"+qes2;
 	    q3 = URLEncoder.encode(q2, "UTF-8");
 	    
+	    // hashtag not included
 	    //solr api query
-	    url = "http://18.191.170.212:8983/solr/IRF18P1/select?facet.field=city&facet.field=lang&facet=on&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2Ctext%2Clang%2Ctopic%2Ccity%2Cid%2Cscore&rows="+pageSize+"&start="+pageNo+"&wt=json&indent=true&row=1000";
-	    
-	    //quoted_status.user.screen_name - 
-	    //quoted_status.user.profile_image_url
-	    //entities.urls.url
-	    
-	    
-	    
-	    
+	    if(date == null)
+	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=lang&facet=on&qf=text&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
+	    else
+	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=lang&facet=on&qf=text&fq=city:"+city+"&fq=tweetDate:"+date+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
+	    //System.out.println(url);   
+
 	    //hitting solr API
+
 	    URL obj = new URL(url);
 	    HttpURLConnection con = (HttpURLConnection) obj.openConnection();
         con.setRequestMethod("GET");
@@ -135,13 +134,15 @@ public class SolrService {
             response.append(inputLine);
         } 
         in .close();
-        System.out.println(response.toString());
+       
         //input from solr will be processed now
         ObjectMapper obj_ObjectMapper = new ObjectMapper();
         QueryData obj_QueryData = new QueryData();
         obj_QueryData = obj_ObjectMapper.readValue(response.toString(), QueryData.class);
         ReturnList returnList = new ReturnList(obj_QueryData.getResponse().getDocs(),obj_QueryData.getFacet_counts().getFacet_fields().getLang(),obj_QueryData.getFacet_counts().getFacet_fields().getCity(),obj_QueryData.getResponse().getNumFound());
         
+        
+       //System.out.println(returnList.getTweets().get(0).getText());
         //final processed answer will be returned to the controller
         return returnList;
 	}

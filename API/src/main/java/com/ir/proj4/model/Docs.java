@@ -4,12 +4,43 @@ import java.util.List;
 
 public class Docs {
 	String id;
+	
     List<String> text;
     List<String> lang;
     List<String> topic;
     List<String> city;
+    List<String> userName;
+    String verified;
+    List<String> userProfile;
     List<String> tweet_date;
-    float score;
+    
+    List<String> id_str;
+    public List<String> getId_str() {
+		return id_str;
+	}
+	public void setId_str(List<String> id_str) {
+		this.id_str = id_str;
+	}
+	
+	public List<String> getUserName() {
+		return userName;
+	}
+	public void setUserName(List<String> userName) {
+		this.userName = userName;
+	}
+	public String getVerified() {
+		return verified;
+	}
+	public void setVerified(String verified) {
+		this.verified = verified;
+	}
+	public List<String> getUserProfile() {
+		return userProfile;
+	}
+	public void setUserProfile(List<String> userProfile) {
+		this.userProfile = userProfile;
+	}
+	float score;
 	public String getId() {
 		return id;
 	}
@@ -40,16 +71,16 @@ public class Docs {
 	public void setCity(List<String> city) {
 		this.city = city;
 	}
-	public List<String> getTweet_date() {
-		return tweet_date;
-	}
-	public void setTweet_date(List<String> tweet_date) {
-		this.tweet_date = tweet_date;
-	}
 	public float getScore() {
 		return score;
 	}
 	public void setScore(float score) {
 		this.score = score;
+	}
+	 public List<String> getTweet_date() {
+			return tweet_date;
+	}
+	public void setTweet_date(List<String> tweet_date) {
+			this.tweet_date = tweet_date;
 	}
 }

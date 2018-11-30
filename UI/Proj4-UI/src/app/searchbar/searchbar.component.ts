@@ -11,10 +11,18 @@ export class SearchbarComponent implements OnInit {
 
   @Output() textInput : EventEmitter<string> = new EventEmitter<string>(); 
 
+  inputText:string = '';
+  
   ngOnInit() {
   }
 
-  public search(inputText){
-    this.textInput.emit(inputText);
+  public search() : void{
+    this.textInput.emit(this.inputText);
+  }
+
+  public handleEnter(keyCode: number) : void{
+    if(keyCode == 13){
+      this.search();
+    }
   }
 }

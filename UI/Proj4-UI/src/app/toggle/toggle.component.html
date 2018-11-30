@@ -13,19 +13,28 @@
 <div *ngIf="resultsAvailable">
   <mat-tab-group mat-stretch-tabs>
     <mat-tab label="Search Results"> 
-      <app-search-results (filtersEmitter)="queryWithFilters($event)" [apiResponse]="apiResponse" [inputQuery]="query"></app-search-results>
+      <app-search-results (filtersEmitter)="queryWithFilters($event)" [apiResponse]="apiResponse" 
+      [inputQuery]="query" [retrievalTime]="apiResponseTime" [langCount]="langCount" 
+      [cityCount]="cityCount"></app-search-results>
     </mat-tab>
-    <mat-tab label="Statistics"> <app-search-statistics></app-search-statistics> </mat-tab>
+    <mat-tab label="Statistics"> 
+      <app-search-statistics></app-search-statistics> 
+    </mat-tab>
   </mat-tab-group>
 </div>
 
 
-<div *ngIf="!resultsAvailable && !errorOccured">
-  <img class="main-img" src="../../assets/question-bird.png"/>
+<div *ngIf="!resultsAvailable && !errorOccured && !searchInProgress">
   <p>Please enter a search query ...</p>
+  <img class="main-img" src="../../assets/question-bird.png"/>
+</div>
+
+<div *ngIf="searchInProgress && !resultsAvailable && !errorOccured">
+    <p>Searching tweets ...</p>
+    <img class="loading-img" src="../../assets/loading-bird.gif"/>  
 </div>
 
 <div *ngIf="errorOccured">
-  <img class="error-img" src="../../assets/twitter-error.png" />
   <p>Oops..! An error occurred :(</p>
+  <img class="error-img" src="../../assets/twitter-error.png" />
 </div>
