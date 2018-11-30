@@ -10,7 +10,7 @@ public class Docs {
     List<String> topic;
     List<String> city;
     List<String> userName;
-    List<String> verified;
+    String verified;
     List<String> imageUrl;
     List<String> tweetUrl;
     List<String> tweetDate;
@@ -29,10 +29,10 @@ public class Docs {
 	public void setUserName(List<String> userName) {
 		this.userName = userName;
 	}
-	public List<String> getVerified() {
+	public String getVerified() {
 		return verified;
 	}
-	public void setVerified(List<String> verified) {
+	public void setVerified(String verified) {
 		this.verified = verified;
 	}
 	public List<String> getImageUrl() {
