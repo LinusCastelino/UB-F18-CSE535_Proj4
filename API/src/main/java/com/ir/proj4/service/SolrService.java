@@ -19,6 +19,11 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.translate.Translate;
 import com.google.api.services.translate.TranslateRequestInitializer;
 import com.google.api.services.translate.model.TranslationsListResponse;
+import com.google.cloud.language.v1.AnalyzeSentimentResponse;
+import com.google.cloud.language.v1.Document;
+import com.google.cloud.language.v1.Document.Type;
+import com.google.cloud.language.v1.LanguageServiceClient;
+import com.google.cloud.language.v1.Sentiment;
 import com.ir.proj4.model.QueryData;
 import com.ir.proj4.model.ReturnList;
 
@@ -51,7 +56,6 @@ public class SolrService {
 		pageNo =Integer.toString((Integer.parseInt(pageNo))*10);
 		
 		
-				
 		//convert query in list
 		List<String> queryList = new ArrayList<String>();
 		queryList.add(query);
@@ -76,6 +80,22 @@ public class SolrService {
 	    qfr2 = qfr.getTranslations().get(0).get("translatedText").toString();
 	    qes2 = qes.getTranslations().get(0).get("translatedText").toString();
 	    
+	    try (LanguageServiceClient language = LanguageServiceClient.create()) {
+			  Document doc = Document.newBuilder()
+			      .setContent("Python is the best programming language.")
+			      .setType(Type.PLAIN_TEXT)
+			      .build();
+			  AnalyzeSentimentResponse response = language.analyzeSentiment(doc);
+			  Sentiment sentiment = response.getDocumentSentiment();
+			  if (sentiment == null) {
+			    System.out.println("No sentiment found");
+			  } else {
+			    System.out.printf("Sentiment magnitude: %.3f\n", sentiment.getMagnitude());
+			    System.out.printf("Sentiment score: %.3f\n", sentiment.getScore());
+			  }
+			  System.out.println(sentiment);
+			}
+				
 	    
 	    if(detectedLang == "en")
 	    	qen2=qen2+"^100";
