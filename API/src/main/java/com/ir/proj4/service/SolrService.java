@@ -94,9 +94,9 @@ public class SolrService {
 	    //verified and hashtag not included
 	    //solr api query
 	    if(date == null)
-	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=lang&facet=on&qf=text&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweetDate%2CtweetUrl%2CuserName%2CimageUrl%2Ctext%2Clang%2Ctopic%2Ccity%2Cid&rows="+pageSize+"&start="+pageNo+"&wt=json";
+	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=lang&facet=on&qf=text&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweetDate%2CtweetUrl%2CuserName%2CimageUrl%2Ctext%2Clang%2Ctopic%2Ccity%2Cid&id_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
 	    else
-	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=lang&facet=on&qf=text&fq=city:"+city+"&fq=tweetDate:"+date+"&fq=lang:"+lang+"&q="+q3+"&fl=tweetDate%2CtweetUrl%2CuserName%2CimageUrl%2Ctext%2Clang%2Ctopic%2Ccity%2Cid&rows="+pageSize+"&start="+pageNo+"&wt=json";
+	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=lang&facet=on&qf=text&fq=city:"+city+"&fq=tweetDate:"+date+"&fq=lang:"+lang+"&q="+q3+"&fl=tweetDate%2CtweetUrl%2CuserName%2CimageUrl%2Ctext%2Clang%2Ctopic%2Ccity%2Cid&id_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
 	    // System.out.println(url);   
 
 	    //hitting solr API

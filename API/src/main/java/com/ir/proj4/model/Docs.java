@@ -9,14 +9,21 @@ public class Docs {
     List<String> lang;
     List<String> topic;
     List<String> city;
-    List<String> tweet_date;
     List<String> userName;
     List<String> verified;
-	List<String> hashtag;
     List<String> imageUrl;
     List<String> tweetUrl;
     List<String> tweetDate;
-    public List<String> getUserName() {
+    
+    List<String> id_str;
+    public List<String> getId_str() {
+		return id_str;
+	}
+	public void setId_str(List<String> id_str) {
+		this.id_str = id_str;
+	}
+	
+	public List<String> getUserName() {
 		return userName;
 	}
 	public void setUserName(List<String> userName) {
@@ -27,12 +34,6 @@ public class Docs {
 	}
 	public void setVerified(List<String> verified) {
 		this.verified = verified;
-	}
-	public List<String> getHashtag() {
-		return hashtag;
-	}
-	public void setHashtag(List<String> hashtag) {
-		this.hashtag = hashtag;
 	}
 	public List<String> getImageUrl() {
 		return imageUrl;
@@ -76,12 +77,6 @@ public class Docs {
 	}
 	public void setCity(List<String> city) {
 		this.city = city;
-	}
-	public List<String> getTweet_date() {
-		return tweet_date;
-	}
-	public void setTweet_date(List<String> tweet_date) {
-		this.tweet_date = tweet_date;
 	}
 	public float getScore() {
 		return score;
