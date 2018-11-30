@@ -20,6 +20,9 @@ export class ToggleComponent implements OnInit {
   searchInProgress : boolean = false; 
   errorOccured : boolean = false;
 
+  langCount : any;
+  cityCount : any;
+
   public queryApi(inputText:string) : void{
     if(typeof(inputText) == 'string'){
       let startTime : any = new Date();
@@ -33,6 +36,8 @@ export class ToggleComponent implements OnInit {
           this.apiResponse = response;
           let endTime : any = new Date();
           this.apiResponseTime = endTime - startTime;
+          this.langCount = this.apiResponse.lang;
+          this.cityCount = this.apiResponse.city;
       },
       err => {
         this.errorOccured = true;
