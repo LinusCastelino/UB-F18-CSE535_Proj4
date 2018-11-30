@@ -12,7 +12,6 @@ public class Docs {
     List<String> userName;
     String verified;
     List<String> imageUrl;
-    List<String> tweetUrl;
     List<String> tweetDate;
     
     List<String> id_str;
@@ -40,12 +39,6 @@ public class Docs {
 	}
 	public void setImageUrl(List<String> imageUrl) {
 		this.imageUrl = imageUrl;
-	}
-	public List<String> getTweetUrl() {
-		return tweetUrl;
-	}
-	public void setTweetUrl(List<String> tweetUrl) {
-		this.tweetUrl = tweetUrl;
 	}
 	float score;
 	public String getId() {
