@@ -25,7 +25,7 @@ import com.ir.proj4.model.ReturnList;
 @Service
 public class SolrService {
 	
-	public ReturnList querySolr(String query, String date, String qf,String pageSize, String pageNo, String lang,String city) throws URISyntaxException, GeneralSecurityException, IOException {
+	public ReturnList querySolr(String query, String date,String pageSize, String pageNo, String lang,String city) throws URISyntaxException, GeneralSecurityException, IOException {
 		
 		//to work upon
 		//date
@@ -91,13 +91,13 @@ public class SolrService {
 	    q2=qen2+"%7C%7C"+qth2+"%7C%7C"+qfr2+"%7C%7C"+qhi2+"%7C%7C"+qes2;
 	    q3 = URLEncoder.encode(q2, "UTF-8");
 	    
-	    
+	    //verified and hashtag not included
 	    //solr api query
 	    if(date == null)
-	    	url = "http://localhost:8983/solr/ram1/select?deftype=edismax&facet.field=city&facet.field=lang&facet=on&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweetDate%2CtweetUrl%2CuserName%2CimageUrl%2Cverified%2Chashtag%2Ctext%2Clang%2Ctopic%2Ccity%2Cid&rows="+pageSize+"&start="+pageNo+"&wt=json&indent=true&row=1000";
+	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=lang&facet=on&qf=text&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweetDate%2CtweetUrl%2CuserName%2CimageUrl%2Ctext%2Clang%2Ctopic%2Ccity%2Cid&rows="+pageSize+"&start="+pageNo+"&wt=json";
 	    else
-	    	url = "http://localhost:8983/solr/ram1/select?deftype=edismax&facet.field=city&facet.field=lang&facet=on&fq=city:"+city+"&fq=tweetDate:"+date+"&fq=lang:"+lang+"&q="+q3+"&fl=tweetDate%2CtweetUrl%2CuserName%2CimageUrl%2Cverified%2Chashtag%2Ctext%2Clang%2Ctopic%2Ccity%2Cid&rows="+pageSize+"&start="+pageNo+"&wt=json&indent=true&row=1000";
-	        
+	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=lang&facet=on&qf=text&fq=city:"+city+"&fq=tweetDate:"+date+"&fq=lang:"+lang+"&q="+q3+"&fl=tweetDate%2CtweetUrl%2CuserName%2CimageUrl%2Ctext%2Clang%2Ctopic%2Ccity%2Cid&rows="+pageSize+"&start="+pageNo+"&wt=json";
+	    // System.out.println(url);   
 	    //hitting solr API
 
 	    URL obj = new URL(url);
@@ -120,6 +120,8 @@ public class SolrService {
         obj_QueryData = obj_ObjectMapper.readValue(response.toString(), QueryData.class);
         ReturnList returnList = new ReturnList(obj_QueryData.getResponse().getDocs(),obj_QueryData.getFacet_counts().getFacet_fields().getLang(),obj_QueryData.getFacet_counts().getFacet_fields().getCity(),obj_QueryData.getResponse().getNumFound());
         
+        
+       //System.out.println(returnList.getTweets().get(0).getText());
         //final processed answer will be returned to the controller
         return returnList;
 	}
