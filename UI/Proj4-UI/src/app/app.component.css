@@ -1,6 +1,8 @@
 .container{
     background: white;
-    min-height: 850px;
+    min-height: 700px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
 }
 
 .fixed-image{
