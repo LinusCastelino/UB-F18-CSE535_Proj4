@@ -34,12 +34,12 @@ public class SolrService {
 		
 		//to work upon
 		//date
-		String qen2;
-		String qes2;
-		String qhi2;
-		String qth2;
-		String qfr2;
-		String q2;
+//		String qen2;
+//		String qes2;
+//		String qhi2;
+//		String qth2;
+//		String qfr2;
+//		String q2;
 		String q3;
 		String url;
 		
@@ -57,28 +57,28 @@ public class SolrService {
 		
 		
 		//convert query in list
-		List<String> queryList = new ArrayList<String>();
-		queryList.add(query);
-		
-		//use google API to translate given query in 5 languages
-		TranslateRequestInitializer translateRequestInitializer = new TranslateRequestInitializer("AIzaSyDqRLzA3Lq2zg81-mRlwxMdiW-QzXiA35I");
-		HttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
-	    JacksonFactory jsonFactory = JacksonFactory.getDefaultInstance();
-	    final Translate translate = new Translate.Builder(httpTransport, jsonFactory, null).setApplicationName("My Apps").setTranslateRequestInitializer(translateRequestInitializer).build();
-	    	    
-	    TranslationsListResponse qen = translate.translations().list(queryList, "en").execute();
-	    TranslationsListResponse qes = translate.translations().list(queryList, "es").execute();
-	    TranslationsListResponse qfr = translate.translations().list(queryList, "fr").execute();
-	    TranslationsListResponse qhi = translate.translations().list(queryList, "hi").execute();
-	    TranslationsListResponse qth = translate.translations().list(queryList, "th").execute();
-	    
-	    //append queries in different languages in one single string
-	    String detectedLang = qen.getTranslations().get(0).getDetectedSourceLanguage();
-	    qen2 = qen.getTranslations().get(0).get("translatedText").toString();
-	    qhi2 = qhi.getTranslations().get(0).get("translatedText").toString();
-	    qth2 = qth.getTranslations().get(0).get("translatedText").toString();
-	    qfr2 = qfr.getTranslations().get(0).get("translatedText").toString();
-	    qes2 = qes.getTranslations().get(0).get("translatedText").toString();
+//		List<String> queryList = new ArrayList<String>();
+//		queryList.add(query);
+//		
+//		//use google API to translate given query in 5 languages
+//		TranslateRequestInitializer translateRequestInitializer = new TranslateRequestInitializer("AIzaSyDqRLzA3Lq2zg81-mRlwxMdiW-QzXiA35I");
+//		HttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
+//	    JacksonFactory jsonFactory = JacksonFactory.getDefaultInstance();
+//	    final Translate translate = new Translate.Builder(httpTransport, jsonFactory, null).setApplicationName("My Apps").setTranslateRequestInitializer(translateRequestInitializer).build();
+//	    	    
+//	    TranslationsListResponse qen = translate.translations().list(queryList, "en").execute();
+//	    TranslationsListResponse qes = translate.translations().list(queryList, "es").execute();
+//	    TranslationsListResponse qfr = translate.translations().list(queryList, "fr").execute();
+//	    TranslationsListResponse qhi = translate.translations().list(queryList, "hi").execute();
+//	    TranslationsListResponse qth = translate.translations().list(queryList, "th").execute();
+//	    
+//	    //append queries in different languages in one single string
+//	    String detectedLang = qen.getTranslations().get(0).getDetectedSourceLanguage();
+//	    qen2 = qen.getTranslations().get(0).get("translatedText").toString();
+//	    qhi2 = qhi.getTranslations().get(0).get("translatedText").toString();
+//	    qth2 = qth.getTranslations().get(0).get("translatedText").toString();
+//	    qfr2 = qfr.getTranslations().get(0).get("translatedText").toString();
+//	    qes2 = qes.getTranslations().get(0).get("translatedText").toString();
 	    
 	    try (LanguageServiceClient language = LanguageServiceClient.create()) {
 			  Document doc = Document.newBuilder()
@@ -97,26 +97,30 @@ public class SolrService {
 			}
 				
 	    
-	    if(detectedLang == "en")
-	    	qen2=qen2+"^100";
-	    else if(detectedLang == "es")
-	    	qes2=qes2+"^100";
-	    else if(detectedLang == "hi")
-	    	qhi2=qhi2+"^100";
-	    else if(detectedLang == "th")
-	    	qth2=qth2+"^100";
-	    else if(detectedLang == "fr")
-	    	qfr2=qfr2+"^100";
+//	    if(detectedLang == "en")
+//	    	qen2=qen2+"%5E100";
+//	    else if(detectedLang == "es")
+//	    	qes2=qes2+"%5E100";
+//	    else if(detectedLang == "hi")
+//	    	qhi2=qhi2+"%5E100";
+//	    else if(detectedLang == "th")
+//	    	qth2=qth2+"%5E100";
+//	    else if(detectedLang == "fr")
+//	    	qfr2=qfr2+"%5E100";
 	    
-	    q2=qen2+"%7C%7C"+qth2+"%7C%7C"+qfr2+"%7C%7C"+qhi2+"%7C%7C"+qes2;
-	    q3 = URLEncoder.encode(q2, "UTF-8");
+//	    q2=qen2+"%7C%7C"+qth2+"%7C%7C"+qfr2+"%7C%7C"+qhi2+"%7C%7C"+qes2;
+//	    System.out.println("query after deciding language is "+ q2);
+	    //q3 = URLEncoder.encode(q2, "UTF-8");
+	    
+	    q3 = URLEncoder.encode(query, "UTF-8");
+	    //System.out.println("query is : "+q3);
 	    
 	    // hashtag not included
 	    //solr api query
 	    if(date == null)
-	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=lang&facet=on&qf=text&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
+	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?deftype=edismax&indent=true&facet.field=city&facet.field=lang&facet=on&qf=text&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
 	    else
-	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=lang&facet=on&qf=text&fq=city:"+city+"&fq=tweetDate:"+date+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
+	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?deftype=edismax&indent=true&facet.field=city&facet.field=lang&facet=on&qf=text&fq=city:"+city+"&fq=tweetDate:"+date+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
 	    //System.out.println(url);   
 
 	    //hitting solr API
