@@ -70,11 +70,11 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <section class="topics">
-            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="crime">Crime ({{ langCount.en }})</mat-checkbox><br>
-            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="environment">Environment ({{ langCount.fr }})</mat-checkbox><br>
-            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="politics">Politics ({{ langCount.hi }})</mat-checkbox><br>
-            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="sUnrest">Social Unrest ({{ langCount.es }})</mat-checkbox><br>
-            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="infra">Infra ({{ langCount.th }})</mat-checkbox><br>
+            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="crime">Crime ({{ topicsCount.crime }})</mat-checkbox><br>
+            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="environment">Environment ({{ topicsCount.environment }})</mat-checkbox><br>
+            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="politics">Politics ({{ topicsCount.politics }})</mat-checkbox><br>
+            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="sUnrest">Social Unrest ({{ topicsCount['social unrest'] }})</mat-checkbox><br>
+            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="infra">Infra ({{ topicsCount.infra }})</mat-checkbox><br>
           </section>
         </mat-expansion-panel>
 
@@ -85,8 +85,8 @@
               Verified Users
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <section class="verified">
-            <mat-checkbox class="verified-select" (change)="filtersChanged()" [(ngModel)]="verified">Verified Users ({{ langCount.en }})</mat-checkbox><br>
+          <section class="verdified">
+            <mat-checkbox class="verified-select" (change)="filtersChanged()" [(ngModel)]="verified">Verified Users ({{ verifiedCount }})</mat-checkbox><br>
           </section>
         </mat-expansion-panel>
 

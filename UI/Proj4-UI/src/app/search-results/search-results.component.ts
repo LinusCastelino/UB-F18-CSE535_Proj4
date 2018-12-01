@@ -39,6 +39,8 @@ export class SearchResultsComponent implements OnInit {
   @Input() retrievalTime : number;
   @Input() langCount : any;
   @Input() cityCount : any;
+  @Input() topicsCount : any;
+  @Input() verifiedCount : number;
 
   @Output() filtersEmitter : EventEmitter<string[]> = new EventEmitter<string[]>();
 

@@ -22,6 +22,8 @@ export class ToggleComponent implements OnInit {
 
   langCount : any;
   cityCount : any;
+  topicsCount : any;
+  verifiedCount : number;
 
   public queryApi(inputText:string) : void{
     if(typeof(inputText) == 'string'){
@@ -36,8 +38,11 @@ export class ToggleComponent implements OnInit {
           this.apiResponse = response;
           let endTime : any = new Date();
           this.apiResponseTime = endTime - startTime;
+
           this.langCount = this.apiResponse.lang;
           this.cityCount = this.apiResponse.city;
+          this.topicsCount = this.apiResponse.topic;
+          this.verifiedCount = this.apiResponse.verified.true;
 
           console.log(response);
       },

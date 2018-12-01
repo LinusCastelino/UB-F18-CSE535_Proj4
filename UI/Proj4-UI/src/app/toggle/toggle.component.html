@@ -15,7 +15,7 @@
     <mat-tab label="Search Results"> 
       <app-search-results (filtersEmitter)="queryWithFilters($event)" [apiResponse]="apiResponse" 
       [inputQuery]="query" [retrievalTime]="apiResponseTime" [langCount]="langCount" 
-      [cityCount]="cityCount"></app-search-results>
+      [cityCount]="cityCount" [topicsCount] = "topicsCount" [verifiedCount]="verifiedCount"></app-search-results>
     </mat-tab>
     <mat-tab label="Statistics"> 
       <app-search-statistics></app-search-statistics> 
