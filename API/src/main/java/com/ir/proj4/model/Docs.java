@@ -3,7 +3,6 @@ package com.ir.proj4.model;
 import java.util.List;
 
 public class Docs {
-	String id;
 	
     List<String> text;
     List<String> lang;
@@ -48,12 +47,6 @@ public class Docs {
 	}
 	public void setUserProfile(List<String> userProfile) {
 		this.userProfile = userProfile;
-	}
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
 	}
 	public List<String> getText() {
 		return text;

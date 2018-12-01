@@ -5,6 +5,9 @@ import java.util.ArrayList;
 public class Response {
 	int numFound;
 	int start;
+	float maxScore;
+	ArrayList<Docs> docs;
+	
 	public int getNumFound() {
 		return numFound;
 	}
@@ -29,7 +32,6 @@ public class Response {
 	public void setDocs(ArrayList<Docs> docs) {
 		this.docs = docs;
 	}
-	float maxScore;
-	ArrayList<Docs> docs;
+	
 
 }
