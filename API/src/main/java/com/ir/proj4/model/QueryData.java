@@ -6,7 +6,6 @@ public class QueryData {
 	private Response response;
 	@JsonIgnore
 	private String responseHeader;
-	
 	private Facet_Counts facet_counts;
 	
 

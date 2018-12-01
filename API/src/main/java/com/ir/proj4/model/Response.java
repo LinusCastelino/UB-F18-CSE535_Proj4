@@ -3,9 +3,9 @@ package com.ir.proj4.model;
 import java.util.ArrayList;
 
 public class Response {
+	
 	int numFound;
 	int start;
-	float maxScore;
 	ArrayList<Docs> docs;
 	
 	public int getNumFound() {
@@ -20,12 +20,7 @@ public class Response {
 	public void setStart(int start) {
 		this.start = start;
 	}
-	public float getMaxScore() {
-		return maxScore;
-	}
-	public void setMaxScore(float maxScore) {
-		this.maxScore = maxScore;
-	}
+	
 	public ArrayList<Docs> getDocs() {
 		return docs;
 	}
