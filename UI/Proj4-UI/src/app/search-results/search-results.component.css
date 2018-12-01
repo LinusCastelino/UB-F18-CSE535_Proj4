@@ -22,20 +22,22 @@
 .separator{
     width: 90%;
     margin-left: 2%;
+    margin-top: -2%;
+    margin-bottom: -1%;
 }
 
 img{
     border-radius: 50%;
-    width : 60%;
-    margin-left : 20%;
-    margin-top : 10%;
+    width: 80%;
+    margin-left: 20%;
+    margin-top: 20%;
 }
 
 .date{
     float: right;
 }
 
-.card-title{
+.tweet-card-title{
     display: inline;
 }
 
@@ -45,4 +47,16 @@ img{
 
 .tweet-link{
     float : right;
+}
+
+.mat-card{
+    padding: 2%;
+}
+
+mat-icon{
+    font-size : 120%;
+}
+
+.row{
+    font-size: 0.96em;
 }

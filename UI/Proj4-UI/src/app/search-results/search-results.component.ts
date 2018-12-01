@@ -1,10 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { APICallsService } from '../../services/apicalls.service'
+
 import { PageEvent, getMatTooltipInvalidPositionError } from '@angular/material';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 import { FormControl } from '@angular/forms';
-
-
 
 @Component({
   selector: 'app-search-results',
@@ -43,7 +42,7 @@ export class SearchResultsComponent implements OnInit {
 
   @Output() filtersEmitter : EventEmitter<string[]> = new EventEmitter<string[]>();
 
-  pageSize : number = 5;
+  pageSize : number = 10;
   pageIndex : number = 0;
 
   constructor(private apiService: APICallsService) { }
@@ -94,6 +93,10 @@ export class SearchResultsComponent implements OnInit {
     console.log(this.serializedDate);
     console.log("heree");
 
+  }
+
+  public getDate(ISOdate : string){
+    return new Date(ISOdate).toDateString();
   }
 
 }
