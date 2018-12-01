@@ -11,7 +11,7 @@
   <div class="row">
     <div class="col-lg-3">
       <mat-accordion>
-        <mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState" (closed)="panelOpenState">
           <mat-expansion-panel-header>
             <mat-panel-title>
               Dates
@@ -19,13 +19,13 @@
           </mat-expansion-panel-header>
           <p>From Date:</p>  
           <mat-form-field>
-            <input matInput (click)="filtersChanged()" [matDatepicker]="picker" [formControl]="serializedDate" placeholder="Choose a date">
+            <input matInput (dateChange)="dateFromChanged($event)" [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="value">
             <mat-datepicker-toggle matSuffix  [for]="picker" ></mat-datepicker-toggle>
             <mat-datepicker  #picker></mat-datepicker>
           </mat-form-field>
           <p>To Date:</p>
           <mat-form-field>
-            <input matInput [matDatepicker]="picker2" placeholder="Choose a date">
+            <input matInput (dateChange)="dateToChanged($event)" [matDatepicker]="picker2" placeholder="Choose a date">
             <mat-datepicker-toggle matSuffix [for]="picker2" ></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>
@@ -70,11 +70,11 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
           <section class="topics">
-            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="crime">Crime ({{ langCount.en }})</mat-checkbox><br>
-            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="environment">Environment ({{ langCount.fr }})</mat-checkbox><br>
-            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="politics">Politics ({{ langCount.hi }})</mat-checkbox><br>
-            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="sUnrest">Social Unrest ({{ langCount.es }})</mat-checkbox><br>
-            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="infra">Infra ({{ langCount.th }})</mat-checkbox><br>
+            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="crime">Crime ({{ topicsCount.crime }})</mat-checkbox><br>
+            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="environment">Environment ({{ topicsCount.environment }})</mat-checkbox><br>
+            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="politics">Politics ({{ topicsCount.politics }})</mat-checkbox><br>
+            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="sUnrest">Social Unrest ({{ topicsCount['social unrest'] }})</mat-checkbox><br>
+            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="infra">Infra ({{ topicsCount.infra }})</mat-checkbox><br>
           </section>
         </mat-expansion-panel>
 
@@ -85,8 +85,8 @@
               Verified Users
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <section class="verified">
-            <mat-checkbox class="verified-select" (change)="filtersChanged()" [(ngModel)]="verified">Verified Users ({{ langCount.en }})</mat-checkbox><br>
+          <section class="verdified">
+            <mat-checkbox class="verified-select" (change)="filtersChanged()" [(ngModel)]="verified">Verified Users ({{ verifiedCount }})</mat-checkbox><br>
           </section>
         </mat-expansion-panel>
 
@@ -105,7 +105,7 @@
               </div>
               <div class="col-sm-10">
                 <div class="tweet-card-title">
-                  <span class="user-name"><mat-icon>person_outline</mat-icon>{{ tweet.userName }} <span *ngIf="tweet.verified == true"><img src="../../assets/2000px-Twitter_Verified_Badge.svg.png"></span></span> 
+                  <span class="user-name"><mat-icon>person_outline</mat-icon>{{ tweet.userName }} <span *ngIf="tweet.verified == 'true'"><img src="../../assets/2000px-Twitter_Verified_Badge.svg.png"></span></span> 
                   <span class="date pull-right"><mat-icon>calendar_today</mat-icon>{{ getDate(tweet.tweet_date) }}</span>
                 </div>
                 <div class="location">

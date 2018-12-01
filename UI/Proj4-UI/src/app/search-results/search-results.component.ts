@@ -2,8 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { APICallsService } from '../../services/apicalls.service'
 
 import { PageEvent, getMatTooltipInvalidPositionError } from '@angular/material';
-import {MatDatepickerInputEvent} from '@angular/material/datepicker';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-search-results',
@@ -22,22 +20,27 @@ export class SearchResultsComponent implements OnInit {
   mexico_city : boolean=false;
   nyc : boolean=false; 
   paris : boolean=false;
-  panelOpenState: boolean;
-  date = new FormControl(new Date());
-  serializedDate = new FormControl((new Date()).toISOString());
   crime : boolean = false;
   environment : boolean = false; 
   politics : boolean=false; 
   sUnrest : boolean = false; 
   infra : boolean =false;
   verified : boolean=false; 
+
+  panelOpenState: boolean;
   
+  datePicker1: boolean = false;
+  datePicker2: boolean = false;
+  dateFrom : string;
+  dateTo : string;
 
   @Input() inputQuery : string;
   @Input() apiResponse : any;
   @Input() retrievalTime : number;
   @Input() langCount : any;
   @Input() cityCount : any;
+  @Input() topicsCount : any;
+  @Input() verifiedCount : number;
 
   @Output() filtersEmitter : EventEmitter<string[]> = new EventEmitter<string[]>();
 
@@ -53,6 +56,23 @@ export class SearchResultsComponent implements OnInit {
     this.pageSize = event.pageSize;
     this.pageIndex = event.pageIndex;
     this.filtersChanged();
+  }
+
+  public dateFromChanged(event: any){
+    
+    this.datePicker1 = true;
+    this.dateFrom = new Date(event.value).toISOString();
+    if(this.datePicker2){
+      this.filtersChanged();
+    }
+  }
+
+  public dateToChanged(event: any){
+    this.datePicker2 = true;
+    this.dateTo = new Date(event.value).toISOString();
+    if(this.datePicker1){
+      this.filtersChanged();
+    }
   }
   
   public filtersChanged(){
@@ -86,16 +106,23 @@ export class SearchResultsComponent implements OnInit {
 
     let verifiedFilter : string = '';
     if(this.verified==true)  verifiedFilter+='"true"';
-    if(this.verified==false)  verifiedFilter+='"false",';
+    if(this.verified==false)  verifiedFilter+='"false"';
     
 
     let pageNo = this.pageIndex;
     let resultsPerPage = this.pageSize;
 
-    filter=[langFilter, cityFilter, pageNo, resultsPerPage, topicFilter, verifiedFilter];
+    let fromDate : string = null;
+    let toDate : string = null; 
+    if(this.datePicker1 && this.datePicker2){
+      fromDate = this.dateFrom;
+      toDate = this.dateTo;
+      this.datePicker1 = false;
+      this.datePicker2 = false;
+    }
+
+    filter=[langFilter, cityFilter, pageNo, resultsPerPage, topicFilter, verifiedFilter, fromDate, toDate];
     this.filtersEmitter.emit(filter);
-    console.log(this.serializedDate);
-    console.log("heree");
 
   }
 
