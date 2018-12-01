@@ -19,9 +19,15 @@
           </mat-expansion-panel-header>
           <p>From Date:</p>  
           <mat-form-field>
-            <input matInput [matDatepicker]="dp" (change)="filtersChanged()">
-  <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
-  <mat-datepicker #dp></mat-datepicker>
+            <input matInput (click)="filtersChanged()" [matDatepicker]="picker" [formControl]="serializedDate" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix  [for]="picker" ></mat-datepicker-toggle>
+            <mat-datepicker  #picker></mat-datepicker>
+          </mat-form-field>
+          <p>To Date:</p>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker2" placeholder="Choose a date">
+            <mat-datepicker-toggle matSuffix [for]="picker2" ></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>
         </mat-expansion-panel>
           
@@ -55,6 +61,38 @@
             <mat-checkbox class="city-select" (change)="filtersChanged()" [(ngModel)]="paris">Paris ({{ cityCount.paris }})</mat-checkbox><br>
           </section>
         </mat-expansion-panel>
+
+
+        <mat-expansion-panel (opened)="panelOpenState" (closed)="panelOpenState">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Topics
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <section class="language">
+            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="crime">Crime ({{ langCount.en }})</mat-checkbox><br>
+            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="environment">Environment ({{ langCount.fr }})</mat-checkbox><br>
+            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="politics">Politics ({{ langCount.hi }})</mat-checkbox><br>
+            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="sUnrest">Social Unrest ({{ langCount.es }})</mat-checkbox><br>
+            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="infra">Thai ({{ langCount.th }})</mat-checkbox><br>
+          </section>
+        </mat-expansion-panel>
+
+
+        <mat-expansion-panel (opened)="panelOpenState" (closed)="panelOpenState">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              Languages
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <section class="language">
+            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="verified">Verified Users ({{ langCount.en }})</mat-checkbox><br>
+            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="regular">Regular Users ({{ langCount.fr }})</mat-checkbox><br>
+          </section>
+        </mat-expansion-panel>
+
+
+
       </mat-accordion>
     </div>
   
