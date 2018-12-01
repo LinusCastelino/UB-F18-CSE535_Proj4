@@ -38,6 +38,8 @@ export class ToggleComponent implements OnInit {
           this.apiResponseTime = endTime - startTime;
           this.langCount = this.apiResponse.lang;
           this.cityCount = this.apiResponse.city;
+
+          console.log(response);
       },
       err => {
         this.errorOccured = true;
