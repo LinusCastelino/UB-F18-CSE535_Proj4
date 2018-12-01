@@ -6,8 +6,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class Facet_Fields {
 	List<String> lang;
-	
 	List<String> city;
+	List<String> topic;
+	
+	
+	public List<String> getTopic() {
+		return topic;
+	}
+
+	public void setTopic(List<String> topic) {
+		this.topic = topic;
+	}
+
 	public List<String> getCity() {
 		return city;
 	}

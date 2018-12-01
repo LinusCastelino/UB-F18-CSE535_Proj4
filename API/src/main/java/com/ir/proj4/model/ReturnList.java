@@ -5,22 +5,42 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ReturnList {
+	
+	
 	ArrayList<Docs> tweets;
 	HashMap<String,String> lang;
 	HashMap<String,String> city;
 	int numFound;
-	public ReturnList(ArrayList<Docs> tweets,List<String> lang, List<String> city, int numFound){
-		this.tweets = tweets;
+	HashMap<String,String> topic;
+	
+//	obj_QueryData.getResponse().getDocs(),obj_QueryData.getFacet_counts().getFacet_fields().getLang(),obj_QueryData.getFacet_counts().getFacet_fields().getCity(),obj_QueryData.getResponse().getNumFound()
+	
+//	public ReturnList(ArrayList<Docs> tweets,List<String> lang, List<String> city, int numFound,List<String> topic){
+	public ReturnList(QueryData obj_QueryData) {
+		this.tweets = obj_QueryData.getResponse().getDocs();
 		this.lang = new HashMap<String,String>();
 		this.city = new HashMap<String,String>();
+		this.topic = new HashMap<String,String>();
 		
-		for(int i=0;i<lang.size();i+=2) {
-			this.lang.put(lang.get(i), lang.get(i+1));
+		for(int i=0;i<obj_QueryData.getFacet_counts().getFacet_fields().getLang().size();i+=2) {
+			this.lang.put(obj_QueryData.getFacet_counts().getFacet_fields().getLang().get(i), obj_QueryData.getFacet_counts().getFacet_fields().getLang().get(i+1));
 		}
-		for(int i=0;i<city.size();i+=2) {
-			this.city.put(city.get(i), city.get(i+1));
+		for(int i=0;i<obj_QueryData.getFacet_counts().getFacet_fields().getCity().size();i+=2) {
+			this.city.put(obj_QueryData.getFacet_counts().getFacet_fields().getCity().get(i), obj_QueryData.getFacet_counts().getFacet_fields().getCity().get(i+1));
 		}
-		this.numFound = numFound;
+		this.numFound = obj_QueryData.getResponse().getNumFound();
+		for(int i=0;i<obj_QueryData.getFacet_counts().getFacet_fields().getTopic().size();i+=2) {
+			this.topic.put(obj_QueryData.getFacet_counts().getFacet_fields().getTopic().get(i), obj_QueryData.getFacet_counts().getFacet_fields().getTopic().get(i+1));
+		}
+		
+	}
+
+	public HashMap<String, String> getTopic() {
+		return topic;
+	}
+
+	public void setTopic(HashMap<String, String> topic) {
+		this.topic = topic;
 	}
 
 	public int getNumFound() {
