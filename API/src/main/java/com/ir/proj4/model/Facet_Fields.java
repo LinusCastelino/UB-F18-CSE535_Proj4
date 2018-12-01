@@ -8,8 +8,17 @@ public class Facet_Fields {
 	List<String> lang;
 	List<String> city;
 	List<String> topic;
+	List<String> verified;
 	
 	
+	public List<String> getVerified() {
+		return verified;
+	}
+
+	public void setVerified(List<String> verified) {
+		this.verified = verified;
+	}
+
 	public List<String> getTopic() {
 		return topic;
 	}

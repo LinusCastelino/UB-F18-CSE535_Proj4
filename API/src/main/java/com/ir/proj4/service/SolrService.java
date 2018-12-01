@@ -31,7 +31,7 @@ import com.ir.proj4.model.ReturnList;
 @Service
 public class SolrService {
 	
-	public ReturnList querySolr(String query, String date,String pageSize, String pageNo, String lang,String topic, String city) throws URISyntaxException, GeneralSecurityException, IOException {
+	public ReturnList querySolr(String query, String date,String pageSize, String pageNo, String lang,String topic,String verified, String city) throws URISyntaxException, GeneralSecurityException, IOException {
 		
 		//to work upon
 		//date
@@ -52,6 +52,8 @@ public class SolrService {
 			city="\"mexico%20city\",\"paris\",\"bangkok\",\"delhi\",\"nyc\"";
 		else
 			city=city.replace(" ", "%20");
+		if(verified==null || verified.equals("false"))
+			verified="%22%22";
 		
 		
 		pageNo =Integer.toString((Integer.parseInt(pageNo))*10);
@@ -105,9 +107,9 @@ public class SolrService {
 	    // hashtag not included
 	    //solr api query
 	    if(date == null)
-	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=topic&facet.field=lang&facet=on&qf=text&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
+	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=topic&facet.field=verified&facet.field=lang&facet=on&qf=text&fq=city:"+city+"&fq=verified:"+verified+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
 	    else
-	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=lang&facet.field=topic&facet=on&qf=text&fq=topic:"+topic+"&fq=city:"+city+"&fq=tweetDate:"+date+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
+	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=lang&facet.field=topic&facet.field=verified&facet=on&qf=text&fq=topic:"+topic+"&fq=verified:"+verified+"&fq=city:"+city+"&fq=tweetDate:"+date+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
 
 	    System.out.println(url);   
 
