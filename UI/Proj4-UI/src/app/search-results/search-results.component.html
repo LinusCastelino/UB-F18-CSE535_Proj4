@@ -56,7 +56,7 @@
           <section class="city">
             <mat-checkbox class="city-select" (change)="filtersChanged()" [(ngModel)]="bangkok">Bangkok ({{ cityCount.bangkok }})</mat-checkbox><br>
             <mat-checkbox class="city-select" (change)="filtersChanged()" [(ngModel)]="delhi">Delhi ({{ cityCount.delhi }})</mat-checkbox><br>
-            <mat-checkbox class="city-select" (change)="filtersChanged()" [(ngModel)]="mexico_city">Mexico ({{ cityCount.mexico }})</mat-checkbox><br>
+            <mat-checkbox class="city-select" (change)="filtersChanged()" [(ngModel)]="mexico_city">Mexico ({{ cityCount['mexico city'] }})</mat-checkbox><br>
             <mat-checkbox class="city-select" (change)="filtersChanged()" [(ngModel)]="nyc">New York ({{ cityCount.nyc }})</mat-checkbox><br>
             <mat-checkbox class="city-select" (change)="filtersChanged()" [(ngModel)]="paris">Paris ({{ cityCount.paris }})</mat-checkbox><br>
           </section>
@@ -69,12 +69,12 @@
               Topics
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <section class="language">
-            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="crime">Crime ({{ langCount.en }})</mat-checkbox><br>
-            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="environment">Environment ({{ langCount.fr }})</mat-checkbox><br>
-            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="politics">Politics ({{ langCount.hi }})</mat-checkbox><br>
-            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="sUnrest">Social Unrest ({{ langCount.es }})</mat-checkbox><br>
-            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="infra">Thai ({{ langCount.th }})</mat-checkbox><br>
+          <section class="topics">
+            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="crime">Crime ({{ langCount.en }})</mat-checkbox><br>
+            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="environment">Environment ({{ langCount.fr }})</mat-checkbox><br>
+            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="politics">Politics ({{ langCount.hi }})</mat-checkbox><br>
+            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="sUnrest">Social Unrest ({{ langCount.es }})</mat-checkbox><br>
+            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="infra">Infra ({{ langCount.th }})</mat-checkbox><br>
           </section>
         </mat-expansion-panel>
 
@@ -82,12 +82,11 @@
         <mat-expansion-panel (opened)="panelOpenState" (closed)="panelOpenState">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Languages
+              Verified Users
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <section class="language">
-            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="verified">Verified Users ({{ langCount.en }})</mat-checkbox><br>
-            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="regular">Regular Users ({{ langCount.fr }})</mat-checkbox><br>
+          <section class="verified">
+            <mat-checkbox class="verified-select" (change)="filtersChanged()" [(ngModel)]="verified">Verified Users ({{ langCount.en }})</mat-checkbox><br>
           </section>
         </mat-expansion-panel>
 
@@ -97,7 +96,7 @@
     </div>
   
     <div class="col-lg-9">
-      <div id="tweet-{{ tweet.id_str }}" *ngFor="let tweet of apiResponse.tweets">
+      <div class="tweets" id="tweet-{{ tweet.id_str }}" *ngFor="let tweet of apiResponse.tweets">
         <mat-card class="results">
           <div class="container">
             <div class="row">
@@ -106,7 +105,7 @@
               </div>
               <div class="col-sm-10">
                 <div class="tweet-card-title">
-                  <span class="user-name"><mat-icon>person_outline</mat-icon>{{ tweet.userName }}</span> 
+                  <span class="user-name"><mat-icon>person_outline</mat-icon>{{ tweet.userName }} <span *ngIf="tweet.verified == true"><img src="../../assets/2000px-Twitter_Verified_Badge.svg.png"></span></span> 
                   <span class="date pull-right"><mat-icon>calendar_today</mat-icon>{{ getDate(tweet.tweet_date) }}</span>
                 </div>
                 <div class="location">
@@ -116,7 +115,7 @@
                   <hr />
                 </div>
                 <div class="location">
-                  <mat-icon>class</mat-icon>{{ tweet.topic }}
+                  <mat-icon>list_alt</mat-icon>{{ tweet.topic }}
                 </div>
                 <i><div class="tweet-text">" {{ tweet.text }} "</div></i>
                 <div class="tweet-link"><a href="https://twitter.com/statuses/{{ tweet.id_str }}" target="_blank">View Tweet >></a></div>

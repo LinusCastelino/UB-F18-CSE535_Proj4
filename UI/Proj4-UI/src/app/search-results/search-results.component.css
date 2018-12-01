@@ -60,3 +60,14 @@ mat-icon{
 .row{
     font-size: 0.96em;
 }
+
+.user-name img{
+    width: 2.5%;
+    margin-top: -1%;
+    margin-left: 0.8%;
+}
+
+.tweets .container{
+    border-left: 2px solid rgb(1, 1, 104);
+    border-right : 2px solid rgb(1, 1, 104);
+}

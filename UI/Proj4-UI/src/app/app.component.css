@@ -1,16 +1,29 @@
 .container{
     background: white;
-    min-height: 850px;
+    min-height: 750px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    box-shadow: 2px 2px 25px 2px #888888;
 }
 
-.fixed-image{
+.fixed-image-bottom{
     position: fixed;
     bottom: 6%;
     right: -2%;
 }
 
-.fixed-image img{
+.fixed-image-upper{
+    position: fixed;
+    top: 2%;
+    left: 1.5%;
+}
+
+.fixed-image-bottom img{
     width : 50%
+}
+
+.fixed-image-upper img{
+    width : 70%
 }
 
 footer{
