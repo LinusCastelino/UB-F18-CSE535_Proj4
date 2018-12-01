@@ -105,7 +105,7 @@
               </div>
               <div class="col-sm-10">
                 <div class="tweet-card-title">
-                  <span class="user-name"><mat-icon>person_outline</mat-icon>{{ tweet.userName }} <span *ngIf="tweet.verified == true"><img src="../../assets/2000px-Twitter_Verified_Badge.svg.png"></span></span> 
+                  <span class="user-name"><mat-icon>person_outline</mat-icon>{{ tweet.userName }} <span *ngIf="tweet.verified == 'true'"><img src="../../assets/2000px-Twitter_Verified_Badge.svg.png"></span></span> 
                   <span class="date pull-right"><mat-icon>calendar_today</mat-icon>{{ getDate(tweet.tweet_date) }}</span>
                 </div>
                 <div class="location">
