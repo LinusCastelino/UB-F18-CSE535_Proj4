@@ -52,8 +52,10 @@ public class SolrService {
 			city="\"mexico%20city\",\"paris\",\"bangkok\",\"delhi\",\"nyc\"";
 		else
 			city=city.replace(" ", "%20");
-		if(verified==null || verified.equals("false"))
-			verified="%22%22";
+		
+		System.out.println("verified is : "+ verified);
+		if(verified==null || verified.equals("") || verified.equals("false"))
+			verified="\"true\"%7C%7C\"false\"";
 		
 		
 		pageNo =Integer.toString((Integer.parseInt(pageNo))*10);
