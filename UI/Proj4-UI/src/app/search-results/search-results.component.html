@@ -69,12 +69,12 @@
               Topics
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <section class="language">
-            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="crime">Crime ({{ langCount.en }})</mat-checkbox><br>
-            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="environment">Environment ({{ langCount.fr }})</mat-checkbox><br>
-            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="politics">Politics ({{ langCount.hi }})</mat-checkbox><br>
-            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="sUnrest">Social Unrest ({{ langCount.es }})</mat-checkbox><br>
-            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="infra">Thai ({{ langCount.th }})</mat-checkbox><br>
+          <section class="topics">
+            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="crime">Crime ({{ langCount.en }})</mat-checkbox><br>
+            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="environment">Environment ({{ langCount.fr }})</mat-checkbox><br>
+            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="politics">Politics ({{ langCount.hi }})</mat-checkbox><br>
+            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="sUnrest">Social Unrest ({{ langCount.es }})</mat-checkbox><br>
+            <mat-checkbox class="topics-select" (change)="filtersChanged()" [(ngModel)]="infra">Infra ({{ langCount.th }})</mat-checkbox><br>
           </section>
         </mat-expansion-panel>
 
@@ -82,12 +82,11 @@
         <mat-expansion-panel (opened)="panelOpenState" (closed)="panelOpenState">
           <mat-expansion-panel-header>
             <mat-panel-title>
-              Languages
+              Verified Users
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <section class="language">
-            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="verified">Verified Users ({{ langCount.en }})</mat-checkbox><br>
-            <mat-checkbox class="language-select" (change)="filtersChanged()" [(ngModel)]="regular">Regular Users ({{ langCount.fr }})</mat-checkbox><br>
+          <section class="verified">
+            <mat-checkbox class="verified-select" (change)="filtersChanged()" [(ngModel)]="verified">Verified Users ({{ langCount.en }})</mat-checkbox><br>
           </section>
         </mat-expansion-panel>
 

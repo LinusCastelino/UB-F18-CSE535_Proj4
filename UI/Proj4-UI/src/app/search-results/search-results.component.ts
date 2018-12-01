@@ -31,7 +31,6 @@ export class SearchResultsComponent implements OnInit {
   sUnrest : boolean = false; 
   infra : boolean =false;
   verified : boolean=false; 
-  regular : boolean = false; 
   
 
   @Input() inputQuery : string;
@@ -80,15 +79,20 @@ export class SearchResultsComponent implements OnInit {
     if(this.crime==true)  topicFilter+='"crime",';
     if(this.politics==true)  topicFilter+='"politics",';
     if(this.environment==true)  topicFilter+='"environment",';
-    if(this.nyc==true)  topicFilter+='"nyc",';
-    if(this.paris==true)  topicFilter+='"paris",';
+    if(this.sUnrest==true)  topicFilter+='"social unrest",';
+    if(this.infra==true)  topicFilter+='"infra",';
     topicFilter=topicFilter.substring(0,(topicFilter.length)-1)+'';
     if(topicFilter=='"') topicFilter='""';
+
+    let verifiedFilter : string = '';
+    if(this.verified==true)  verifiedFilter+='"true"';
+    if(this.verified==false)  verifiedFilter+='"false",';
+    
 
     let pageNo = this.pageIndex;
     let resultsPerPage = this.pageSize;
 
-    filter=[langFilter, cityFilter, pageNo, resultsPerPage];
+    filter=[langFilter, cityFilter, pageNo, resultsPerPage, topicFilter, verifiedFilter];
     this.filtersEmitter.emit(filter);
     console.log(this.serializedDate);
     console.log("heree");
