@@ -25,6 +25,18 @@ export class SearchStatisticsComponent implements OnInit {
     defaultColor: '#f5f5f5',
   };
   
+  pieChartData = [
+      
+      ['Work',    11],
+      ['Eat',      2],
+      ['Commute',  2],
+      ['Watch TV', 2],
+      ['Sleep',    7]   
+    ];
+  options= {title: 'My Daily Activities',
+  pieSliceTextStyle:  {color: 'black'},
+  is3D: true};
+
   ngOnInit() {
   }
 
