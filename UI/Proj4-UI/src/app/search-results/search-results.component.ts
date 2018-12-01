@@ -31,8 +31,8 @@ export class SearchResultsComponent implements OnInit {
   
   datePicker1: boolean = false;
   datePicker2: boolean = false;
-  dateFrom : Date;
-  dateTo : Date;
+  dateFrom : string;
+  dateTo : string;
 
   @Input() inputQuery : string;
   @Input() apiResponse : any;
@@ -57,22 +57,19 @@ export class SearchResultsComponent implements OnInit {
   }
 
   public dateFromChanged(event: any){
-    this.dateFrom = new Date(event.value);
+    
+    this.datePicker1 = true;
+    this.dateFrom = new Date(event.value).toISOString();
     if(this.datePicker2){
       this.filtersChanged();
     }
-    else{
-      this.datePicker1 = true;
-    }
   }
 
-  public dateTwoChanged(event: any){
-    this.dateTo = new Date(event.value);
+  public dateToChanged(event: any){
+    this.datePicker2 = true;
+    this.dateTo = new Date(event.value).toISOString();
     if(this.datePicker1){
       this.filtersChanged();
-    }
-    else{
-      this.datePicker2 = true;
     }
   }
   
@@ -113,8 +110,8 @@ export class SearchResultsComponent implements OnInit {
     let pageNo = this.pageIndex;
     let resultsPerPage = this.pageSize;
 
-    let fromDate : Date = null;
-    let toDate : Date = null; 
+    let fromDate : string = null;
+    let toDate : string = null; 
     if(this.datePicker1 && this.datePicker2){
       fromDate = this.dateFrom;
       toDate = this.dateTo;
