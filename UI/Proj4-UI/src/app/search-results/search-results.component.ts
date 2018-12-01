@@ -2,8 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { APICallsService } from '../../services/apicalls.service'
 
 import { PageEvent, getMatTooltipInvalidPositionError } from '@angular/material';
-import {MatDatepickerInputEvent} from '@angular/material/datepicker';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-search-results',
@@ -22,16 +20,19 @@ export class SearchResultsComponent implements OnInit {
   mexico_city : boolean=false;
   nyc : boolean=false; 
   paris : boolean=false;
-  panelOpenState: boolean;
-  date = new FormControl(new Date());
-  serializedDate = new FormControl((new Date()).toISOString());
   crime : boolean = false;
   environment : boolean = false; 
   politics : boolean=false; 
   sUnrest : boolean = false; 
   infra : boolean =false;
   verified : boolean=false; 
+
+  panelOpenState: boolean;
   
+  datePicker1: boolean = false;
+  datePicker2: boolean = false;
+  dateFrom : Date;
+  dateTo : Date;
 
   @Input() inputQuery : string;
   @Input() apiResponse : any;
@@ -53,6 +54,26 @@ export class SearchResultsComponent implements OnInit {
     this.pageSize = event.pageSize;
     this.pageIndex = event.pageIndex;
     this.filtersChanged();
+  }
+
+  public dateFromChanged(event: any){
+    this.dateFrom = new Date(event.value);
+    if(this.datePicker2){
+      this.filtersChanged();
+    }
+    else{
+      this.datePicker1 = true;
+    }
+  }
+
+  public dateTwoChanged(event: any){
+    this.dateTo = new Date(event.value);
+    if(this.datePicker1){
+      this.filtersChanged();
+    }
+    else{
+      this.datePicker2 = true;
+    }
   }
   
   public filtersChanged(){
@@ -86,16 +107,23 @@ export class SearchResultsComponent implements OnInit {
 
     let verifiedFilter : string = '';
     if(this.verified==true)  verifiedFilter+='"true"';
-    if(this.verified==false)  verifiedFilter+='"false",';
+    if(this.verified==false)  verifiedFilter+='"false"';
     
 
     let pageNo = this.pageIndex;
     let resultsPerPage = this.pageSize;
 
-    filter=[langFilter, cityFilter, pageNo, resultsPerPage, topicFilter, verifiedFilter];
+    let fromDate : Date = null;
+    let toDate : Date = null; 
+    if(this.datePicker1 && this.datePicker2){
+      fromDate = this.dateFrom;
+      toDate = this.dateTo;
+      this.datePicker1 = false;
+      this.datePicker2 = false;
+    }
+
+    filter=[langFilter, cityFilter, pageNo, resultsPerPage, topicFilter, verifiedFilter, fromDate, toDate];
     this.filtersEmitter.emit(filter);
-    console.log(this.serializedDate);
-    console.log("heree");
 
   }
 

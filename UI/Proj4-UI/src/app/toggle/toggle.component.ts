@@ -29,7 +29,7 @@ export class ToggleComponent implements OnInit {
       this.searchInProgress = true;
       this.errorOccured = false;
       this.query = inputText;
-      this.apiService.search(inputText, "", "", "0", "10","","").subscribe(
+      this.apiService.search(inputText, "", "", "0", "10","","", "", "").subscribe(
         response => { 
           this.searchInProgress = false;
           this.resultsAvailable = true;
@@ -55,7 +55,8 @@ export class ToggleComponent implements OnInit {
     let startTime : any = new Date();
     this.searchInProgress = true;
     this.errorOccured = false;
-    this.apiService.search(this.query, filters[0], filters[1], filters[2], filters[3],filters[4],filters[5]).subscribe(
+    this.apiService.search(this.query, filters[0], filters[1], filters[2], filters[3],
+                          filters[4],filters[5], filters[6], filters[7]).subscribe(
       response => { 
         this.searchInProgress = false;
         this.resultsAvailable = true;

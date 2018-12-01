@@ -11,7 +11,7 @@
   <div class="row">
     <div class="col-lg-3">
       <mat-accordion>
-        <mat-expansion-panel>
+        <mat-expansion-panel (opened)="panelOpenState" (closed)="panelOpenState">
           <mat-expansion-panel-header>
             <mat-panel-title>
               Dates
@@ -19,13 +19,13 @@
           </mat-expansion-panel-header>
           <p>From Date:</p>  
           <mat-form-field>
-            <input matInput (click)="filtersChanged()" [matDatepicker]="picker" [formControl]="serializedDate" placeholder="Choose a date">
+            <input matInput (dateChange)="dateFromChanged($event)" [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="value">
             <mat-datepicker-toggle matSuffix  [for]="picker" ></mat-datepicker-toggle>
             <mat-datepicker  #picker></mat-datepicker>
           </mat-form-field>
           <p>To Date:</p>
           <mat-form-field>
-            <input matInput [matDatepicker]="picker2" placeholder="Choose a date">
+            <input matInput (dateChange)="dateToChanged($event)" [matDatepicker]="picker2" placeholder="Choose a date">
             <mat-datepicker-toggle matSuffix [for]="picker2" ></mat-datepicker-toggle>
             <mat-datepicker #picker2></mat-datepicker>
           </mat-form-field>
