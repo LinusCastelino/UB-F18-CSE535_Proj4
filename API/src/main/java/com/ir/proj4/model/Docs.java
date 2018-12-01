@@ -13,8 +13,17 @@ public class Docs {
     String verified;
     List<String> userProfile;
     List<String> tweet_date;
+    String semanticScore = "0";
     
-    List<String> id_str;
+    
+    public String getSemanticScore() {
+		return semanticScore;
+	}
+	public void setSemanticScore(String semanticScore) {
+		this.semanticScore = semanticScore;
+	}
+	
+	List<String> id_str;
     public List<String> getId_str() {
 		return id_str;
 	}
@@ -40,7 +49,6 @@ public class Docs {
 	public void setUserProfile(List<String> userProfile) {
 		this.userProfile = userProfile;
 	}
-	float score;
 	public String getId() {
 		return id;
 	}
@@ -70,12 +78,6 @@ public class Docs {
 	}
 	public void setCity(List<String> city) {
 		this.city = city;
-	}
-	public float getScore() {
-		return score;
-	}
-	public void setScore(float score) {
-		this.score = score;
 	}
 	 public List<String> getTweet_date() {
 			return tweet_date;

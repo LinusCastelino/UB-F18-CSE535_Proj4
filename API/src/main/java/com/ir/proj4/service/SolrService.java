@@ -24,13 +24,14 @@ import com.google.cloud.language.v1.Document;
 import com.google.cloud.language.v1.Document.Type;
 import com.google.cloud.language.v1.LanguageServiceClient;
 import com.google.cloud.language.v1.Sentiment;
+import com.ir.proj4.model.Docs;
 import com.ir.proj4.model.QueryData;
 import com.ir.proj4.model.ReturnList;
 
 @Service
 public class SolrService {
 	
-	public ReturnList querySolr(String query, String date,String pageSize, String pageNo, String lang,String city) throws URISyntaxException, GeneralSecurityException, IOException {
+	public ReturnList querySolr(String query, String date,String pageSize, String pageNo, String lang,String topic, String city) throws URISyntaxException, GeneralSecurityException, IOException {
 		
 		//to work upon
 		//date
@@ -57,6 +58,7 @@ public class SolrService {
 		
 		
 		//convert query in list
+
 //		List<String> queryList = new ArrayList<String>();
 //		queryList.add(query);
 //		
@@ -80,22 +82,7 @@ public class SolrService {
 //	    qfr2 = qfr.getTranslations().get(0).get("translatedText").toString();
 //	    qes2 = qes.getTranslations().get(0).get("translatedText").toString();
 	    
-	    try (LanguageServiceClient language = LanguageServiceClient.create()) {
-			  Document doc = Document.newBuilder()
-			      .setContent("Python is the best programming language.")
-			      .setType(Type.PLAIN_TEXT)
-			      .build();
-			  AnalyzeSentimentResponse response = language.analyzeSentiment(doc);
-			  Sentiment sentiment = response.getDocumentSentiment();
-			  if (sentiment == null) {
-			    System.out.println("No sentiment found");
-			  } else {
-			    System.out.printf("Sentiment magnitude: %.3f\n", sentiment.getMagnitude());
-			    System.out.printf("Sentiment score: %.3f\n", sentiment.getScore());
-			  }
-			  System.out.println(sentiment);
-			}
-				
+
 	    
 //	    if(detectedLang == "en")
 //	    	qen2=qen2+"%5E100";
@@ -118,10 +105,11 @@ public class SolrService {
 	    // hashtag not included
 	    //solr api query
 	    if(date == null)
-	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?deftype=edismax&indent=true&facet.field=city&facet.field=lang&facet=on&qf=text&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
+	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=topic&facet.field=lang&facet=on&qf=text&fq=city:"+city+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
 	    else
-	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?deftype=edismax&indent=true&facet.field=city&facet.field=lang&facet=on&qf=text&fq=city:"+city+"&fq=tweetDate:"+date+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
-	    //System.out.println(url);   
+	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=lang&facet.field=topic&facet=on&qf=text&fq=topic:"+topic+"&fq=city:"+city+"&fq=tweetDate:"+date+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
+
+	    System.out.println(url);   
 
 	    //hitting solr API
 
@@ -136,19 +124,58 @@ public class SolrService {
         StringBuffer response = new StringBuffer();
         while ((inputLine = in .readLine()) != null) {
             response.append(inputLine);
+//            System.out.println(inputLine);
         } 
         in .close();
-       
+        
+        System.out.println(response);
+        
         //input from solr will be processed now
         ObjectMapper obj_ObjectMapper = new ObjectMapper();
         QueryData obj_QueryData = new QueryData();
         obj_QueryData = obj_ObjectMapper.readValue(response.toString(), QueryData.class);
-        ReturnList returnList = new ReturnList(obj_QueryData.getResponse().getDocs(),obj_QueryData.getFacet_counts().getFacet_fields().getLang(),obj_QueryData.getFacet_counts().getFacet_fields().getCity(),obj_QueryData.getResponse().getNumFound());
-        
-        
+        for(Docs doc : obj_QueryData.getResponse().getDocs() ) {
+//        	doc.setSemanticScore(sentimentAnalysis(doc.getText().get(0))); 
+        	List<String> temp= new ArrayList<String>();
+        	temp.add(doc.getTopic().get(0).substring(0, 1).toUpperCase() +doc.getTopic().get(0).substring(1));
+        	doc.setTopic(temp);
+        	temp.clear();
+        	temp.add(doc.getCity().get(0).substring(0, 1).toUpperCase() +doc.getCity().get(0).substring(1));
+        	doc.setCity(temp);
+        }
+//        ReturnList returnList = new ReturnList(obj_QueryData.getResponse().getDocs(),obj_QueryData.getFacet_counts().getFacet_fields().getLang(),obj_QueryData.getFacet_counts().getFacet_fields().getCity(),obj_QueryData.getResponse().getNumFound(),obj_QueryData.getFacet_counts().getFacet_fields().getTopic());
+        ReturnList returnList = new ReturnList(obj_QueryData);
        //System.out.println(returnList.getTweets().get(0).getText());
         //final processed answer will be returned to the controller
         return returnList;
+	}
+	
+	public String sentimentAnalysis(String tweetText) throws IOException {
+		try (LanguageServiceClient language = LanguageServiceClient.create()) {
+			  Document doc = Document.newBuilder()
+			      .setContent(tweetText)
+			      .setType(Type.PLAIN_TEXT)
+			      .build();
+			  AnalyzeSentimentResponse response = language.analyzeSentiment(doc);
+			  Sentiment sentiment = response.getDocumentSentiment();
+			  if (sentiment == null) {
+			    return "0";
+			  } else {
+//			    System.out.printf("Sentiment magnitude: %.3f\n", sentiment.getMagnitude());
+//			    System.out.printf("Sentiment score: %.3f\n", sentiment.getScore());
+				  if(sentiment.getScore()>0) {
+					  return "1";
+				  }
+				  else if(sentiment.getScore()<0) {
+					  return "-1";
+				  }
+				  else {
+					  return "0";
+				  }
+			  }
+//			  System.out.println(sentiment);
+			}
+		
 	}
 	
 }
