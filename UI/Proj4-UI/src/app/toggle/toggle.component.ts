@@ -29,7 +29,7 @@ export class ToggleComponent implements OnInit {
       this.searchInProgress = true;
       this.errorOccured = false;
       this.query = inputText;
-      this.apiService.search(inputText, "", "", "0", "5").subscribe(
+      this.apiService.search(inputText, "", "", "0", "10").subscribe(
         response => { 
           this.searchInProgress = false;
           this.resultsAvailable = true;
