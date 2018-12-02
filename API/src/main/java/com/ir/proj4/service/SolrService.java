@@ -13,12 +13,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.services.translate.Translate;
-import com.google.api.services.translate.TranslateRequestInitializer;
-import com.google.api.services.translate.model.TranslationsListResponse;
 import com.google.cloud.language.v1.AnalyzeSentimentResponse;
 import com.google.cloud.language.v1.Document;
 import com.google.cloud.language.v1.Document.Type;
@@ -53,55 +47,17 @@ public class SolrService {
 		else
 			city=city.replace(" ", "%20");
 		
-		System.out.println("verified is : "+ verified);
-		if(verified==null || verified.equals("") || verified.equals("false"))
+		//System.out.println("verified is : "+ verified);
+		if(verified==null || verified.equals("") || verified.equals("\"\"") || verified.equals("false"))
 			verified="\"true\"%7C%7C\"false\"";
 		
+		if(topic==null || topic.equals("\"\"") || topic.equals(""))
+			topic = "\"crime\",\"infra\",\"politics\",\"social%20unrest\",\"environment\"";
 		
 		pageNo =Integer.toString((Integer.parseInt(pageNo))*10);
 		
 		
-		//convert query in list
-
-//		List<String> queryList = new ArrayList<String>();
-//		queryList.add(query);
-//		
-//		//use google API to translate given query in 5 languages
-//		TranslateRequestInitializer translateRequestInitializer = new TranslateRequestInitializer("AIzaSyDqRLzA3Lq2zg81-mRlwxMdiW-QzXiA35I");
-//		HttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
-//	    JacksonFactory jsonFactory = JacksonFactory.getDefaultInstance();
-//	    final Translate translate = new Translate.Builder(httpTransport, jsonFactory, null).setApplicationName("My Apps").setTranslateRequestInitializer(translateRequestInitializer).build();
-//	    	    
-//	    TranslationsListResponse qen = translate.translations().list(queryList, "en").execute();
-//	    TranslationsListResponse qes = translate.translations().list(queryList, "es").execute();
-//	    TranslationsListResponse qfr = translate.translations().list(queryList, "fr").execute();
-//	    TranslationsListResponse qhi = translate.translations().list(queryList, "hi").execute();
-//	    TranslationsListResponse qth = translate.translations().list(queryList, "th").execute();
-//	    
-//	    //append queries in different languages in one single string
-//	    String detectedLang = qen.getTranslations().get(0).getDetectedSourceLanguage();
-//	    qen2 = qen.getTranslations().get(0).get("translatedText").toString();
-//	    qhi2 = qhi.getTranslations().get(0).get("translatedText").toString();
-//	    qth2 = qth.getTranslations().get(0).get("translatedText").toString();
-//	    qfr2 = qfr.getTranslations().get(0).get("translatedText").toString();
-//	    qes2 = qes.getTranslations().get(0).get("translatedText").toString();
-	    
-
-	    
-//	    if(detectedLang == "en")
-//	    	qen2=qen2+"%5E100";
-//	    else if(detectedLang == "es")
-//	    	qes2=qes2+"%5E100";
-//	    else if(detectedLang == "hi")
-//	    	qhi2=qhi2+"%5E100";
-//	    else if(detectedLang == "th")
-//	    	qth2=qth2+"%5E100";
-//	    else if(detectedLang == "fr")
-//	    	qfr2=qfr2+"%5E100";
-	    
-//	    q2=qen2+"%7C%7C"+qth2+"%7C%7C"+qfr2+"%7C%7C"+qhi2+"%7C%7C"+qes2;
-//	    System.out.println("query after deciding language is "+ q2);
-	    //q3 = URLEncoder.encode(q2, "UTF-8");
+		
 	    
 	    q3 = URLEncoder.encode(query, "UTF-8");
 	    //System.out.println("query is : "+q3);
@@ -109,21 +65,25 @@ public class SolrService {
 	    // hashtag not included
 	    //solr api query
 	    if(date == null)
-	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=topic&facet.field=verified&facet.field=lang&facet=on&qf=text&fq=city:"+city+"&fq=verified:"+verified+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
+	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=topic&facet.field=verified&facet.field=lang&facet=on&qf=text&fq=topic:("+topic+")&fq=city:("+city+")&fq=verified:("+verified+")&fq=lang:("+lang+")&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
 	    else
-	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=lang&facet.field=topic&facet.field=verified&facet=on&qf=text&fq=topic:"+topic+"&fq=verified:"+verified+"&fq=city:"+city+"&fq=tweetDate:"+date+"&fq=lang:"+lang+"&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
+	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=lang&facet.field=topic&facet.field=verified&facet=on&qf=text&fq=topic:("+topic+")&fq=verified:("+verified+")&fq=city:("+city+")&fq=tweetDate:"+date+"&fq=lang:("+lang+")&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
 
-	    System.out.println(url);   
-
+	    
+	    System.out.println(url);
 	    //hitting solr API
 
 	    URL obj = new URL(url);
 	    HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+	       
         con.setRequestMethod("GET");
+        
+        
         
         //reading input from solr
         //each line from input from solr will get append in "response" buffer
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+        //System.out.println("test1");
         String inputLine;
         StringBuffer response = new StringBuffer();
         while ((inputLine = in .readLine()) != null) {
