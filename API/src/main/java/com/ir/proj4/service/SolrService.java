@@ -81,7 +81,7 @@ public class SolrService {
 	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=lang&facet.field=topic&facet.field=verified&facet=on&qf=text&fq=tweet_date:["+dateFrom+"%20TO%20"+dateTo+"]&fq=topic:("+topic+")&fq=verified:("+verified+")&fq=city:("+city+")&fq=lang:("+lang+")&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
 	    }
 	    
-	    System.out.println(url);
+//	    System.out.println(url);
 	    //hitting solr API
 
 	    URL obj = new URL(url);
@@ -103,14 +103,14 @@ public class SolrService {
         } 
         in .close();
         
-        System.out.println(response);
+//        System.out.println(response);
         
         //input from solr will be processed now
         ObjectMapper obj_ObjectMapper = new ObjectMapper();
         QueryData obj_QueryData = new QueryData();
         obj_QueryData = obj_ObjectMapper.readValue(response.toString(), QueryData.class);
         for(Docs doc : obj_QueryData.getResponse().getDocs() ) {
-        	doc.setSemanticScore(sentimentAnalysis(doc.getText().get(0))); 
+        	doc.setSentiment(sentimentAnalysis(doc.getText().get(0))); 
         	List<String> temp= new ArrayList<String>();
         	temp.add(doc.getTopic().get(0).substring(0, 1).toUpperCase() +doc.getTopic().get(0).substring(1));
         	doc.setTopic(temp);
@@ -134,18 +134,18 @@ public class SolrService {
 			  AnalyzeSentimentResponse response = language.analyzeSentiment(doc);
 			  Sentiment sentiment = response.getDocumentSentiment();
 			  if (sentiment == null) {
-			    return "0";
+			    return "neutral";
 			  } else {
 //			    System.out.printf("Sentiment magnitude: %.3f\n", sentiment.getMagnitude());
 //			    System.out.printf("Sentiment score: %.3f\n", sentiment.getScore());
 				  if(sentiment.getScore()>0) {
-					  return "1";
+					  return "positive";
 				  }
 				  else if(sentiment.getScore()<0) {
-					  return "-1";
+					  return "negative";
 				  }
 				  else {
-					  return "0";
+					  return "neutral";
 				  }
 			  }
 //			  System.out.println(sentiment);
