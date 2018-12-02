@@ -12,7 +12,7 @@ public class Docs {
     String verified;
     List<String> userProfile;
     List<String> tweet_date;
-    String semanticScore = "0";
+    String semanticScore = "neutral";
     
     
     public String getSemanticScore() {

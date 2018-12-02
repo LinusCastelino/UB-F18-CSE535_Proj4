@@ -134,18 +134,18 @@ public class SolrService {
 			  AnalyzeSentimentResponse response = language.analyzeSentiment(doc);
 			  Sentiment sentiment = response.getDocumentSentiment();
 			  if (sentiment == null) {
-			    return "0";
+			    return "neutral";
 			  } else {
 //			    System.out.printf("Sentiment magnitude: %.3f\n", sentiment.getMagnitude());
 //			    System.out.printf("Sentiment score: %.3f\n", sentiment.getScore());
 				  if(sentiment.getScore()>0) {
-					  return "1";
+					  return "positive";
 				  }
 				  else if(sentiment.getScore()<0) {
-					  return "-1";
+					  return "negative";
 				  }
 				  else {
-					  return "0";
+					  return "neutral";
 				  }
 			  }
 //			  System.out.println(sentiment);
