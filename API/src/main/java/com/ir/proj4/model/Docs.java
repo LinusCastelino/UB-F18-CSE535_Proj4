@@ -12,16 +12,17 @@ public class Docs {
     String verified;
     List<String> userProfile;
     List<String> tweet_date;
-    String semanticScore = "neutral";
+    String sentiment = "neutral";
     
     
-    public String getSemanticScore() {
-		return semanticScore;
-	}
-	public void setSemanticScore(String semanticScore) {
-		this.semanticScore = semanticScore;
-	}
+   
 	
+	public String getSentiment() {
+		return sentiment;
+	}
+	public void setSentiment(String sentiment) {
+		this.sentiment = sentiment;
+	}
 	List<String> id_str;
     public List<String> getId_str() {
 		return id_str;
