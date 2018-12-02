@@ -54,11 +54,11 @@ public class SolrService {
 		
 		if(topic==null || topic.equals("\"\"") || topic.equals(""))
 			topic = "\"crime\",\"infra\",\"politics\",\"social%20unrest\",\"environment\"";
-		
+		else
+			topic=topic.replace(" ","%20");
 		pageNo =Integer.toString((Integer.parseInt(pageNo))*10);
 		
-		
-		
+			
 	    
 	    q3 = URLEncoder.encode(query, "UTF-8");
 	    //System.out.println("query is : "+q3);
