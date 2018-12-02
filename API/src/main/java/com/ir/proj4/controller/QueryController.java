@@ -25,11 +25,12 @@ public class QueryController<JSONObject> {
 	
 	@CrossOrigin
 	@RequestMapping(value="select", method = RequestMethod.GET)
-	public ReturnList getSolrResponse(@RequestParam(name="q") String query, @RequestParam(name="date", required=false) String date, @RequestParam(name="pageSize") String pageSize, @RequestParam(name="pageNo") String pageNo, @RequestParam(name="lang", required=false) String lang, @RequestParam(name="topic", required=false) String topic, @RequestParam(name="verified", required=false) String verified, @RequestParam(name="city", required=false) String city) throws URISyntaxException, GeneralSecurityException, IOException {
+	public ReturnList getSolrResponse(@RequestParam(name="q") String query, @RequestParam(name="dateFrom", required=false) String dateFrom, @RequestParam(name="dateTo", required=false) String dateTo, @RequestParam(name="pageSize") String pageSize, @RequestParam(name="pageNo") String pageNo, @RequestParam(name="lang", required=false) String lang, @RequestParam(name="topic", required=false) String topic, @RequestParam(name="verified", required=false) String verified, @RequestParam(name="city", required=false) String city) throws URISyntaxException, GeneralSecurityException, IOException {
 		//to work on
 		//most common ISO Date Format yyyy-MM-dd
+		//dateFrom=&dateTo
 		
-		return solrService.querySolr(query, date, pageSize, pageNo, lang, topic, verified, city);
+		return solrService.querySolr(query, dateFrom, dateTo, pageSize, pageNo, lang, topic, verified, city);
 
 
 	}	
