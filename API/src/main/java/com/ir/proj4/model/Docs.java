@@ -14,8 +14,6 @@ public class Docs {
     List<String> tweet_date;
     String sentiment = "neutral";
     
-    
-   
 	
 	public String getSentiment() {
 		return sentiment;
@@ -79,4 +77,5 @@ public class Docs {
 	public void setTweet_date(List<String> tweet_date) {
 			this.tweet_date = tweet_date;
 	}
+	
 }
