@@ -26,7 +26,7 @@ export class SearchStatisticsComponent implements OnInit {
     defaultColor: '#f5f5f5',
   };
   
-  pieChartData = [
+  citiesPieData = [
       
       ['Work',    11],
       ['Eat',      2],
@@ -34,15 +34,29 @@ export class SearchStatisticsComponent implements OnInit {
       ['Watch TV', 2],
       ['Sleep',    7]   
     ];
-  options= {title: 'My Daily Activities',
+  
+  citiesPieOptions= {title: 'My Daily Activities',
   pieSliceTextStyle:  {color: 'black'},
   is3D: true};
 
-  donutOptions= {title: 'My Daily Activities',
+  sentimentDonutData = [
+      
+    ['Work',    11],
+    ['Eat',      2],
+    ['Commute',  2],
+    ['Watch TV', 2],
+    ['Sleep',    7]   
+  ];
+
+  sentimentDonutOptions= {title: 'My Daily Activities',
   pieSliceTextStyle:  {color: 'black'},
   pieHole: 0.4,
   };
 
+  barChartOptions={
+    bars: 'horizontal' ,
+
+  };
   ngOnInit() {
   }
 

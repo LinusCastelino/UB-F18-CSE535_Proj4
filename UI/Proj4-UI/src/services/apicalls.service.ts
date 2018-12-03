@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { timeout } from 'rxjs/operators';
 
 //export const apiURL:string = "http://team-kenspring-proj4.us-west-2.elasticbeanstalk.com";
-export const apiURL:string = "http://localhost:5001";
+export const apiURL:string = "http://localhost:5000";
 
 @Injectable({
   providedIn: 'root'

@@ -17,8 +17,8 @@
       [inputQuery]="query" [retrievalTime]="apiResponseTime" [langCount]="langCount" 
       [cityCount]="cityCount" [topicsCount] = "topicsCount" [verifiedCount]="verifiedCount"></app-search-results>
     </mat-tab>
-    <mat-tab label="Statistics"  [apiStats]="apiStats"> 
-      <app-search-statistics></app-search-statistics> 
+    <mat-tab label="Statistics"> 
+      <app-search-statistics   [apiStats]="apiStats"></app-search-statistics> 
     </mat-tab>
   </mat-tab-group>
 </div>
