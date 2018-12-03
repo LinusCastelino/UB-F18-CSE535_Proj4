@@ -50,9 +50,9 @@ public class SolrStatsService {
 	    // hashtag not included
 	    //solr api query
 	    
-	    url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=hashtags&facet.field=topic&facet.field=verified&facet.field=lang&facet=on&qf=text&q="+q3+"&wt=json";
+	    url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=hashtags&facet.field=topic&facet.field=verified&facet.field=lang&facet=on&qf=text&q="+q3+"&fl=text%2Ctweet_date%2Ccity&wt=json";
 	    
-//	    System.out.println(url);   
+	    System.out.println(url);   
 
 	    //hitting solr API
 
@@ -71,7 +71,7 @@ public class SolrStatsService {
         } 
         in .close();
         
-//        System.out.println(response);
+        System.out.println(response);
         
         //input from solr will be processed now
         ObjectMapper obj_ObjectMapper = new ObjectMapper();
