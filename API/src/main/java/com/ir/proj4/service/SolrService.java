@@ -72,7 +72,7 @@ public class SolrService {
 	    // hashtag not included
 	    //solr api query
 	    if((dateFrom==null || dateFrom.equals("null") || dateFrom.equals(null) || dateFrom.equals("\"\"") || dateFrom.equals("")) && (dateTo == null || dateTo.equals("null") || dateTo.equals(null) || dateTo.equals("") || dateTo.equals("\"\""))) {
-	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=hashtags&facet.field=city&facet.field=topic&facet.field=verified&facet.field=lang&facet=on&qf=text&fq=topic:("+topic+")&fq=city:("+city+")&fq=verified:("+verified+")&fq=lang:("+lang+")&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
+	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=topic&facet.field=verified&facet.field=lang&facet=on&qf=text&fq=topic:("+topic+")&fq=city:("+city+")&fq=verified:("+verified+")&fq=lang:("+lang+")&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
 	    }
 	    	else {
 	    	if(dateTo==null || dateTo.equals("") || dateTo.equals("\"\""))
@@ -81,7 +81,7 @@ public class SolrService {
 				dateFrom="2018-01-01T00:00:00Z";
 			dateTo=URLEncoder.encode(dateTo, "UTF-8");
 			dateFrom=URLEncoder.encode(dateFrom, "UTF-8");
-	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=hashtags&facet.field=city&facet.field=lang&facet.field=topic&facet.field=verified&facet=on&qf=text&fq=tweet_date:["+dateFrom+"%20TO%20"+dateTo+"]&fq=topic:("+topic+")&fq=verified:("+verified+")&fq=city:("+city+")&fq=lang:("+lang+")&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
+	    	url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=lang&facet.field=topic&facet.field=verified&facet=on&qf=text&fq=tweet_date:["+dateFrom+"%20TO%20"+dateTo+"]&fq=topic:("+topic+")&fq=verified:("+verified+")&fq=city:("+city+")&fq=lang:("+lang+")&q="+q3+"&fl=tweet_date%2CuserName%2CuserProfile%2Ctext%2Clang%2Cverified%2Ctopic%2Ccity%2Cid_str&rows="+pageSize+"&start="+pageNo+"&wt=json";
 	    }
 	    
 
