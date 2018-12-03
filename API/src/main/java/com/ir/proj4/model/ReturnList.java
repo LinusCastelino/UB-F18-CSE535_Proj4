@@ -13,9 +13,6 @@ public class ReturnList {
 	HashMap<String,String> topic;
 	HashMap<String,String> verified;
 	
-//	obj_QueryData.getResponse().getDocs(),obj_QueryData.getFacet_counts().getFacet_fields().getLang(),obj_QueryData.getFacet_counts().getFacet_fields().getCity(),obj_QueryData.getResponse().getNumFound()
-	
-//	public ReturnList(ArrayList<Docs> tweets,List<String> lang, List<String> city, int numFound,List<String> topic){
 	public ReturnList(QueryData obj_QueryData) {
 		this.tweets = obj_QueryData.getResponse().getDocs();
 		this.lang = new HashMap<String,String>();

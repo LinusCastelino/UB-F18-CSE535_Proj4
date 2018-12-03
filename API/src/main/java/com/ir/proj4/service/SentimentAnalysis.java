@@ -39,13 +39,13 @@ public class SentimentAnalysis {
 	        }
 	    }
 	    if(mainSentiment>2) {
-	    	return "positive";
+	    	return "Positive";
 	    }
 	    else if(mainSentiment<2) {
-	    	return "negative";
+	    	return "Negative";
 	    }
 	    else {
-	    	return "neutral";
+	    	return "Neutral";
 	    }
 	}
 
