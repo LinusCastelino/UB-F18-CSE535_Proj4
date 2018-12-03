@@ -53,9 +53,9 @@ export class SearchStatisticsComponent implements OnInit {
   pieHole: 0.4,
   };
 
-  barChartOptions={
-    bars: 'horizontal' ,
-
+  columnChartOptions={
+    is3D: true,
+    title: "Density of Precious Metals, in g/cm^3"
   };
   ngOnInit() {
   }
