@@ -26,4 +26,12 @@ export class APICallsService {
     return this.httpClient.get(URL, {headers, params}).pipe(timeout(20000));
   }
 
+  public stats(inputquery){
+    var URL= apiURL+"/statistics";
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    let params = new HttpParams().set('q',inputquery);
+    return this.httpClient.get(URL, {headers, params}).pipe(timeout(20000));
+  } 
+
 }

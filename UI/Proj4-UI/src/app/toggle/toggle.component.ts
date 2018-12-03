@@ -16,6 +16,7 @@ export class ToggleComponent implements OnInit {
   query : string = '';
   resultsAvailable : boolean = false;
   apiResponse:any = '';
+  apiStats:any = '';
   apiResponseTime: number = 0;
   searchInProgress : boolean = false; 
   errorOccured : boolean = false;
@@ -52,7 +53,16 @@ export class ToggleComponent implements OnInit {
         this.apiResponseTime = 0;
         console.log("Error : " + JSON.stringify(err));
       });
-    }
+    
+      this.apiService.stats(inputText).subscribe(
+        response => {
+            this.apiStats=response;
+        },
+        err=> {
+           console.log("Error : " + JSON.stringify(err));
+        });
+        
+      }
   }
 
   public queryWithFilters(filters:string[]):void{

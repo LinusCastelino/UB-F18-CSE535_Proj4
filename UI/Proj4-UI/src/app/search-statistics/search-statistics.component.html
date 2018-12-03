@@ -4,7 +4,15 @@
       <google-chart type="GeoChart" [data]="map_data" [options]="map_options" width="600" height="300" dynamicResize="true"></google-chart>
     </div>
     <div class="pie_chart">
-      <google-chart id="piechart" type="PieChart"  width= "900" height="500" dynamicResize="true" [data]="pieChartData" [options]="options"  ></google-chart>
+      <google-chart id="pieChart" type="PieChart"  width= "900" height="500" dynamicResize="true" [data]="pieChartData" [options]="options"  ></google-chart>
+
+    </div>
+    <div class="donut_chart">
+      <google-chart id="pieChart" type="PieChart"  width= "900" height="500" dynamicResize="true" [data]="pieChartData" [options]="donutOptions"  ></google-chart>
+
+    </div>
+    <div class="bar_chart">
+      <google-chart id="barChart" type="BarChart"  width= "900" height="500" dynamicResize="true" [data]="pieChartData" [options]=""  ></google-chart>
 
     </div>
   </div>
