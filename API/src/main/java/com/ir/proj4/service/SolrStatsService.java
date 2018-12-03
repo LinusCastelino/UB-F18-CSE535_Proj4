@@ -80,7 +80,7 @@ public class SolrStatsService {
         for(Docs doc : obj_QueryData.getResponse().getDocs() ) {
 //        	doc.setSemanticScore(sentimentAnalysis(doc.getText().get(0))); 
         	doc.setSentiment(SentimentAnalysis.findSentiment(doc.getText().get(0)));
-//        	List<String> temp= new ArrayList<String>();
+        	List<String> temp= new ArrayList<String>();
 //        	temp.add(doc.getTopic().get(0).substring(0, 1).toUpperCase() +doc.getTopic().get(0).substring(1));
 //        	doc.setTopic(temp);
 //        	temp = new ArrayList<String>();
