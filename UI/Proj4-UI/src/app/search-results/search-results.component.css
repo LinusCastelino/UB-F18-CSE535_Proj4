@@ -16,7 +16,7 @@
 }
 
 .results{
-    margin-bottom: 1%
+    margin-bottom: 1%;
 }
 
 .separator{
@@ -67,7 +67,17 @@ mat-icon{
     margin-left: 0.8%;
 }
 
-.tweets .container{
-    border-left: 2px solid rgb(1, 1, 104);
-    border-right : 2px solid rgb(1, 1, 104);
+.tweets .positive{
+    border-left: 4px solid green;
+    border-right : 4px solid green;
+}
+
+.tweets .neutral{
+    border-left: 4px solid black;
+    border-right : 4px solid black;
+}
+
+.tweets .negative{
+    border-left: 4px solid red;
+    border-right : 4px solid red;
 }

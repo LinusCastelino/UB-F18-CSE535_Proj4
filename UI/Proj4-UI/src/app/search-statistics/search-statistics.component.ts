@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { APICallsService } from '../../services/apicalls.service'
 
 @Component({
@@ -10,6 +10,7 @@ export class SearchStatisticsComponent implements OnInit {
 
   constructor(private apiService: APICallsService) { }
 
+  @Input() apiStats:any;
   map_data = [
     ['Germany', 200],
     ['US', 300],
@@ -36,6 +37,11 @@ export class SearchStatisticsComponent implements OnInit {
   options= {title: 'My Daily Activities',
   pieSliceTextStyle:  {color: 'black'},
   is3D: true};
+
+  donutOptions= {title: 'My Daily Activities',
+  pieSliceTextStyle:  {color: 'black'},
+  pieHole: 0.4,
+  };
 
   ngOnInit() {
   }
