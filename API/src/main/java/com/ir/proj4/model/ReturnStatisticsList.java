@@ -7,7 +7,7 @@ import java.util.List;
 public class ReturnStatisticsList {
 
 //	HashMap<String,String> lang;
-	List<ArrayList<String>> lang;
+	List<ArrayList<Object>> lang;
 	HashMap<String,String> city;
 	HashMap<String,String> country;
 	
@@ -26,7 +26,7 @@ public class ReturnStatisticsList {
 		cityToCountry.put("es","Spanish");
 		cityToCountry.put("fr","French");
 		
-		this.lang = new ArrayList<ArrayList<String>>();
+		this.lang = new ArrayList<ArrayList<Object>>();
 //		this.lang = new HashMap<String,String>();
 		this.city = new HashMap<String,String>();
 		this.country = new HashMap<String,String>();
@@ -36,13 +36,13 @@ public class ReturnStatisticsList {
 //			this.lang.put(obj_QueryData.getFacet_counts().getFacet_fields().getLang().get(i), obj_QueryData.getFacet_counts().getFacet_fields().getLang().get(i+1));
 //		}
 		for(int i=0;i<obj_QueryData.getFacet_counts().getFacet_fields().getLang().size();i+=2) {
-			ArrayList<String> temp= new ArrayList<String>();
+			ArrayList<Object> temp= new ArrayList<Object>();
 			temp.add(cityToCountry.get(obj_QueryData.getFacet_counts().getFacet_fields().getLang().get(i)));
-			temp.add(obj_QueryData.getFacet_counts().getFacet_fields().getLang().get(i+1));
+			temp.add(Integer.parseInt(obj_QueryData.getFacet_counts().getFacet_fields().getLang().get(i+1)));
 			this.lang.add(temp);
 //			this.country.put(cityToCountry.get(obj_QueryData.getFacet_counts().getFacet_fields().getLang().get(i)), obj_QueryData.getFacet_counts().getFacet_fields().getLang().get(i+1));
 		}
-		
+		System.out.println(obj_QueryData.getFacet_counts().getFacet_fields().getCity());
 		for(int i=0;i<obj_QueryData.getFacet_counts().getFacet_fields().getCity().size();i+=2) {
 			this.city.put(obj_QueryData.getFacet_counts().getFacet_fields().getCity().get(i), obj_QueryData.getFacet_counts().getFacet_fields().getCity().get(i+1));
 		}
@@ -76,12 +76,12 @@ public class ReturnStatisticsList {
 		this.country = country;
 	}
 
-	public List<ArrayList<String>> getLang() {
+	public List<ArrayList<Object>> getLang() {
 		return lang;
 	}
 
 	public void setLang(HashMap<String, String> lang) {
-		this.lang = (List<ArrayList<String>>) lang;
+		this.lang = (List<ArrayList<Object>>) lang;
 	}
 
 	public HashMap<String, String> getCity() {
