@@ -14,8 +14,6 @@ public class Docs {
     List<String> tweet_date;
     String sentiment = "neutral";
     
-    
-   
 	
 	public String getSentiment() {
 		return sentiment;

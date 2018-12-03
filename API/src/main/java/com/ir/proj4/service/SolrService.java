@@ -26,7 +26,7 @@ import com.ir.proj4.model.ReturnList;
 public class SolrService {
 	
 	public ReturnList querySolr(String query, String dateFrom, String dateTo, String pageSize, String pageNo, String lang,String topic,String verified, String city) throws URISyntaxException, GeneralSecurityException, IOException {
-		
+		SentimentAnalysis.init();
 		//to work upon
 		//date
 //		String qen2;
@@ -110,7 +110,12 @@ public class SolrService {
         QueryData obj_QueryData = new QueryData();
         obj_QueryData = obj_ObjectMapper.readValue(response.toString(), QueryData.class);
         for(Docs doc : obj_QueryData.getResponse().getDocs() ) {
-        	doc.setSentiment(sentimentAnalysis(doc.getText().get(0))); 
+        	if(!((doc.getLang().get(0).equals("hi"))||(doc.getLang().get(0).equals("th")))) {
+//        		doc.setSentiment(sentimentAnalysis(doc.getText().get(0))); 
+        		
+        	}
+        	doc.setSentiment(SentimentAnalysis.findSentiment(doc.getText().get(0)));
+        	
         	List<String> temp= new ArrayList<String>();
         	temp.add(doc.getTopic().get(0).substring(0, 1).toUpperCase() +doc.getTopic().get(0).substring(1));
         	doc.setTopic(temp);
