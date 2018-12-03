@@ -7,7 +7,6 @@ public class QueryData {
 	@JsonIgnore
 	private String responseHeader;
 	private Facet_Counts facet_counts;
-	
 
 	public Facet_Counts getFacet_counts() {
 		return facet_counts;
@@ -16,7 +15,7 @@ public class QueryData {
 	public void setFacet_counts(Facet_Counts facet_counts) {
 		this.facet_counts = facet_counts;
 	}
-	
+
 	public Response getResponse() {
 		return response;
 	}

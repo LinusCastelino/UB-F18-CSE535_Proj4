@@ -14,7 +14,7 @@ public class ReturnStatisticsList {
 	List<ArrayList<Object>> country;
 	List<ArrayList<Object>> hashtags;
 	List<ArrayList<Object>> sentiment;
-	
+
 	public ReturnStatisticsList(QueryData obj_QueryData) {
 		SentimentAnalysis.init();
 		HashMap<String, String> cityToCountry = new HashMap<String, String>();
@@ -38,19 +38,20 @@ public class ReturnStatisticsList {
 		cityRemane.put("bangkok", "Bangkok");
 		cityRemane.put("delhi", "Delhi");
 		cityRemane.put("mexico city", "Mexico City");
-		
-		sentimentCount.put("positive", 0);
-		sentimentCount.put("neutral",0);
-		sentimentCount.put("negative", 0);
+
+		sentimentCount.put("Positive", 0);
+		sentimentCount.put("Neutral", 0);
+		sentimentCount.put("Negative", 0);
 
 		this.lang = new ArrayList<ArrayList<Object>>();
 		this.city = new ArrayList<ArrayList<Object>>();
 		this.country = new ArrayList<ArrayList<Object>>();
 		this.hashtags = new ArrayList<ArrayList<Object>>();
 		this.sentiment = new ArrayList<ArrayList<Object>>();
-		
-		int hashtagCounts = 20;
-		
+
+		int hashtagLimit = 20;
+		int sentimentsLimit = 1000;
+
 		for (int i = 0; i < obj_QueryData.getFacet_counts().getFacet_fields().getLang().size(); i += 2) {
 			ArrayList<Object> temp = new ArrayList<Object>();
 			temp.add(cityToCountry.get(obj_QueryData.getFacet_counts().getFacet_fields().getLang().get(i)));
@@ -72,27 +73,31 @@ public class ReturnStatisticsList {
 		}
 
 		if (obj_QueryData.getFacet_counts().getFacet_fields().getHashtags().size() < 20) {
-			hashtagCounts = obj_QueryData.getFacet_counts().getFacet_fields().getHashtags().size();
+			hashtagLimit = obj_QueryData.getFacet_counts().getFacet_fields().getHashtags().size();
 		}
 
-		for (int i = 0; i < hashtagCounts; i += 2) {
+		for (int i = 0; i < hashtagLimit; i += 2) {
 			ArrayList<Object> temp = new ArrayList<Object>();
-			temp.add("#"+obj_QueryData.getFacet_counts().getFacet_fields().getHashtags().get(i));
+			temp.add("#" + obj_QueryData.getFacet_counts().getFacet_fields().getHashtags().get(i));
 			temp.add(Integer.parseInt(obj_QueryData.getFacet_counts().getFacet_fields().getHashtags().get(i + 1)));
 			this.hashtags.add(temp);
 		}
 //		calculating sentiment
-		for(int i = 0; i <1000; i++) {
-			String analysisPerTweet = SentimentAnalysis.findSentiment(obj_QueryData.getResponse().getDocs().get(i).getText().get(0));
-			sentimentCount.put(analysisPerTweet, sentimentCount.get(analysisPerTweet)+1);
+		if (obj_QueryData.getResponse().getNumFound() < 1000) {
+			sentimentsLimit = obj_QueryData.getResponse().getNumFound();
 		}
-		for(String keys : sentimentCount.keySet()) {
+		for (int i = 0; i < sentimentsLimit; i++) {
+			String analysisPerTweet = SentimentAnalysis
+					.findSentiment(obj_QueryData.getResponse().getDocs().get(i).getText().get(0));
+			sentimentCount.put(analysisPerTweet, sentimentCount.get(analysisPerTweet) + 1);
+		}
+		for (String keys : sentimentCount.keySet()) {
 			ArrayList<Object> temp = new ArrayList<Object>();
 			temp.add(keys);
 			temp.add(sentimentCount.get(keys));
 			this.sentiment.add(temp);
 		}
-		
+
 	}
 
 	public List<ArrayList<Object>> getSentiment() {
