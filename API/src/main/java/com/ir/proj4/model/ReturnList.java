@@ -12,7 +12,6 @@ public class ReturnList {
 	int numFound;
 	HashMap<String,String> topic;
 	HashMap<String,String> verified;
-
 	
 //	obj_QueryData.getResponse().getDocs(),obj_QueryData.getFacet_counts().getFacet_fields().getLang(),obj_QueryData.getFacet_counts().getFacet_fields().getCity(),obj_QueryData.getResponse().getNumFound()
 	
@@ -38,8 +37,10 @@ public class ReturnList {
 		for(int i=0;i<obj_QueryData.getFacet_counts().getFacet_fields().getVerified().size();i+=2) {
 			this.verified.put(obj_QueryData.getFacet_counts().getFacet_fields().getVerified().get(i), obj_QueryData.getFacet_counts().getFacet_fields().getVerified().get(i+1));
 		}
-				
+			
 	}
+		
+	
 
 	public HashMap<String, String> getVerified() {
 		return verified;

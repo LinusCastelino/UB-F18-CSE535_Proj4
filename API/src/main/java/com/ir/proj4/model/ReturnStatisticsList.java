@@ -8,6 +8,7 @@ public class ReturnStatisticsList {
 	HashMap<String,String> city;
 	HashMap<String,String> country;
 	HashMap<String, String> cityToCountry = new HashMap<String,String>();
+	HashMap<String,String> hashtags;
 	
 	public ReturnStatisticsList(QueryData obj_QueryData) {
 		// TODO Auto-generated constructor stub
@@ -19,6 +20,8 @@ public class ReturnStatisticsList {
 		this.lang = new HashMap<String,String>();
 		this.city = new HashMap<String,String>();
 		this.country = new HashMap<String,String>();
+		this.hashtags = new HashMap<String,String>();
+		int hashtagCounts=20;
 		for(int i=0;i<obj_QueryData.getFacet_counts().getFacet_fields().getLang().size();i+=2) {
 			this.lang.put(obj_QueryData.getFacet_counts().getFacet_fields().getLang().get(i), obj_QueryData.getFacet_counts().getFacet_fields().getLang().get(i+1));
 		}
@@ -31,6 +34,28 @@ public class ReturnStatisticsList {
 		for(int i=0;i<obj_QueryData.getFacet_counts().getFacet_fields().getCity().size();i+=2) {
 			this.country.put(cityToCountry.get(obj_QueryData.getFacet_counts().getFacet_fields().getCity().get(i)), obj_QueryData.getFacet_counts().getFacet_fields().getCity().get(i+1));
 		}
+		if(obj_QueryData.getFacet_counts().getFacet_fields().getHashtags().size()<20) {
+			hashtagCounts=obj_QueryData.getFacet_counts().getFacet_fields().getHashtags().size();
+		}
+		for(int i=0;i<hashtagCounts;i+=2) {
+			this.hashtags.put(obj_QueryData.getFacet_counts().getFacet_fields().getHashtags().get(i), obj_QueryData.getFacet_counts().getFacet_fields().getHashtags().get(i+1));
+		}
+	}
+
+	public HashMap<String, String> getCityToCountry() {
+		return cityToCountry;
+	}
+
+	public void setCityToCountry(HashMap<String, String> cityToCountry) {
+		this.cityToCountry = cityToCountry;
+	}
+
+	public HashMap<String, String> getHashtags() {
+		return hashtags;
+	}
+
+	public void setHashtags(HashMap<String, String> hashtags) {
+		this.hashtags = hashtags;
 	}
 
 	public HashMap<String, String> getCountry() {
