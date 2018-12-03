@@ -12,7 +12,7 @@ public class ReturnList {
 	int numFound;
 	HashMap<String,String> topic;
 	HashMap<String,String> verified;
-	HashMap<String,String> hashtags;
+	
 	
 //	obj_QueryData.getResponse().getDocs(),obj_QueryData.getFacet_counts().getFacet_fields().getLang(),obj_QueryData.getFacet_counts().getFacet_fields().getCity(),obj_QueryData.getResponse().getNumFound()
 	
@@ -23,8 +23,7 @@ public class ReturnList {
 		this.city = new HashMap<String,String>();
 		this.topic = new HashMap<String,String>();
 		this.verified = new HashMap<String,String>();
-		this.hashtags = new HashMap<String,String>();
-		int hashtagCounts=20;
+		
 		
 		for(int i=0;i<obj_QueryData.getFacet_counts().getFacet_fields().getLang().size();i+=2) {
 			this.lang.put(obj_QueryData.getFacet_counts().getFacet_fields().getLang().get(i), obj_QueryData.getFacet_counts().getFacet_fields().getLang().get(i+1));
@@ -39,22 +38,11 @@ public class ReturnList {
 		for(int i=0;i<obj_QueryData.getFacet_counts().getFacet_fields().getVerified().size();i+=2) {
 			this.verified.put(obj_QueryData.getFacet_counts().getFacet_fields().getVerified().get(i), obj_QueryData.getFacet_counts().getFacet_fields().getVerified().get(i+1));
 		}
-		if(obj_QueryData.getFacet_counts().getFacet_fields().getHashtags().size()<20) {
-			hashtagCounts=obj_QueryData.getFacet_counts().getFacet_fields().getHashtags().size();
-		}
-		for(int i=0;i<hashtagCounts;i+=2) {
-			this.hashtags.put(obj_QueryData.getFacet_counts().getFacet_fields().getHashtags().get(i), obj_QueryData.getFacet_counts().getFacet_fields().getHashtags().get(i+1));
-		}
+		
 		
 	}
 
-	public HashMap<String, String> getHashtags() {
-		return hashtags;
-	}
-
-	public void setHashtags(HashMap<String, String> hashtags) {
-		this.hashtags = hashtags;
-	}
+	
 
 	public HashMap<String, String> getVerified() {
 		return verified;
