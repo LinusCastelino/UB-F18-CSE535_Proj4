@@ -14,12 +14,15 @@ public class ReturnStatisticsList {
 	List<ArrayList<Object>> country;
 	List<ArrayList<Object>> hashtags;
 	List<ArrayList<Object>> sentiment;
+	List<ArrayList<Object>> tweet_date;
+	
 
 	public ReturnStatisticsList(QueryData obj_QueryData) {
 		SentimentAnalysis.init();
 		HashMap<String, String> cityToCountry = new HashMap<String, String>();
 		HashMap<String, String> cityRemane = new HashMap<String, String>();
 		HashMap<String, Integer> sentimentCount = new HashMap<String, Integer>();
+		HashMap<String, Integer> tweetDtateCount = new HashMap<String, Integer>();
 		// TODO Auto-generated constructor stub
 		cityToCountry.put("paris", "France");
 		cityToCountry.put("nyc", "US");
@@ -48,9 +51,10 @@ public class ReturnStatisticsList {
 		this.country = new ArrayList<ArrayList<Object>>();
 		this.hashtags = new ArrayList<ArrayList<Object>>();
 		this.sentiment = new ArrayList<ArrayList<Object>>();
+		this.tweet_date = new ArrayList<ArrayList<Object>>();
 
 		int hashtagLimit = 20;
-		int sentimentsLimit = 1000;
+		int sentimentsLimit = 10;
 
 		for (int i = 0; i < obj_QueryData.getFacet_counts().getFacet_fields().getLang().size(); i += 2) {
 			ArrayList<Object> temp = new ArrayList<Object>();
@@ -97,7 +101,28 @@ public class ReturnStatisticsList {
 			temp.add(sentimentCount.get(keys));
 			this.sentiment.add(temp);
 		}
+		for (int i = 0; i < obj_QueryData.getFacet_counts().getFacet_fields().getTweet_date().size(); i+=2) {
+			String subStringDate = obj_QueryData.getFacet_counts().getFacet_fields().getTweet_date().get(i).substring(0, 10);
+			int count = tweetDtateCount.containsKey(subStringDate) ? tweetDtateCount.get(subStringDate) : 0;
+			tweetDtateCount.put(subStringDate, count + Integer.parseInt(obj_QueryData.getFacet_counts().getFacet_fields().getTweet_date().get(i + 1)));
+			
+		}
+		for (String keys : tweetDtateCount.keySet()) {
+			ArrayList<Object> temp = new ArrayList<Object>();
+			temp.add(keys);
+			temp.add(tweetDtateCount.get(keys));
+			this.tweet_date.add(temp);
+		}
+		
 
+	}
+
+	public List<ArrayList<Object>> getTweet_date() {
+		return tweet_date;
+	}
+
+	public void setTweet_date(List<ArrayList<Object>> tweet_date) {
+		this.tweet_date = tweet_date;
 	}
 
 	public List<ArrayList<Object>> getSentiment() {
