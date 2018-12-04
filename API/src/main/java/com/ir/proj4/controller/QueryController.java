@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ir.proj4.model.ReturnList;
 import com.ir.proj4.model.ReturnStatisticsList;
+import com.ir.proj4.service.SolrSemanticService;
 import com.ir.proj4.service.SolrService;
 import com.ir.proj4.service.SolrStatsService;
 
@@ -22,6 +23,10 @@ public class QueryController<JSONObject> {
 	private SolrService solrService;
 	@Autowired
 	private SolrStatsService solrStatistics;
+	@Autowired
+	private SolrSemanticService solrSemantics;
+	
+	
 
 	@CrossOrigin
 	@RequestMapping(value = "select", method = RequestMethod.GET)
@@ -56,4 +61,22 @@ public class QueryController<JSONObject> {
 		return solrStatistics.querySolr(query, lang, topic, verified, city);
 
 	}
+	
+	
+	
+	
+	@CrossOrigin
+	@RequestMapping(value = "semantics", method = RequestMethod.GET)
+	public ReturnStatisticsList getSolrSemantics(@RequestParam(name = "q") String query)
+			throws URISyntaxException, GeneralSecurityException, IOException {
+		// to work on
+		// most common ISO Date Format yyyy-MM-dd
+
+		return solrSemantics.querySolr(query);
+
+	}
+	
+	
+	
+	
 }
