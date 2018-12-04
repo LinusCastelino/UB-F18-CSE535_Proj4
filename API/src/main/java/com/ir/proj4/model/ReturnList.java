@@ -2,42 +2,41 @@ package com.ir.proj4.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class ReturnList {
-	
-	
+
 	ArrayList<Docs> tweets;
-	HashMap<String,String> lang;
-	HashMap<String,String> city;
+	HashMap<String, String> lang;
+	HashMap<String, String> city;
 	int numFound;
-	HashMap<String,String> topic;
-	HashMap<String,String> verified;
-	
-//	obj_QueryData.getResponse().getDocs(),obj_QueryData.getFacet_counts().getFacet_fields().getLang(),obj_QueryData.getFacet_counts().getFacet_fields().getCity(),obj_QueryData.getResponse().getNumFound()
-	
-//	public ReturnList(ArrayList<Docs> tweets,List<String> lang, List<String> city, int numFound,List<String> topic){
+	HashMap<String, String> topic;
+	HashMap<String, String> verified;
+
 	public ReturnList(QueryData obj_QueryData) {
 		this.tweets = obj_QueryData.getResponse().getDocs();
-		this.lang = new HashMap<String,String>();
-		this.city = new HashMap<String,String>();
-		this.topic = new HashMap<String,String>();
-		this.verified = new HashMap<String,String>();
-		
-		
-		for(int i=0;i<obj_QueryData.getFacet_counts().getFacet_fields().getLang().size();i+=2) {
-			this.lang.put(obj_QueryData.getFacet_counts().getFacet_fields().getLang().get(i), obj_QueryData.getFacet_counts().getFacet_fields().getLang().get(i+1));
+		this.lang = new HashMap<String, String>();
+		this.city = new HashMap<String, String>();
+		this.topic = new HashMap<String, String>();
+		this.verified = new HashMap<String, String>();
+
+		for (int i = 0; i < obj_QueryData.getFacet_counts().getFacet_fields().getLang().size(); i += 2) {
+			this.lang.put(obj_QueryData.getFacet_counts().getFacet_fields().getLang().get(i),
+					obj_QueryData.getFacet_counts().getFacet_fields().getLang().get(i + 1));
 		}
-		for(int i=0;i<obj_QueryData.getFacet_counts().getFacet_fields().getCity().size();i+=2) {
-			this.city.put(obj_QueryData.getFacet_counts().getFacet_fields().getCity().get(i), obj_QueryData.getFacet_counts().getFacet_fields().getCity().get(i+1));
+		for (int i = 0; i < obj_QueryData.getFacet_counts().getFacet_fields().getCity().size(); i += 2) {
+			this.city.put(obj_QueryData.getFacet_counts().getFacet_fields().getCity().get(i),
+					obj_QueryData.getFacet_counts().getFacet_fields().getCity().get(i + 1));
 		}
 		this.numFound = obj_QueryData.getResponse().getNumFound();
-		for(int i=0;i<obj_QueryData.getFacet_counts().getFacet_fields().getTopic().size();i+=2) {
-			this.topic.put(obj_QueryData.getFacet_counts().getFacet_fields().getTopic().get(i), obj_QueryData.getFacet_counts().getFacet_fields().getTopic().get(i+1));
+		for (int i = 0; i < obj_QueryData.getFacet_counts().getFacet_fields().getTopic().size(); i += 2) {
+			this.topic.put(obj_QueryData.getFacet_counts().getFacet_fields().getTopic().get(i),
+					obj_QueryData.getFacet_counts().getFacet_fields().getTopic().get(i + 1));
 		}
-		for(int i=0;i<obj_QueryData.getFacet_counts().getFacet_fields().getVerified().size();i+=2) {
-			this.verified.put(obj_QueryData.getFacet_counts().getFacet_fields().getVerified().get(i), obj_QueryData.getFacet_counts().getFacet_fields().getVerified().get(i+1));
+		for (int i = 0; i < obj_QueryData.getFacet_counts().getFacet_fields().getVerified().size(); i += 2) {
+			this.verified.put(obj_QueryData.getFacet_counts().getFacet_fields().getVerified().get(i),
+					obj_QueryData.getFacet_counts().getFacet_fields().getVerified().get(i + 1));
 		}
+
 	}
 
 	public HashMap<String, String> getVerified() {

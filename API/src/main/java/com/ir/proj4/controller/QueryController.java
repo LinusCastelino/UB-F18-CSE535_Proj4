@@ -17,32 +17,43 @@ import com.ir.proj4.service.SolrStatsService;
 
 @RestController
 public class QueryController<JSONObject> {
-	
+
 	@Autowired
 	private SolrService solrService;
 	@Autowired
 	private SolrStatsService solrStatistics;
-	
+
 	@CrossOrigin
-	@RequestMapping(value="select", method = RequestMethod.GET)
-	public ReturnList getSolrResponse(@RequestParam(name="q") String query, @RequestParam(name="dateFrom", required=false) String dateFrom, @RequestParam(name="dateTo", required=false) String dateTo, @RequestParam(name="pageSize") String pageSize, @RequestParam(name="pageNo") String pageNo, @RequestParam(name="lang", required=false) String lang, @RequestParam(name="topic", required=false) String topic, @RequestParam(name="verified", required=false) String verified, @RequestParam(name="city", required=false) String city) throws URISyntaxException, GeneralSecurityException, IOException {
-		//to work on
-		//most common ISO Date Format yyyy-MM-dd
-		//dateFrom=&dateTo
-		
+	@RequestMapping(value = "select", method = RequestMethod.GET)
+	public ReturnList getSolrResponse(@RequestParam(name = "q") String query,
+			@RequestParam(name = "dateFrom", required = false) String dateFrom,
+			@RequestParam(name = "dateTo", required = false) String dateTo,
+			@RequestParam(name = "pageSize") String pageSize, @RequestParam(name = "pageNo") String pageNo,
+			@RequestParam(name = "lang", required = false) String lang,
+			@RequestParam(name = "topic", required = false) String topic,
+			@RequestParam(name = "verified", required = false) String verified,
+			@RequestParam(name = "city", required = false) String city)
+			throws URISyntaxException, GeneralSecurityException, IOException {
+		// to work on
+		// most common ISO Date Format yyyy-MM-dd
+		// dateFrom=&dateTo
+
 		return solrService.querySolr(query, dateFrom, dateTo, pageSize, pageNo, lang, topic, verified, city);
 
-
-	}	
+	}
 
 	@CrossOrigin
-	@RequestMapping(value="statistics", method = RequestMethod.GET)
-	public ReturnStatisticsList getSolrStatistics(@RequestParam(name="q") String query, @RequestParam(name="date", required=false) String date, @RequestParam(name="pageSize") String pageSize, @RequestParam(name="pageNo") String pageNo, @RequestParam(name="lang", required=false) String lang, @RequestParam(name="topic", required=false) String topic, @RequestParam(name="verified", required=false) String verified, @RequestParam(name="city", required=false) String city) throws URISyntaxException, GeneralSecurityException, IOException {
-		//to work on
-		//most common ISO Date Format yyyy-MM-dd
-		
-		return solrStatistics.querySolr(query, date, pageSize, pageNo, lang, topic, verified, city);
+	@RequestMapping(value = "statistics", method = RequestMethod.GET)
+	public ReturnStatisticsList getSolrStatistics(@RequestParam(name = "q") String query,
+			@RequestParam(name = "lang", required = false) String lang,
+			@RequestParam(name = "topic", required = false) String topic,
+			@RequestParam(name = "verified", required = false) String verified,
+			@RequestParam(name = "city", required = false) String city)
+			throws URISyntaxException, GeneralSecurityException, IOException {
+		// to work on
+		// most common ISO Date Format yyyy-MM-dd
 
+		return solrStatistics.querySolr(query, lang, topic, verified, city);
 
 	}
 }

@@ -117,8 +117,8 @@ export class SearchResultsComponent implements OnInit {
     if(this.datePicker1 && this.datePicker2){
       fromDate = this.dateFrom;
       toDate = this.dateTo;
-      this.datePicker1 = false;
-      this.datePicker2 = false;
+      fromDate=fromDate.substring(0,12)+'0'+fromDate.substring(13,fromDate.length);
+      toDate=toDate.substring(0,12)+'0'+toDate.substring(13,toDate.length);
     }
 
     filter=[langFilter, cityFilter, pageNo, resultsPerPage, topicFilter, verifiedFilter, fromDate, toDate];

@@ -2,15 +2,13 @@ package com.ir.proj4.model;
 
 import java.util.List;
 
-
-
 public class Facet_Fields {
 	List<String> lang;
 	List<String> city;
 	List<String> topic;
 	List<String> verified;
-	
-	
+	List<String> hashtags;
+
 	public List<String> getVerified() {
 		return verified;
 	}
@@ -42,4 +40,13 @@ public class Facet_Fields {
 	public void setLang(List<String> lang) {
 		this.lang = lang;
 	}
+
+	public List<String> getHashtags() {
+		return hashtags;
+	}
+
+	public void setHashtags(List<String> hashtags) {
+		this.hashtags = hashtags;
+	}
+
 }
