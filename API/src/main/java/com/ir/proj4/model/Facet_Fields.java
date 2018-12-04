@@ -8,6 +8,15 @@ public class Facet_Fields {
 	List<String> topic;
 	List<String> verified;
 	List<String> hashtags;
+	List<String> tweet_date;
+
+	public List<String> getTweet_date() {
+		return tweet_date;
+	}
+
+	public void setTweet_date(List<String> tweet_date) {
+		this.tweet_date = tweet_date;
+	}
 
 	public List<String> getVerified() {
 		return verified;

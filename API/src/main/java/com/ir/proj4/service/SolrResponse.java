@@ -17,7 +17,8 @@ public class SolrResponse {
 		String inputLine;
 		StringBuffer response = new StringBuffer();
 		while ((inputLine = in.readLine()) != null) {
-			response.append(inputLine);
+			String encodedString = new String(inputLine.getBytes(), "utf-8");
+			response.append(encodedString);
 		}
 		in.close();
 		return response;
