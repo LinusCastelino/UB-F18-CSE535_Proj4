@@ -57,6 +57,7 @@ export class ToggleComponent implements OnInit {
       this.apiService.stats(inputText).subscribe(
         response => {
             this.apiStats=response;
+            console.log(this.apiStats.lang);
         },
         err=> {
            console.log("Error : " + JSON.stringify(err));

@@ -12,12 +12,11 @@ export class SearchStatisticsComponent implements OnInit {
 
   @Input() apiStats:any;
   map_data = [
-    ['Germany', 200],
+    ['Mexico', 200],
     ['US', 300],
-    ['Brazil', 400],
-    ['Canada', 500],
-    ['France', 600],
-    ['RU', 700]
+    ['India', 400],
+    ['Thailand', 500],
+    ['France', 600]
   ];
   map_options = {
     colorAxis: {colors: ['#F9A6A6', '#FF0000']},
@@ -28,11 +27,11 @@ export class SearchStatisticsComponent implements OnInit {
   
   citiesPieData = [
       
-      ['Work',    11],
-      ['Eat',      2],
-      ['Commute',  2],
-      ['Watch TV', 2],
-      ['Sleep',    7]   
+      ['Work',   parseInt('11')],
+      ['Eat',      parseInt('2')],
+      ['Commute',  parseInt('2')],
+      ['Watch TV', parseInt('2')],
+      ['Sleep',   parseInt('7')]   
     ];
   
   citiesPieOptions= {title: 'My Daily Activities',
