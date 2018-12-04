@@ -1,19 +1,25 @@
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <google-chart type="GeoChart" [data]="apiStats.country" [options]="" width="600" height="300" dynamicResize="true"></google-chart>
-    </div>
-    <div class="pie_chart">
-      <google-chart id="pieChart" type="PieChart"  width= "900" height="500" dynamicResize="true" [data]="apiStats.city" [options]="citiesPieOptions"  ></google-chart>
+<div *ngIf="!statsAvailable">
+  <mat-spinner></mat-spinner>
+</div>
 
-    </div>
-    <div class="donut_chart">
-      <google-chart id="pieChart" type="PieChart"  width= "900" height="500" dynamicResize="true" [data]="apiStats.sentiment" [options]="sentimentDonutOptions"  ></google-chart>
-
-    </div>
-    <div class="column_chart">
-      <google-chart id="columChart" type="ColumnChart"  width= "900" height="500" dynamicResize="true" [data]="apiStats.lang" [options]="columnChartOptions"  ></google-chart>
-
+<div *ngIf="statsAvailable">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <google-chart type="GeoChart" [data]="apiStats.country" [options]="" width="600" height="300" dynamicResize="true"></google-chart>
+      </div>
+      <div class="pie_chart">
+        <google-chart id="pieChart" type="PieChart"  width= "900" height="500" dynamicResize="true" [data]="apiStats.city" [options]="citiesPieOptions"  ></google-chart>
+  
+      </div>
+      <div class="donut_chart">
+        <google-chart id="pieChart" type="PieChart"  width= "900" height="500" dynamicResize="true" [data]="apiStats.sentiment" [options]="sentimentDonutOptions"  ></google-chart>
+  
+      </div>
+      <div class="column_chart">
+        <google-chart id="columChart" type="ColumnChart"  width= "900" height="500" dynamicResize="true" [data]="apiStats.lang" [options]="columnChartOptions"  ></google-chart>
+  
+      </div>
     </div>
   </div>
 </div>

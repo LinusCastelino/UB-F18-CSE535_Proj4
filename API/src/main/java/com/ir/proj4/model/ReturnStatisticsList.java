@@ -86,7 +86,7 @@ public class ReturnStatisticsList {
 		if (obj_QueryData.getResponse().getNumFound() < 1000) {
 			sentimentsLimit = obj_QueryData.getResponse().getNumFound();
 		}
-		for (int i = 0; i < sentimentsLimit; i++) {
+		for (int i = 0; i < 100; i++) {
 			String analysisPerTweet = SentimentAnalysis
 					.findSentiment(obj_QueryData.getResponse().getDocs().get(i).getText().get(0));
 			sentimentCount.put(analysisPerTweet, sentimentCount.get(analysisPerTweet) + 1);

@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { GoogleChartsModule } from 'angular-google-charts';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 import { AppComponent } from './app.component';
@@ -58,6 +59,7 @@ const routes : Routes= [
     MatProgressBarModule,
     MatPaginatorModule,
     ReactiveFormsModule,
+    MatProgressSpinnerModule,
     GoogleChartsModule.forRoot('AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY')
   ],
   providers: [APICallsService],
