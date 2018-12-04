@@ -19,7 +19,7 @@
           </mat-expansion-panel-header>
           <p>From Date:</p>  
           <mat-form-field>
-            <input matInput (dateChange)="dateFromChanged($event)" [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="value">
+            <input matInput (dateChange)="dateFromChanged($event)" [matDatepicker]="picker" placeholder="Choose a date">
             <mat-datepicker-toggle matSuffix  [for]="picker" ></mat-datepicker-toggle>
             <mat-datepicker  #picker></mat-datepicker>
           </mat-form-field>
