@@ -41,7 +41,7 @@ public class SolrSemanticService {
 		obj_ObjectMapper = new ObjectMapper();
 		obj_QueryData = new QueryData();
 		obj_QueryData = obj_ObjectMapper.readValue(response.toString(), QueryData.class);
-		System.out.println(response);
+//		System.out.println(response);
 		ReturnSentimentScore returnStatList = new ReturnSentimentScore(obj_QueryData);
 		return returnStatList;
 	}
