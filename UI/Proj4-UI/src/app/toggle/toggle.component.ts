@@ -19,6 +19,7 @@ export class ToggleComponent implements OnInit {
   apiStats:any = '';
   apiResponseTime: number = 0;
   searchInProgress : boolean = false; 
+  statsAvailable : boolean = false;
   errorOccured : boolean = false;
 
   langCount : any;
@@ -30,6 +31,7 @@ export class ToggleComponent implements OnInit {
     if(typeof(inputText) == 'string'){
       let startTime : any = new Date();
       this.searchInProgress = true;
+      this.statsAvailable = false;
       this.errorOccured = false;
       this.query = inputText;
       this.apiService.search(inputText, "", "", "0", "10","","", "", "").subscribe(
@@ -57,9 +59,11 @@ export class ToggleComponent implements OnInit {
       this.apiService.stats(inputText).subscribe(
         response => {
             this.apiStats=response;
+            this.statsAvailable = true;
         },
         err=> {
            console.log("Error : " + JSON.stringify(err));
+           this.statsAvailable = false;
         });
         
       }

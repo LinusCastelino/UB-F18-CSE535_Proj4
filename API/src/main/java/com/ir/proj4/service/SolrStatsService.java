@@ -29,19 +29,19 @@ public class SolrStatsService {
 		String url;
 		q3 = URLEncoder.encode(query, "UTF-8");
 
-		url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=hashtags&facet.field=topic&facet.field=verified&facet.field=lang&facet=on&qf=text&q="
+		url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=hashtags&facet.field=tweet_date&facet.field=topic&facet.field=verified&facet.field=lang&facet=on&qf=text&q="
 				+ q3 + "&fl=text%2Ctweet_date%2Ccity&wt=json";
 
 		System.out.println(url);
 
 		// hitting solr API
 		StringBuffer response = SolrResponse.solrResponse(url);
-//        System.out.println(response);
+        System.out.println(response);
 		// input from solr will be processed now
 		ObjectMapper obj_ObjectMapper = new ObjectMapper();
 		QueryData obj_QueryData = new QueryData();
 		obj_QueryData = obj_ObjectMapper.readValue(response.toString(), QueryData.class);
-		url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=hashtags&facet.field=topic&facet.field=verified&facet.field=lang&facet=on&qf=text&q="
+		url = "http://18.191.170.212:8983/solr/IRF18P1/select?indent=true&deftype=edismax&facet.field=city&facet.field=hashtags&facet.field=tweet_date&facet.field=topic&facet.field=verified&facet.field=lang&facet=on&qf=text&q="
 				+ q3 + "&fl=text%2Ctweet_date%2Ccity&rows=" + obj_QueryData.getResponse().getNumFound() + "&wt=json";
 		response = SolrResponse.solrResponse(url);
 		obj_ObjectMapper = new ObjectMapper();

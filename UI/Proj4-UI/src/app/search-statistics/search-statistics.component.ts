@@ -11,14 +11,9 @@ export class SearchStatisticsComponent implements OnInit {
   constructor(private apiService: APICallsService) { }
 
   @Input() apiStats:any;
-  map_data = [
-    ['Germany', 200],
-    ['US', 300],
-    ['Brazil', 400],
-    ['Canada', 500],
-    ['France', 600],
-    ['RU', 700]
-  ];
+  @Input() statsAvailable : boolean;
+
+
   map_options = {
     colorAxis: {colors: ['#F9A6A6', '#FF0000']},
     backgroundColor: '#9BC9FD',
@@ -28,25 +23,18 @@ export class SearchStatisticsComponent implements OnInit {
   
   citiesPieData = [
       
-      ['Work',    11],
-      ['Eat',      2],
-      ['Commute',  2],
-      ['Watch TV', 2],
-      ['Sleep',    7]   
+      ['Work',   parseInt('11')],
+      ['Eat',      parseInt('2')],
+      ['Commute',  parseInt('2')],
+      ['Watch TV', parseInt('2')],
+      ['Sleep',   parseInt('7')]   
     ];
   
   citiesPieOptions= {title: 'My Daily Activities',
   pieSliceTextStyle:  {color: 'black'},
   is3D: true};
 
-  sentimentDonutData = [
-      
-    ['Work',    11],
-    ['Eat',      2],
-    ['Commute',  2],
-    ['Watch TV', 2],
-    ['Sleep',    7]   
-  ];
+
 
   sentimentDonutOptions= {title: 'My Daily Activities',
   pieSliceTextStyle:  {color: 'black'},
@@ -57,6 +45,8 @@ export class SearchStatisticsComponent implements OnInit {
     is3D: true,
     title: "Density of Precious Metals, in g/cm^3"
   };
+
+  
   ngOnInit() {
   }
 
