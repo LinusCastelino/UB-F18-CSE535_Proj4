@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ir.proj4.model.ReturnList;
+import com.ir.proj4.model.ReturnSentimentScore;
 import com.ir.proj4.model.ReturnStatisticsList;
 import com.ir.proj4.service.SolrSemanticService;
 import com.ir.proj4.service.SolrService;
@@ -67,7 +68,7 @@ public class QueryController<JSONObject> {
 	
 	@CrossOrigin
 	@RequestMapping(value = "semantics", method = RequestMethod.GET)
-	public ReturnStatisticsList getSolrSemantics(@RequestParam(name = "q") String query)
+	public ReturnSentimentScore getSolrSemantics(@RequestParam(name = "q") String query)
 			throws URISyntaxException, GeneralSecurityException, IOException {
 		// to work on
 		// most common ISO Date Format yyyy-MM-dd
