@@ -23,7 +23,7 @@ export class APICallsService {
                                  .set('city',cityFilter).set('pageNo',pageNo).set('pageSize',pageSize)
                                  .set('topic',topicFilter).set('verified',verifiedFilter)
                                  .set('dateFrom',dateFrom).set('dateTo', dateTo);
-    return this.httpClient.get(URL, {headers, params}).pipe(timeout(20000));
+    return this.httpClient.get(URL, {headers, params}).pipe(timeout(100000));
   }
 
   public stats(inputquery){
