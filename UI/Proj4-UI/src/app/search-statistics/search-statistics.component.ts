@@ -12,6 +12,8 @@ export class SearchStatisticsComponent implements OnInit {
 
   @Input() apiStats:any;
   @Input() statsAvailable : boolean;
+  @Input() apiSentiment : any;
+  @Input() sentimentAvailable : boolean;
 
 
   map_options = {
