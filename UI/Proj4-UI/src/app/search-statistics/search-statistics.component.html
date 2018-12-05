@@ -7,7 +7,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12 map">
-        <google-chart type="GeoChart" [data]="apiStats.country" [options]=""  dynamicResize="true"></google-chart>
+        <google-chart type="GeoChart" [data]="apiStats.country" [options]="map_options"  dynamicResize="true"></google-chart>
       </div>
     </div>
 
@@ -35,11 +35,20 @@
           <google-chart id="columChart" type="ColumnChart"  width= "700" height="400" dynamicResize="true" [data]="apiStats.lang" [options]="columnChartOptions"  ></google-chart>
         </div>
       </div>
-      <div class="Table">
-        <google-chart id="Table" type="Table"  width= "300" height="500" dynamicResize="true" [data]="apiStats.hashtags" [options]="tableOptions"  [columnNames]="[Hashtags','Count']"></google-chart>
-  
-      </div>
     </div>
-    
+
+    <div class="row">
+        <div class="hashtagTable">
+          <google-chart id="hashtagTable" type="Table"  width= "400" height="500" dynamicResize="true" [data]="apiStats.hashtags" [options]="tableOptions"  [columnNames]="['Hashtags','Count']"></google-chart>
+        </div>
+    </div>
+      
+    <div class="row">
+        <div class="col-lg-12">
+          <div class="bar_chart">
+            <google-chart id="barChart" type="BarChart"  width= "700" height="400" dynamicResize="true" [data]="apiStats.topics" [options]="barChartOptions"  ></google-chart>
+          </div>
+        </div>
+    </div>
   </div>
 </div>

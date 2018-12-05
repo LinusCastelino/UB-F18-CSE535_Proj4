@@ -67,17 +67,17 @@ mat-icon{
     margin-left: 0.8%;
 }
 
-.tweets .positive{
+.tweets .tweets-Positive{
     border-left: 4px solid green;
     border-right : 4px solid green;
 }
 
-.tweets .neutral{
+.tweets .tweets-Neutral{
     border-left: 4px solid black;
     border-right : 4px solid black;
 }
 
-.tweets .negative{
+.tweets .tweets-Negative{
     border-left: 4px solid red;
     border-right : 4px solid red;
 }

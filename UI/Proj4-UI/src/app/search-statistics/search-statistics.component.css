@@ -2,8 +2,8 @@
     border: 2px solid black;
     margin-top: 2%;
     margin-bottom: 2%;
-    margin-left: 20%;
-    width : 70%;
+    margin-left: 23%;
+    width : 55%;
     height : auto;
 }
 
@@ -43,5 +43,17 @@ p{
 }
 
 .column_chart{
+    padding-left : 20%;
+}
+
+.hashtagTable google-chart {
+    border: 2px solid black;
+}
+
+.hashtagTable{
+    margin-left : 30%;
+}
+
+.bar_chart{
     padding-left : 20%;
 }

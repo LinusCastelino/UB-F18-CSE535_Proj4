@@ -17,8 +17,8 @@ export class SearchStatisticsComponent implements OnInit {
 
 
   map_options = {
+    title: 'Geotagged tweets',
     colorAxis: {colors: ['#F9A6A6', '#FF0000']},
-    backgroundColor: '#9BC9FD',
     datalessRegionColor: '#EBE9E9',
     defaultColor: '#f5f5f5',
   };
@@ -33,25 +33,31 @@ export class SearchStatisticsComponent implements OnInit {
     ];
   
   tableOptions={
+    title: 'Hashtags',
     showRowNumber: true,
   };
  
-  citiesPieOptions= {title: 'My Daily Activities',
+  citiesPieOptions= {title: 'Cities',
   pieSliceTextStyle:  {color: 'black'},
   is3D: true};
 
 
 
-  sentimentDonutOptions= {title: 'My Daily Activities',
+  sentimentDonutOptions= {title: 'Sentiment Analysis',
   pieSliceTextStyle:  {color: 'black'},
   pieHole: 0.4,
   };
 
   columnChartOptions={
     is3D: true,
-    title: "Density of Precious Metals, in g/cm^3"
+    title: "Languages"
   };
 
+  barChartOptions={
+    is3D: true,
+    title: "Topics"
+  };
+  
   
   ngOnInit() {
   }

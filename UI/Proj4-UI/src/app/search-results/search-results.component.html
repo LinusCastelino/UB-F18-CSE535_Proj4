@@ -98,7 +98,7 @@
     <div class="col-lg-9">
       <div class="tweets" id="tweet-{{ tweet.id_str }}" *ngFor="let tweet of apiResponse.tweets">
         <mat-card class="results">
-          <div class="container {{ tweet.sentiment }}">
+          <div class="container tweets-{{ tweet.sentiment }}">
             <div class="row">
               <div class="col-sm-2">
                 <img src="{{ tweet.userProfile }}">
