@@ -17,10 +17,12 @@ export class ToggleComponent implements OnInit {
   resultsAvailable : boolean = false;
   apiResponse:any = '';
   apiStats:any = '';
+  apiSentiment : any = '';
   apiResponseTime: number = 0;
   searchInProgress : boolean = false; 
   statsAvailable : boolean = false;
   errorOccured : boolean = false;
+  sentimentAvailable : boolean = false;
 
   langCount : any;
   cityCount : any;
@@ -32,6 +34,7 @@ export class ToggleComponent implements OnInit {
       let startTime : any = new Date();
       this.searchInProgress = true;
       this.statsAvailable = false;
+      this.sentimentAvailable = false;
       this.errorOccured = false;
       this.query = inputText;
       this.apiService.search(inputText, "", "", "0", "10","","", "", "").subscribe(
@@ -46,8 +49,6 @@ export class ToggleComponent implements OnInit {
           this.cityCount = this.apiResponse.city;
           this.topicsCount = this.apiResponse.topic;
           this.verifiedCount = this.apiResponse.verified.true;
-
-          console.log(response);
       },
       err => {
         this.errorOccured = true;
@@ -65,7 +66,18 @@ export class ToggleComponent implements OnInit {
            console.log("Error : " + JSON.stringify(err));
            this.statsAvailable = false;
         });
-        
+
+        this.apiService.sentiment(inputText).subscribe(
+          response =>{
+            this.apiSentiment = response;
+            this.sentimentAvailable = true;
+            console.log(response);
+          },
+          err => {
+            console.log("Error : " + JSON.stringify(err));
+            this.sentimentAvailable = false;
+          }
+        );
       }
   }
 
