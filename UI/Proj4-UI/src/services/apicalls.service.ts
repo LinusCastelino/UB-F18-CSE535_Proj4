@@ -31,7 +31,15 @@ export class APICallsService {
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
     let params = new HttpParams().set('q',inputquery);
-    return this.httpClient.get(URL, {headers, params}).pipe(timeout(100000));
+    return this.httpClient.get(URL, {headers, params}).pipe(timeout(20000));
   } 
+
+  public sentiment(inputquery){
+    var URL= apiURL+"/semantics";
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    let params = new HttpParams().set('q',inputquery);
+    return this.httpClient.get(URL, {headers, params});
+  }
 
 }

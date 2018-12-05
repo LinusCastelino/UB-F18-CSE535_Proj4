@@ -1,6 +1,47 @@
-google-chart{
+.map google-chart{
     border: 2px solid black;
     margin-top: 2%;
     margin-bottom: 2%;
-    margin-left: 23.5%;
+    margin-left: 20%;
+    width : 70%;
+    height : auto;
+}
+
+.stats-progress-spinner{
+    width : 100%;
+    padding-left : 45%;
+    padding-top : 5%;
+    padding-bottom : 20%;
+    height : 100%;
+}
+
+p{
+    font-family: 'Indie Flower', cursive;
+    font-size: 2rem;
+    text-align: center
+}
+
+.stats-progress-spinner p{
+    padding-top: 10%;
+    margin-left : -75%;
+}
+
+.pieChart-normal{
+    padding-left : 20%;
+}
+
+.pieChart-donut{
+    padding-left : 20%;
+}
+
+.pieChart-donut p{
+    margin-left : -20%;
+}
+
+.pieChart-donut mat-spinner{
+    margin-left : 30%;
+}
+
+.column_chart{
+    padding-left : 20%;
 }
