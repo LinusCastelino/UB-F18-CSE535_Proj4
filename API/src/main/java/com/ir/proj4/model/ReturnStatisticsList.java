@@ -8,7 +8,17 @@ import com.ir.proj4.service.SentimentAnalysis;
 
 public class ReturnStatisticsList {
 
-//	HashMap<String,String> lang;
+public List<ArrayList<Object>> getTopics() {
+		return topics;
+	}
+
+
+
+	public void setTopics(List<ArrayList<Object>> topics) {
+		this.topics = topics;
+	}
+
+	//	HashMap<String,String> lang;
 	List<ArrayList<Object>> lang;
 	List<ArrayList<Object>> city;
 	List<ArrayList<Object>> country;
