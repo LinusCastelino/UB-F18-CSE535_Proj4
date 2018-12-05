@@ -14,7 +14,8 @@ public class ReturnStatisticsList {
 	List<ArrayList<Object>> country;
 	List<ArrayList<Object>> hashtags;
 //	List<ArrayList<Object>> sentiment;
-	List<ArrayList<Object>> tweet_date;
+//	List<ArrayList<Object>> tweet_date;
+	List<ArrayList<Object>> topics;
 	
 
 	public ReturnStatisticsList(QueryData obj_QueryData) {
@@ -23,6 +24,7 @@ public class ReturnStatisticsList {
 		HashMap<String, String> cityRemane = new HashMap<String, String>();
 //		HashMap<String, Integer> sentimentCount = new HashMap<String, Integer>();
 		HashMap<String, Integer> tweetDtateCount = new HashMap<String, Integer>();
+		
 		// TODO Auto-generated constructor stub
 		cityToCountry.put("paris", "France");
 		cityToCountry.put("nyc", "US");
@@ -51,7 +53,8 @@ public class ReturnStatisticsList {
 		this.country = new ArrayList<ArrayList<Object>>();
 		this.hashtags = new ArrayList<ArrayList<Object>>();
 //		this.sentiment = new ArrayList<ArrayList<Object>>();
-		this.tweet_date = new ArrayList<ArrayList<Object>>();
+//		this.tweet_date = new ArrayList<ArrayList<Object>>();
+		this.topics = new ArrayList<ArrayList<Object>>();
 
 		int hashtagLimit = 20;
 //		int sentimentsLimit = 10;
@@ -107,23 +110,22 @@ public class ReturnStatisticsList {
 			tweetDtateCount.put(subStringDate, count + Integer.parseInt(obj_QueryData.getFacet_counts().getFacet_fields().getTweet_date().get(i + 1)));
 			
 		}
-		for (String keys : tweetDtateCount.keySet()) {
-			ArrayList<Object> temp = new ArrayList<Object>();
-			temp.add(keys);
-			temp.add(tweetDtateCount.get(keys));
-			this.tweet_date.add(temp);
-		}
+//		for (String keys : tweetDtateCount.keySet()) {
+//			ArrayList<Object> temp = new ArrayList<Object>();
+//			temp.add(keys);
+//			temp.add(tweetDtateCount.get(keys));
+//			this.tweet_date.add(temp);
+//		}
 		
-
+		for (int i = 0; i < obj_QueryData.getFacet_counts().getFacet_fields().getTopic().size(); i += 2) {
+			ArrayList<Object> temp = new ArrayList<Object>();
+			temp.add(obj_QueryData.getFacet_counts().getFacet_fields().getTopic().get(i));
+			temp.add(Integer.parseInt(obj_QueryData.getFacet_counts().getFacet_fields().getTopic().get(i + 1)));
+			this.topics.add(temp);
+		}
 	}
 
-	public List<ArrayList<Object>> getTweet_date() {
-		return tweet_date;
-	}
-
-	public void setTweet_date(List<ArrayList<Object>> tweet_date) {
-		this.tweet_date = tweet_date;
-	}
+	
 
 //	public List<ArrayList<Object>> getSentiment() {
 //		return sentiment;
