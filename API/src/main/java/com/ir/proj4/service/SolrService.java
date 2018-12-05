@@ -9,11 +9,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.cloud.language.v1.AnalyzeSentimentResponse;
-import com.google.cloud.language.v1.Document;
-import com.google.cloud.language.v1.Document.Type;
-import com.google.cloud.language.v1.LanguageServiceClient;
-import com.google.cloud.language.v1.Sentiment;
 import com.ir.proj4.model.Docs;
 import com.ir.proj4.model.QueryData;
 import com.ir.proj4.model.ReturnList;
@@ -94,29 +89,6 @@ public class SolrService {
 		}
 		ReturnList returnList = new ReturnList(obj_QueryData);
 		return returnList;
-	}
-
-	public String googleSentimentAnalysis(String tweetText) throws IOException {
-		try (LanguageServiceClient language = LanguageServiceClient.create()) {
-			Document doc = Document.newBuilder().setContent(tweetText).setType(Type.PLAIN_TEXT).build();
-			AnalyzeSentimentResponse response = language.analyzeSentiment(doc);
-			Sentiment sentiment = response.getDocumentSentiment();
-			if (sentiment == null) {
-				return "neutral";
-			} else {
-//			    System.out.printf("Sentiment magnitude: %.3f\n", sentiment.getMagnitude());
-//			    System.out.printf("Sentiment score: %.3f\n", sentiment.getScore());
-				if (sentiment.getScore() > 0) {
-					return "positive";
-				} else if (sentiment.getScore() < 0) {
-					return "negative";
-				} else {
-					return "neutral";
-				}
-			}
-//			  System.out.println(sentiment);
-		}
-
 	}
 
 }

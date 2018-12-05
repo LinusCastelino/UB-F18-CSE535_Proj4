@@ -1,18 +1,12 @@
 package com.ir.proj4.service;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ir.proj4.model.Docs;
 import com.ir.proj4.model.QueryData;
 import com.ir.proj4.model.ReturnSentimentScore;
-import com.ir.proj4.model.ReturnStatisticsList;
 
 @Service
 public class SolrSemanticService {
