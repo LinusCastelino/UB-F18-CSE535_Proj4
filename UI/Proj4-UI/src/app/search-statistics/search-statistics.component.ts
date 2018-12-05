@@ -30,6 +30,10 @@ export class SearchStatisticsComponent implements OnInit {
       ['Sleep',   parseInt('7')]   
     ];
   
+  tableOptions={
+    showRowNumber: true,
+  };
+ 
   citiesPieOptions= {title: 'My Daily Activities',
   pieSliceTextStyle:  {color: 'black'},
   is3D: true};

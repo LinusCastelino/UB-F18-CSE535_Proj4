@@ -20,6 +20,10 @@
         <google-chart id="columChart" type="ColumnChart"  width= "900" height="500" dynamicResize="true" [data]="apiStats.lang" [options]="columnChartOptions"  ></google-chart>
   
       </div>
+      <div class="Table">
+        <google-chart id="Table" type="Table"  width= "300" height="500" dynamicResize="true" [data]="apiStats.hashtags" [options]="tableOptions"  [columnNames]="[Hashtags','Count']"></google-chart>
+  
+      </div>
     </div>
   </div>
 </div>
