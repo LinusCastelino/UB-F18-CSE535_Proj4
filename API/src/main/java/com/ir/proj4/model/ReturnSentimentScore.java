@@ -14,7 +14,7 @@ public class ReturnSentimentScore {
 		SentimentAnalysis.init();
 		HashMap<String, Integer> sentimentCount = new HashMap<String, Integer>();
 		
-		long end = System.currentTimeMillis()+28000;
+		long end = System.currentTimeMillis()+25000;
 		
 		sentimentCount.put("Positive", 0);
 		sentimentCount.put("Neutral", 0);
